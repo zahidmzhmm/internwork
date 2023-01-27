@@ -13,7 +13,7 @@
                             <div class="slide__content">
                                 <span class="slide__subtitle">Besor Associates; we help you...</span>
                                 <h2 class="slide__title">EARN...<br>and Gain Work Experience Abroad!</h2>
-                                <a href="{{ url('/signup') }}" class="btn btn__rounded btn__white btn__bordered">Get
+                                <a href="{{ url('/register') }}" class="btn btn__rounded btn__white btn__bordered">Get
                                     Started</a>
                             </div><!-- /.slide-content -->
                         </div><!-- /.col-lg-10 -->
