@@ -12,6 +12,8 @@
           href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700%7cSource+Sans+Pro:300,300i,400,400i,600,600i,700">
     <link rel="stylesheet" href="{{ asset('assets/css/libraries.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+    @viteReactRefresh
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -30,7 +32,7 @@
                     <span class="menu-lines"><span></span></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavigation">
-                    <ul class="navbar-nav mr-auto ml-auto">
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav__item with-dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Home</a>
                             <ul class="dropdown-menu">
@@ -61,12 +63,31 @@
                         <li class="nav__item with-dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Applications</a>
                             <ul class="dropdown-menu">
-                                <li class="nav__item"><a href="{{ url('/signup') }}" class="nav__item-link">New
-                                        Account</a></li>
-                                <!-- /.nav-item -->
-                                <li class="nav__item"><a href="{{ url('/login') }}" class="nav__item-link">Login</a>
-                                </li>
-                                <!-- /.nav-item -->
+                                @guest
+                                    @if (\Illuminate\Support\Facades\Route::has('register'))
+                                        <li class="nav__item"><a href="{{ url('/register') }}" class="nav__item-link">New
+                                                Account</a></li>
+                                    @endif
+
+                                    @if (\Illuminate\Support\Facades\Route::has('login'))
+                                        <li class="nav__item"><a href="{{ url('/login') }}"
+                                                                 class="nav__item-link">Login</a>
+                                        </li>
+                                    @endif
+                                @else
+                                    <li class="nav__item"><a href="{{ url('/account') }}"
+                                                             class="nav__item-link">Account</a>
+                                    </li>
+                                    <li class="nav__item"><a href="{{ route('logout') }}"
+                                                             onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                                             class="nav__item-link">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                @endguest
                             </ul><!-- /.dropdown-menu -->
                         </li><!-- /.nav-item -->
                         <li class="nav__item with-dropdown">
