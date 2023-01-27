@@ -1,4 +1,4 @@
-@extends('root.layout')
+@extends('layouts.root')
 @section('content')
     <section id="slider" class="slider">
         <div class="carousel owl-carousel carousel-arrows carousel-dots" data-slide="1" data-slide-md="1"

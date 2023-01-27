@@ -86,8 +86,8 @@
     <!-- ============================
         Slider
     ============================== -->
-    @yield('content')
-    <!-- ========================
+@yield('content')
+<!-- ========================
        Footer
      ========================== -->
     <footer id="footer1" class="footer footer-1 bg-heading">
@@ -107,7 +107,7 @@
                             </ul>
                         </div>
                     </div><!-- /.col-lg-3 -->
-                    <div class="col-sm-12 col-md-6 col-lg-3 footer__widget footer__widget-newsletter">
+                    <div class="col-sm-12 col-md-6 ml-auto col-lg-3 footer__widget footer__widget-newsletter">
                         <h6 class="footer__widget-title">Stay Connected</h6>
                         <div class="footer__widget-content">
                             <p>Don’t miss our updates. You can subscribe to our new feeds or follow us!</p>
@@ -142,5 +142,4 @@
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
-
 </html>
