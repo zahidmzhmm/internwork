@@ -37,24 +37,34 @@ class AuthController extends Controller
         return view('auth.passwords.confirm');
     }
 
+    public function registerReq(Request $request)
+    {
+        dd($request->toArray());
+    }
+
+    public function loginReq(Request $request)
+    {
+        dd($request->toArray());
+    }
+
     public function passwordEmail(Request $request)
     {
-        //
+        dd($request->toArray());
     }
 
     public function passwordUpdate(Request $request)
     {
-        //
+        dd($request->toArray());
     }
 
 
     public function passwordConfirm(Request $request)
     {
-        //
+        dd($request->toArray());
     }
 
     public function reVerify(Request $request)
     {
-        //
+        dd($request->toArray());
     }
 }
