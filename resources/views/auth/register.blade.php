@@ -15,47 +15,49 @@
                         <h6 class="pt-3 mb-0 text-info">Personal Information</h6>
                         <div class="row mt-1">
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="First Name">
+                                <input type="text" name="fname" class="form-control" placeholder="First Name">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Last Name">
+                                <input type="text" name="lname" class="form-control" placeholder="Last Name">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Mobile Number">
+                                <input type="text" name="mobile" class="form-control" placeholder="Mobile Number">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Address">
+                                <input type="text" name="address" class="form-control" placeholder="Address">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="City">
+                                <input type="text" name="city" class="form-control" placeholder="City">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="State">
+                                <input type="text" name="state" class="form-control" placeholder="State">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Postcode">
+                                <input type="text" name="postcode" class="form-control" placeholder="Postcode">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <select name="" id="" class="form-control">
+                                <select name="study_level" id="" class="form-control">
                                     <option value="">Current Level of Study</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Course of Study">
+                                <input type="text" name="course" class="form-control" placeholder="Course of Study">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Matriculation Number">
+                                <input type="text" name="matriculation" class="form-control"
+                                       placeholder="Matriculation Number">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <input type="text" class="form-control" placeholder="Name of Institution">
+                                <input type="text" name="institute" class="form-control"
+                                       placeholder="Name of Institution">
                             </div>
                             <div class="col-sm-6 my-2">
-                                <select name="" id="" class="form-control">
+                                <select name="internship" id="" class="form-control">
                                     <option value="">Internship\SIWESS Letter</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 my-2">
-                                <select name="" id="" class="form-control">
+                                <select name="program" id="" class="form-control">
                                     <option value="">Choice of Program</option>
                                     <option value="Internship">Internship</option>
                                     <option value="Traineeship">Traineeship</option>
@@ -63,7 +65,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-6 my-2">
-                                <select name="" id="" class="form-control">
+                                <select name="pss_year" id="" class="form-control">
                                     <option value="">Years of Post-Secondary Study</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -123,9 +125,9 @@
                                 <button type="submit" class="btn btn-info mr-2">
                                     {{ __('Create a new account') }}
                                 </button>
-                                <button type="submit" class="btn btn-danger">
+                                <a href="{{ route('login') }}" class="btn btn-danger">
                                     {{ __('Cancel') }}
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
