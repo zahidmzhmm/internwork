@@ -24,7 +24,6 @@ Route::get('/h1b', [SiteController::class, 'h1b'])->name('h1b');
 Route::get('/internships', [SiteController::class, 'internships'])->name('internships');
 Route::get('/privacy', [SiteController::class, 'privacy'])->name('privacy');
 Route::get('/traineeships', [SiteController::class, 'traineeships'])->name('traineeships');
-
-Auth::routes(['verify' => true]);
+// Custom Authentication
 
 Route::get('/account', [HomeController::class, 'index'])->name('account')->middleware('verified');

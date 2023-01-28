@@ -3,3 +3,38 @@
 
 // Variables
 @import 'variables';
+
+// Bootstrap
+//@import "bootstrap/dist/css/bootstrap.min.css";
+
+.page-updated {
+    padding: 0;
+    overflow: hidden;
+    height: 6.3rem;
+}
+
+.padding-main {
+    padding: 10rem 0;
+}
+
+.btn {
+    height: auto;
+    width: auto;
+    padding: 0 1.3rem;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.authentication {
+    h6, div, .btn, label, input {
+        font-family: "Roboto", sans-serif !important;
+    }
+
+    label {
+        font-size: .87rem;
+    }
+
+    .invalid-feedback {
+        font-size: 11px;
+    }
+}

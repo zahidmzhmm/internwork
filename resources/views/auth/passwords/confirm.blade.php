@@ -4,17 +4,8 @@
     <!-- ========================
        page title
     =========================== -->
-    <section id="page-title" class="page-title page-title-layout16 bg-overlay bg-overlay-2 text-center">
-        <div class="bg-img"><img src="{{ asset('assets/images/page-titles/5.jpg') }}" alt="background"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="pagetitle__heading">Confirm Password</h1>
-                </div><!-- /.col-lg-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </section><!-- /.page-title -->
-    <div class="container my-5">
+    <section class="page-title page-updated bg-dark"></section><!-- /.page-title -->
+    <div class="container padding-main">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 {{ __('Please confirm your password before continuing.') }}

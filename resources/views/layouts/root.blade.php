@@ -34,7 +34,8 @@
                 <div class="collapse navbar-collapse" id="mainNavigation">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav__item with-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Home</a>
+                            <a href="#" data-toggle="dropdown"
+                               class="dropdown-toggle nav__item-link {{ Route::is('index') || Route::is('about') || Route::is('privacy') || Route::is('home')?'active':'' }}">Home</a>
                             <ul class="dropdown-menu">
                                 <li class="nav__item"><a href="{{ url('/home') }}" class="nav__item-link">Home</a></li>
                                 <!-- /.nav-item -->
@@ -48,7 +49,8 @@
                             </ul><!-- /.dropdown-menu -->
                         </li><!-- /.nav-item -->
                         <li class="nav__item with-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Programs</a>
+                            <a href="#" data-toggle="dropdown"
+                               class="dropdown-toggle nav__item-link {{ Route::is('internships') || Route::is('traineeships') || Route::is('h1b') ? 'active':'' }}">Programs</a>
                             <ul class="dropdown-menu">
                                 <li class="nav__item"><a href="{{ url('/internships') }}" class="nav__item-link">Internship</a>
                                 </li>
@@ -61,7 +63,8 @@
                             </ul><!-- /.dropdown-menu -->
                         </li><!-- /.nav-item -->
                         <li class="nav__item with-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Applications</a>
+                            <a href="#" data-toggle="dropdown"
+                               class="dropdown-toggle nav__item-link {{ Route::is('register') || Route::is('login') || Route::is('account') ? 'active':'' }}">Applications</a>
                             <ul class="dropdown-menu">
                                 @guest
                                     @if (\Illuminate\Support\Facades\Route::has('register'))
@@ -91,7 +94,8 @@
                             </ul><!-- /.dropdown-menu -->
                         </li><!-- /.nav-item -->
                         <li class="nav__item with-dropdown">
-                            <a href="" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Contact</a>
+                            <a href="" data-toggle="dropdown"
+                               class="dropdown-toggle nav__item-link {{ Route::is('contact') ? 'active':'' }}">Contact</a>
                             <ul class="dropdown-menu">
                                 <li class="nav__item"><a href="{{ url('/contact') }}" class="nav__item-link">Contact
                                         Us</a></li>
