@@ -18,12 +18,18 @@
                         @endif
 
                         {{ __('Thank you very much for completing the registration to create a profile. A confirmation email has been sent to your address. Please copy the verification code from email and paste the activation code into the space below.') }}
-                        <br><br>{{ __('If you did not receive the email') }} <a href="">click here </a> to resent code
-                        <form class="" method="POST" action="{{ route('verification.resend') }}">
+                        <form class="" method="POST" action="{{ route('verification.check') }}">
                             @csrf
                             <div class="row mt-3">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Enter Activation Code Here">
+                                    <input type="text" name="code"
+                                           class="form-control  @error('code') is-invalid @enderror"
+                                           placeholder="Enter Activation Code Here">
+                                    @error('code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="submit"

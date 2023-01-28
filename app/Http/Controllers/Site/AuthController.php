@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PlainMailable;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -32,14 +37,30 @@ class AuthController extends Controller
         return view('auth.passwords.reset');
     }
 
-    public function passwordReq(Request $request)
+    public function passwordReq()
     {
         return view('auth.passwords.confirm');
     }
 
     public function registerReq(Request $request)
     {
-        dd($request->toArray());
+        $request->validate([
+            'username' => 'required|string|min:4|max:10',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:7'
+        ]);
+        $user = new User();
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->token = substr(uniqid(), 0, 6);
+        $user->password = Hash::make($request->password);
+        try {
+            $user->save();
+            Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
+            return redirect()->route('verification.sent')->with('success', 'Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     public function loginReq(Request $request)
@@ -63,8 +84,9 @@ class AuthController extends Controller
         dd($request->toArray());
     }
 
-    public function reVerify(Request $request)
+    public function verification(Request $request)
     {
+        $request->validate(['code' => 'required|string']);
         dd($request->toArray());
     }
 }

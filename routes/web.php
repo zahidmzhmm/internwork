@@ -39,6 +39,6 @@ Route::post('/register', [AuthController::class, 'registerReq'])->name('register
 Route::post('/password/email', [AuthController::class, 'passwordEmail'])->name('password.email');
 Route::post('/password/reset', [AuthController::class, 'passwordUpdate'])->name('password.update');
 Route::post('/password/change', [AuthController::class, 'passwordConfirm'])->name('password.confirm');
-Route::post('/verification/verify', [AuthController::class, 'reVerify'])->name('verification.resend');
+Route::post('/verification/check', [AuthController::class, 'verification'])->name('verification.check');
 
 Route::get('/account', [HomeController::class, 'index'])->name('account')->middleware('verified');
