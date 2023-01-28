@@ -7,14 +7,13 @@
     <section class="page-title page-updated bg-dark"></section><!-- /.page-title -->
     <div class="container padding-main">
         <div class="row justify-content-center">
-            <div class="col-md-8">>
+            <div class="col-md-8">
                 <form method="POST" action="{{ route('password.update') }}">
                     @csrf
 
-                    <input type="hidden" name="token" value="{{ $token }}">
-
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <label for="email"
+                               class="col-md-4 col-form-label d-flex align-items-end">{{ __('Email Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -30,7 +29,8 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <label for="password"
+                               class="col-md-4 col-form-label d-flex align-items-end text-md-end">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
                             <input id="password" type="password"
@@ -47,7 +47,7 @@
 
                     <div class="row mb-3">
                         <label for="password-confirm"
-                               class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                               class="col-md-4 col-form-label text-md-end  d-flex align-items-end">{{ __('Confirm Password') }}</label>
 
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control"
