@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PlainMailable;
+use App\Models\Profile;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -45,6 +48,20 @@ class AuthController extends Controller
     public function registerReq(Request $request)
     {
         $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'mobile' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'postcode' => 'required',
+            'study_level' => 'required',
+            'course' => 'required',
+            'matriculation' => 'required',
+            'institute' => 'required',
+            'internship' => 'required',
+            'program' => 'required',
+            'pss_year' => 'required',
             'username' => 'required|string|min:4|max:10|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:7'
@@ -52,10 +69,27 @@ class AuthController extends Controller
         $user = new User();
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->token = substr(uniqid(), 0, 6);
+        $user->token = strtoupper(substr(uniqid(), 0, 6));
         $user->password = Hash::make($request->password);
         try {
             $user->save();
+            $profile = new Profile();
+            $profile->user_id = $user->id;
+            $profile->fname = $request->fname;
+            $profile->lname = $request->lname;
+            $profile->mobile = $request->mobile;
+            $profile->address = $request->address;
+            $profile->city = $request->city;
+            $profile->state = $request->state;
+            $profile->postcode = $request->postcode;
+            $profile->study_level = $request->study_level;
+            $profile->course = $request->course;
+            $profile->matriculation = $request->matriculation;
+            $profile->institute = $request->institute;
+            $profile->internship = $request->internship;
+            $profile->program = $request->program;
+            $profile->pss_year = $request->pss_year;
+            $profile->save();
             Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
             return redirect()->route('verification.sent')->with('success', 'Success');
         } catch (\Exception $exception) {
@@ -65,7 +99,21 @@ class AuthController extends Controller
 
     public function loginReq(Request $request)
     {
-        dd($request->toArray());
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:7'
+        ]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = User::find(Auth::id());
+            if ($user->email_verified_at === null) {
+                $user->token = strtoupper(substr(uniqid(), 0, 6));
+                $user->save();
+                Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
+                return redirect()->route('verification.sent')->with('success', 'Email verification code sent');
+            }
+            return $user;
+        }
+        return redirect()->back()->with('error', 'Email or Password wrong');
     }
 
     public function passwordEmail(Request $request)
@@ -87,6 +135,13 @@ class AuthController extends Controller
     public function verification(Request $request)
     {
         $request->validate(['code' => 'required|string']);
-        dd($request->toArray());
+        $user = User::where('token', '=', $request->code)->first();
+        if (!$user) {
+            return redirect()->route('verification.sent');
+        }
+        $user->email_verified_at = Carbon::now();
+        $user->token = NULL;
+        $user->save();
+        return redirect()->route('login')->with('success', 'Verification Success');
     }
 }

@@ -32,6 +32,7 @@ Route::get('/verification/verify', [AuthController::class, 'verify'])->name('ver
 Route::get('/password/reset', [AuthController::class, 'reset'])->name('password.request');
 Route::get('/password/change', [AuthController::class, 'passwordChange'])->name('password.change');
 Route::get('/password/confirm', [AuthController::class, 'passwordReq'])->name('password.confirm');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Custom Authentication Post Request
 Route::post('/login', [AuthController::class, 'loginReq'])->name('login.post');
