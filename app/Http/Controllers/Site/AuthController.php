@@ -114,7 +114,12 @@ class AuthController extends Controller
             if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 return redirect()->route('login')->with('error', 'Email or Password wrong');
             }
-            return redirect()->route('account');
+            if (Auth::user()->role == 1) {
+                return redirect()->route('account');
+            }
+            if (Auth::user()->role == 2) {
+                return redirect()->route('admin');
+            }
         }
         return redirect()->back()->with('error', 'Email or Password wrong');
     }

@@ -31,3 +31,6 @@ Route::post('/password/email', [AuthController::class, 'passwordEmail'])->name('
 Route::post('/password/reset', [AuthController::class, 'passwordUpdate'])->name('password.update');
 Route::post('/password/change', [AuthController::class, 'passwordConfirm'])->name('password.confirm');
 Route::post('/verification/check', [AuthController::class, 'verification'])->name('verification.check');
+
+// Admin Authentication Get Request
+Route::get('admin/login', [AuthController::class, 'login'])->name('admin.login');

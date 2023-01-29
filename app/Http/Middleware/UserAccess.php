@@ -22,6 +22,6 @@ class UserAccess
         if (auth()->user()->role == 1) {
             return $next($request);
         }
-        return redirect('/login')->with('error', 'Permission Deny');
+        return redirect('/admin/login')->with('error', 'Permission Deny');
     }
 }

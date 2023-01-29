@@ -78,16 +78,20 @@
                                         </li>
                                     @endif
                                 @else
-                                    <li class="nav__item"><a href="{{ url('/account') }}"
-                                                             class="nav__item-link">Account</a>
-                                    </li>
-                                    <li class="nav__item"><a href="{{ route('logout') }}"
-                                                             class="nav__item-link">Logout</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              class="d-none">
-                                            @csrf
-                                        </form>
-                                    </li>
+                                    @if(\Illuminate\Support\Facades\Auth::user())
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role==2)
+                                            <li class="nav__item"><a href="{{ route('admin') }}"
+                                                                     class="nav__item-link">Admin</a>
+                                            </li>
+                                        @else
+                                            <li class="nav__item"><a href="{{ route('account') }}"
+                                                                     class="nav__item-link">Account</a>
+                                            </li>
+                                        @endif
+                                        <li class="nav__item"><a href="{{ route('logout') }}"
+                                                                 class="nav__item-link">Logout</a>
+                                        </li>
+                                    @endif
                                 @endguest
                             </ul><!-- /.dropdown-menu -->
                         </li><!-- /.nav-item -->
