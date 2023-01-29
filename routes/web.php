@@ -24,4 +24,3 @@ Route::get('/internships', [SiteController::class, 'internships'])->name('intern
 Route::get('/privacy', [SiteController::class, 'privacy'])->name('privacy');
 Route::get('/traineeships', [SiteController::class, 'traineeships'])->name('traineeships');
 
-Route::get('/account', [HomeController::class, 'index'])->name('account')->middleware('verified');
