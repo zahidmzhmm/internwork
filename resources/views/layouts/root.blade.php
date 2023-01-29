@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @yield('head')
 </head>
 
 <body>
@@ -168,5 +169,6 @@
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+@yield('footer')
 </body>
 </html>
