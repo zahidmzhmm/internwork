@@ -115,6 +115,9 @@ class AuthController extends Controller
                 return redirect()->route('login')->with('error', 'Email or Password wrong');
             }
             if (Auth::user()->role == 1) {
+                if (Auth::user()->picture == null) {
+                    return redirect()->route('profile.u.edit');
+                }
                 return redirect()->route('account');
             }
             if (Auth::user()->role == 2) {

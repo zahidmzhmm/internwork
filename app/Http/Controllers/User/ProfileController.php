@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -76,6 +80,18 @@ class ProfileController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function profileEdit(Request $request)
+    {
+        $user = User::find($request->user()->id);
+        return view('user.profile', compact('user'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -84,7 +100,18 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->toArray());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function profileUpdate(Request $request)
+    {
+        dd($request->toArray());
     }
 
     /**
