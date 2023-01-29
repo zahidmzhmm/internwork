@@ -17,7 +17,6 @@
                             </div>
                         @endif
                         @include("errors")
-
                         {{ __('Thank you very much for completing the registration to create a profile. A confirmation email has been sent to your address. Please copy the verification code from email and paste the activation code into the space below.') }}
                         <form class="" method="POST" action="{{ route('verification.check') }}">
                             @csrf

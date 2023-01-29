@@ -15,8 +15,9 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('password.confirm') }}">
                             @csrf
+                            @include("errors")
                             <input id="password" type="password"
-                                   class="form-control @error('password') is-invalid @enderror" name="password"
+                                   class="form-control mt-2 @error('password') is-invalid @enderror" name="password"
                                    placeholder="Password"
                                    autocomplete="current-password">
 

@@ -103,27 +103,46 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:7'
         ]);
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = User::find(Auth::id());
+        $user = User::where('email', '=', $request->email)->first();
+        if (Hash::check($request->password, $user->password)) {
             if ($user->email_verified_at === null) {
                 $user->token = strtoupper(substr(uniqid(), 0, 6));
                 $user->save();
                 Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
                 return redirect()->route('verification.sent')->with('success', 'Email verification code sent');
             }
-            return $user;
+            if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect()->route('login')->with('error', 'Email or Password wrong');
+            }
+            return redirect()->route('account');
         }
         return redirect()->back()->with('error', 'Email or Password wrong');
     }
 
     public function passwordEmail(Request $request)
     {
-        dd($request->toArray());
+        $request->validate(['email' => 'required|email']);
+        $user = User::where('email', '=', $request->email)->first();
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found!');
+        }
+        $user->code = strtoupper(substr(uniqid(), 0, 6));
+        $user->save();
+        Mail::send(new PlainMailable("Forget Password", $user->email, 'request-reset', $user));
+        return redirect()->route('password.change')->with('success', 'Security code has been sent');
     }
 
     public function passwordUpdate(Request $request)
     {
-        dd($request->toArray());
+        $request->validate(['s_code' => 'required', 'password' => 'required|confirmed|min:7']);
+        $user = User::where('code', '=', $request->s_code)->first();
+        if (!$user) {
+            return redirect()->route('password.change')->with('error', 'Data not found');
+        }
+        $user->password = Hash::make($request->password);
+        $user->code = NULL;
+        $user->save();
+        return redirect()->route('login')->with('success', 'Password Change Success');
     }
 
 
@@ -143,5 +162,14 @@ class AuthController extends Controller
         $user->token = NULL;
         $user->save();
         return redirect()->route('login')->with('success', 'Verification Success');
+    }
+
+    public function logout()
+    {
+        if (Auth::user()) {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Successfully Logged out');
+        }
+        return redirect()->route('login');
     }
 }

@@ -11,15 +11,15 @@
                 <div class="card">
                     <div class="card-header">Password Reset</div>
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
                         <form class="m-4" method="POST" action="{{ route('password.email') }}">
                             @csrf
-                            <div class="row mb-3">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            @include("errors")
+                            <div class="mb-3">
                                 <input id="email" type="email" placeholder="Type your email"
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -30,7 +30,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="row mb-0">
+                            <div class="mb-0">
                                 <button type="submit" class="btn btn-info">
                                     {{ __('Send Password Reset Code') }}
                                 </button>

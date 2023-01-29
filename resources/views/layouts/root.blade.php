@@ -82,8 +82,6 @@
                                                              class="nav__item-link">Account</a>
                                     </li>
                                     <li class="nav__item"><a href="{{ route('logout') }}"
-                                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
                                                              class="nav__item-link">Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                               class="d-none">
