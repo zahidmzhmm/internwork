@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -34,7 +38,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -88,13 +92,14 @@ class ProfileController extends Controller
     public function profileEdit(Request $request)
     {
         $user = User::find($request->user()->id);
-        return view('user.profile', compact('user'));
+        $profile = Profile::where('user_id', '=', $request->user()->id)->first();
+        return view('user.profile', compact('user', 'profile'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -106,12 +111,26 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function profileUpdate(Request $request)
     {
-        dd($request->toArray());
+        $profile = Profile::where('user_id', '=', $request->user()->id)->first();
+        if (isset($request->profile_img) && !empty($request->profile_img)) {
+            $profile->picture = $request->profile_img;
+        }
+        $profile->fname = $request->fname;
+        $profile->lname = $request->lname;
+        $profile->mobile = $request->mobile;
+        $profile->institute = $request->institute;
+        $profile->address = $request->address;
+        try {
+            $profile->save();
+            return redirect()->route('account')->with('success', 'Profile Update Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -123,5 +142,26 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cropImageUploadAjax(Request $request)
+    {
+        $folderPath = public_path('uploads/profile/');
+        if (!File::isDirectory($folderPath)) {
+            File::makeDirectory($folderPath, 0777, true, true);
+        }
+        try {
+            $image_parts = explode(";base64,", $request->image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $imageName = uniqid() . '.png';
+            $imageFullPath = $folderPath . $imageName;
+            file_put_contents($imageFullPath, $image_base64);
+            $upPath = '/uploads/profile/' . $imageName;
+            return response()->json(['success' => true, 'message' => 'Crop Image Uploaded Successfully', 'path' => $upPath]);
+        } catch (\Exception $exception) {
+            return response()->json(['success' => false, 'message' => 'Crop Image Uploaded Successfully']);
+        }
     }
 }
