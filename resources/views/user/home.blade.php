@@ -23,6 +23,7 @@
                 <div class="dashb_contents rounded">
                     <h4 class="header_title">Profile Details</h4>
                     <div class="dash_contents">
+                        @include("errors")
                         <table class="table table-bordered table-hover text-muted table-responsive-sm">
                             <tbody>
                             <tr>
@@ -81,6 +82,13 @@
                                 <td>Years of Post-Secondary Study</td>
                                 <td>{{ $glob_profile->pss_year }}</td>
                             </tr>
+                            @if($glob_profile->status===1)
+                                <tr>
+                                    <td></td>
+                                    <td><a href="{{ route('profile.u.edit') }}" class="btn btn-info">Edit Profile</a>
+                                    </td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
