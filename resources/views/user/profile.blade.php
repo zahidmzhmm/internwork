@@ -160,6 +160,7 @@
                             $modal.modal('hide');
                             if (data.success === true) {
                                 var profilechanges = $("#profile_img");
+                                profilechanges.empty();
                                 profilechanges.append('<img src="' + data.path + '" class="img-fluid"/>');
                                 profilechanges.append('<input type="hidden" name="profile_img" value="' + data.path + '"/>')
                             }
