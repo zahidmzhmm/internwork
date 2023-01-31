@@ -17,6 +17,6 @@ class PaypalController extends Controller
         if (!$application) {
             return redirect()->route('account')->with('error', 'Something went wrong');
         }
-        return view('user.payment');
+        return view('user.payment', compact('application'));
     }
 }
