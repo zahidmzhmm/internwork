@@ -12,7 +12,8 @@
                 <div class="dashb_contents rounded">
                     <h4 class="header_title">Application Form</h4>
                     <div class="dash_contents">
-                        <div id="appointment-root"></div>
+                        <div id="appointment-root" data-user-id="{{ \Illuminate\Support\Facades\Auth::id() }}"
+                             data-ref-gen="IW{{ sprintf("%05d", $last_application_id)}}"></div>
                     </div>
                 </div>
             </div>

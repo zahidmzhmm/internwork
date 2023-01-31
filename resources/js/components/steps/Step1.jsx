@@ -17,7 +17,7 @@ const Step1 = ({setStep, category, setCategory}) => {
                     <label htmlFor="category">Select Your Applicant Category</label>
                 </div>
                 <div className="col-md-6 col-xl-4 d-flex">
-                    <select onChange={(e) => setCategory(e.target.value)} name="" id="" className="form-control">
+                    <select value={category} onChange={(e) => setCategory(e.target.value)} name="" id="" className="form-control">
                         <option value="">Select</option>
                         <option value="Internship">Current Student</option>
                         <option value="Traineeship">Graduate</option>

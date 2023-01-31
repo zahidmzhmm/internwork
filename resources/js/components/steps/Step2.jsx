@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {toast} from "react-hot-toast";
 
-const Step2 = ({step, setStep, category, country, program, setCountry, setProgram}) => {
+const Step2 = ({step, setStep, category, country, program, setCountry, setProgram, setDigit}) => {
 
     const [countries, setCountries] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -9,22 +9,22 @@ const Step2 = ({step, setStep, category, country, program, setCountry, setProgra
     useEffect(() => {
         if (category == 'Internship') {
             setCountries([
-                {name: 'Australia'},
-                {name: 'Denmark'},
-                {name: 'Sweden'},
-                {name: 'United Kingdom'},
-                {name: 'United States'}
+                {name: 'Australia', digit: 'AU'},
+                {name: 'Denmark', digit: 'DE'},
+                {name: 'Sweden', digit: 'SW'},
+                {name: 'United Kingdom', digit: 'UK'},
+                {name: 'United States', digit: 'US'}
             ])
         }
         if (category == 'Traineeship') {
             setCountries([
-                {name: 'Sweden'},
-                {name: 'United States'}
+                {name: 'Sweden', digit: 'SW'},
+                {name: 'United States', digit: 'US'}
             ])
         }
         if (category == 'H1B') {
             setCountries([
-                {name: 'United States'}
+                {name: 'United States', digit: 'US'}
             ])
         }
     }, [step])
@@ -111,10 +111,13 @@ const Step2 = ({step, setStep, category, country, program, setCountry, setProgra
                     <label htmlFor="category">Select a Program Destination</label>
                 </div>
                 <div className="col-md-6 col-xl-4 d-flex">
-                    <select onChange={(e) => onChangeCountry(e.target.value)} name="" id="" className="form-control">
+                    <select value={country} onChange={(e) => {
+                        onChangeCountry(e.target.value)
+                        setDigit(e.target[e.target.selectedIndex].getAttribute('data-digit'))
+                    }} name="" id="" className="form-control">
                         <option value="">Select</option>
                         {countries.map((data, index) =>
-                            <option value={data.name} key={index}>{data.name}</option>
+                            <option value={data.name} key={index} data-digit={data.digit}>{data.name}</option>
                         )}
                     </select>
                 </div>
@@ -124,7 +127,8 @@ const Step2 = ({step, setStep, category, country, program, setCountry, setProgra
                     <label htmlFor="category">Select a Program Field</label>
                 </div>
                 <div className="col-md-6 col-xl-4 d-flex">
-                    <select onChange={(e) => setProgram(e.target.value)} name="" id="" className="form-control">
+                    <select value={program} onChange={(e) => setProgram(e.target.value)} name="" id=""
+                            className="form-control">
                         <option value="">Select</option>
                         {programs.map((data, index) =>
                             <option value={data.name} key={index}>{data.name}</option>
@@ -132,8 +136,13 @@ const Step2 = ({step, setStep, category, country, program, setCountry, setProgra
                     </select>
                 </div>
             </div>
-            <div className="my-2 text-right">
-                <button type="button" onClick={(e) => stage2Submit(e)} className="btn btn-info">Next</button>
+            <div className="my-2 d-flex justify-content-between">
+                <div className="w-50">
+                    <button type="button" onClick={(e) => setStep(1)} className="btn btn-info">Previous</button>
+                </div>
+                <div className="w-50 text-right">
+                    <button type="button" onClick={(e) => stage2Submit(e)} className="btn btn-info">Next</button>
+                </div>
             </div>
         </>
     );

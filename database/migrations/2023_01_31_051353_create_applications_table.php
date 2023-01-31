@@ -23,6 +23,11 @@ return new class extends Migration {
             $table->string('us_visa');
             $table->string('travel_exp');
             $table->string('picture');
+            $table->integer('applicable_id');
+            $table->string('applicable_name');
+            $table->string('applicable_start');
+            $table->string('applicable_end');
+            $table->string('applicable_deadline');
             $table->string('payment_method');
             $table->string('payment_status')->default('due');//due and paid
             $table->string('approve_status')->default('pending');
