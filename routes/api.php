@@ -21,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('crop-image-upload-ajax', [ProfileController::class, 'cropImageUploadAjax']);
 Route::get('durations', [AppointmentController::class, 'durations'])->name('durations');
-Route::post('application', [AppointmentController::class, 'application'])->name('application');
+Route::post('applications', [AppointmentController::class, 'applications'])->name('applications');
+Route::post('experiences', [AppointmentController::class, 'experiences'])->name('experiences');
+Route::post('studies', [AppointmentController::class, 'experiences'])->name('studies');
+Route::post('employs', [AppointmentController::class, 'employs'])->name('employs');
