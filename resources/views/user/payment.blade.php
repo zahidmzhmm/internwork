@@ -19,10 +19,13 @@
             <div class="col-md-4">
                 @include("user.sidebar")
             </div>
-            <div class="col-md-8">
+            <form action="{{ route('paystack') }}" method="post" class="col-md-8">
                 <div class="dashb_contents rounded">
+                    @csrf
+                    <input type="hidden" name="application" value="{{ $application->reference }}">
                     <h4 class="header_title">Pay Your Fees</h4>
                     <div class="dash_contents">
+                        @include("errors")
                         <table class="table table-responsive-sm table-bordered table-hover">
                             <thead class="bg-gray">
                             <tr>
@@ -63,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection

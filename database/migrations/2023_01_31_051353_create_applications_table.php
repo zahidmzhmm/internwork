@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('program');
             $table->string('duration');
             $table->string('reference')->unique();
+            $table->string('req_ref')->nullable();
             $table->string('fees');
             $table->string('us_visa');
             $table->string('travel_exp');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Mail\PlainMailable;
 use App\Models\Profile;
+use App\Models\Uploads;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -90,6 +91,36 @@ class AuthController extends Controller
             $profile->program = $request->program;
             $profile->pss_year = $request->pss_year;
             $profile->save();
+            Uploads::insert([
+                [
+                    'user_id' => $user->id,
+                    'title' => "International Passport",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Previous Visa",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Admission/Graduation Letter",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Academic Records/Transcripts",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Academic Recommendation Letter",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Professional Recommendation Letter",
+                ],
+                [
+                    'user_id' => $user->id,
+                    'title' => "Resume",
+                ],
+            ]);
             Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
             return redirect()->route('verification.sent')->with('success', 'Success');
         } catch (\Exception $exception) {

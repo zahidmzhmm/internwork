@@ -24,9 +24,10 @@ class Controller extends BaseController
     public static function fileUpload($file, $path = "")
     {
         if (isset($file)) {
-            $path = "/";
             if ($path !== "") {
-                $path .= $path . "/";
+                $path = "/" . $path . "/";
+            } else {
+                $path = "/";
             }
             $fileName = time() . mt_rand(100, 9999) . '.' . $file->extension();
             $pathD = '/uploads' . $path . $fileName;

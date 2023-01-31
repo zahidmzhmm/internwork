@@ -24,3 +24,5 @@ Route::get('profile-update', [ProfileController::class, 'profileEdit'])->name('p
 Route::post('profile-update', [ProfileController::class, 'profileUpdate'])->name('profile.u.update');
 Route::get('apply', [AppointmentController::class, 'apply'])->name('apply');
 Route::get('payment/{ref}', [PaypalController::class, 'payment'])->name('payment');
+Route::post('payment/paystack', [PaypalController::class, 'paystack'])->name('paystack');
+Route::get('payment/paystack/callback', [PaypalController::class, 'paystackCallback'])->name('paystack.callback');
