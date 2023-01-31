@@ -6,7 +6,7 @@
     @endif
     <a class="nav-link" href="#">Upload</a>
     <a class="nav-link" href="#">Download</a>
-    <a class="nav-link" href="#">Appointment</a>
+    <a class="nav-link" href="{{ route('appointment') }}">Appointment</a>
     <a class="nav-link" href="{{ route('logout') }}">Logout</a>
     <br class="my-2">
 </nav>
