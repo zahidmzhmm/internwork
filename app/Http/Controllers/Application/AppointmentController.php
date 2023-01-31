@@ -9,6 +9,7 @@ use App\Models\Application\Employ;
 use App\Models\Application\Experience;
 use App\Models\Application\Study;
 use App\Models\Profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,14 +68,16 @@ class AppointmentController extends Controller
         $apnt->fees = $request->fees;
         $apnt->us_visa = $request->us_visa;
         $apnt->travel_exp = $request->travel_exp;
-        $apnt->picture = $request->picture;
+        $apnt->picture = self::fileUpload($request->file('picture'), 'applications');
         $apnt->applicable_id = $request->applicable_id;
         $apnt->applicable_name = $request->applicable_name;
         $apnt->applicable_start = $request->applicable_start;
         $apnt->applicable_end = $request->applicable_end;
         $apnt->applicable_deadline = $request->applicable_deadline;
         $apnt->payment_method = $request->payment_method;
+        $profile = Profile::where('user_id', '=', $request->user_id);
         try {
+            $apnt->save();
             return self::json_res("Success", 200, $apnt);
         } catch (\Exception $exception) {
             return self::json_res($exception->getMessage());
@@ -97,8 +100,8 @@ class AppointmentController extends Controller
         $ex->name = $request->name;
         $ex->location = $request->location;
         $ex->position = $request->position;
-        $ex->start = $request->start;
-        $ex->end = $request->end;
+        $ex->start = Carbon::parse($request->start);
+        $ex->end = Carbon::parse($request->end);
         $ex->description = $request->description;
         try {
             $ex->save();
@@ -124,8 +127,8 @@ class AppointmentController extends Controller
         $sd->institute = $request->institute;
         $sd->location = $request->location;
         $sd->level = $request->level;
-        $sd->start = $request->start;
-        $sd->end = $request->end;
+        $sd->start = Carbon::parse($request->start);
+        $sd->end = Carbon::parse($request->end);
         $sd->description = $request->description;
         try {
             $sd->save();
@@ -150,8 +153,8 @@ class AppointmentController extends Controller
         $sp->name = $request->name;
         $sp->location = $request->location;
         $sp->position = $request->position;
-        $sp->start = $request->start;
-        $sp->end = $request->end;
+        $sp->start = Carbon::parse($request->start);
+        $sp->end = Carbon::parse($request->end);
         try {
             $sp->save();
             return self::json_res("Success", 200, $sp);

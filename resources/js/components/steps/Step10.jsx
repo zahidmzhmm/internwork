@@ -90,33 +90,32 @@ const Step10 = ({
                 formdata1.append('start', ex_start)
                 formdata1.append('end', ex_end)
                 formdata1.append('description', ex_description)
-                axiosReq('experiences', 'post', formdata).then((data) => {
+                axiosReq('experiences', 'post', formdata1).then((data) => {
                 })
             }
             if (studies == 1) {
-                let formdata1 = new FormData();
-                formdata1.append('user_id', user_id)
-                formdata1.append('institute', sd_name)
-                formdata1.append('location', sd_location)
-                formdata1.append('level', sd_position)
-                formdata1.append('start', sd_start)
-                formdata1.append('end', sd_end)
-                formdata1.append('description', sd_description)
-                axiosReq('studies', 'post', formdata).then((data) => {
+                let formdata2 = new FormData();
+                formdata2.append('user_id', user_id)
+                formdata2.append('institute', sd_name)
+                formdata2.append('location', sd_location)
+                formdata2.append('level', sd_position)
+                formdata2.append('start', sd_start)
+                formdata2.append('end', sd_end)
+                formdata2.append('description', sd_description)
+                axiosReq('studies', 'post', formdata2).then((data) => {
                 })
             }
             if (selfPlaced == 1) {
-                let formdata1 = new FormData();
-                formdata1.append('user_id', user_id)
-                formdata1.append('name', sp_name)
-                formdata1.append('location', sp_location)
-                formdata1.append('position', sp_position)
-                formdata1.append('start', sp_start)
-                formdata1.append('end', sp_end)
-                axiosReq('employs', 'post', formdata).then((data) => {
+                let formdata3 = new FormData();
+                formdata3.append('user_id', user_id)
+                formdata3.append('name', sp_name)
+                formdata3.append('location', sp_location)
+                formdata3.append('position', sp_position)
+                formdata3.append('start', sp_start)
+                formdata3.append('end', sp_end)
+                axiosReq('employs', 'post', formdata3).then((data) => {
                 })
             }
-
             axiosReq('applications', 'post', formdata).then((data) => {
                 if (parseInt(data.status) === 200) {
                     window.location.href = '/user/payment/' + ref;
