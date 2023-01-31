@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('eligibles', function (Blueprint $table) {
             $table->id();
             $table->string('country');
-            $table->string('eligibility');
+            $table->longText('eligibility');
             $table->string('rate');
             $table->timestamps();
         });
