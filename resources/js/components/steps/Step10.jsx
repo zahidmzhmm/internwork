@@ -31,7 +31,7 @@ const Step10 = ({
                 {name: "12 months"},
             ])
         }
-        if (country == "United Kingdom" && category == "Internship") {
+        if (country == "South Africa" && category == "Internship") {
             setAllDuration([
                 {name: "6 months"},
             ])
@@ -119,7 +119,7 @@ const Step10 = ({
 
             axiosReq('applications', 'post', formdata).then((data) => {
                 if (parseInt(data.status) === 200) {
-                    toast.success(data.message)
+                    window.location.href = '/user/payment/' + ref;
                 } else {
                     toast.error(data.message);
                 }

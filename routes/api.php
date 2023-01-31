@@ -23,5 +23,5 @@ Route::post('crop-image-upload-ajax', [ProfileController::class, 'cropImageUploa
 Route::get('durations', [AppointmentController::class, 'durations'])->name('durations');
 Route::post('applications', [AppointmentController::class, 'applications'])->name('applications');
 Route::post('experiences', [AppointmentController::class, 'experiences'])->name('experiences');
-Route::post('studies', [AppointmentController::class, 'experiences'])->name('studies');
+Route::post('studies', [AppointmentController::class, 'studies'])->name('studies');
 Route::post('employs', [AppointmentController::class, 'employs'])->name('employs');

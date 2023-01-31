@@ -12,7 +12,7 @@ const Step2 = ({step, setStep, category, country, program, setCountry, setProgra
                 {name: 'Australia', digit: 'AU'},
                 {name: 'Denmark', digit: 'DE'},
                 {name: 'Sweden', digit: 'SW'},
-                {name: 'United Kingdom', digit: 'UK'},
+                {name: 'South Africa', digit: 'SA'},
                 {name: 'United States', digit: 'US'}
             ])
         }
