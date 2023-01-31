@@ -1,3 +1,13 @@
++duration
+-applicable_entry
+-start_date
+-deadline
+
++eligibility
+-country
+-eligibility
+-rate
+
 +applications
 -user_id
 -destination
@@ -12,13 +22,14 @@
 -picture
 -status
 
-+employ
++experience
 -user_id
 -name
 -location
 -position
 -start
 -end
+-description
 
 +studies
 -user_id
@@ -28,14 +39,13 @@
 -start
 -end
 
-+experience
++self_place
 -user_id
 -name
 -location
 -position
 -start
 -end
--description
 
 +uploads
 -user_id // 0=all
