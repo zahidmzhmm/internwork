@@ -3,7 +3,7 @@
     <a class="nav-link {{ Route::is('account')?'active':'' }}" href="{{ route('account') }}">Dashboard</a>
     @if($glob_profile->status===2 || $glob_profile->status===3)
         <a class="nav-link {{ Route::is('apply') || Route::is('payment')?'active':'' }}"
-           href="{{ $glob_profile->status===2?route('apply'):"#" }}">Apply</a>
+           href="{{ $glob_profile->status===2?route('apply'):"#" }}" {{ $glob_profile->status===3?"data-toggle=modal data-target=#exampleModal":"" }}>Apply</a>
     @endif
     <a class="nav-link {{ Route::is('upload')?'active':'' }}" href="#">Upload</a>
     <a class="nav-link {{ Route::is('download')?'active':'' }}" href="#">Download</a>

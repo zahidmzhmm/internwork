@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.home');
+        $application = 0;
+        $appl = Application::where('user_id', '=', Auth::id())->first();
+        if ($appl) {
+            $application = $appl;
+        }
+        return view('user.home', compact('application'));
     }
 }
