@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function appointment()
+    public function apply()
     {
         $last_application_id = 1;
         $last_application = Application::orderBy('id', 'desc')->first();
         if ($last_application) {
             $last_application_id = $last_application->id;
         }
-        return view('user.appointment', compact('last_application_id'));
+        return view('user.apply', compact('last_application_id'));
     }
 
     public function durations()

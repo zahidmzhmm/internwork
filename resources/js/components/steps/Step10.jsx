@@ -3,7 +3,12 @@ import {toast} from "react-hot-toast";
 import {axiosReq, FEES} from "../config";
 import {Base64} from "js-base64";
 
-const Step10 = ({step, setStep, category, country, picture, program, duration, setDuration, applicable, setApplicable, digit, travel_exp, us_visa}) => {
+const Step10 = ({
+                    step, setStep, category, country, picture, program, duration, setDuration, applicable, setApplicable, digit, travel_exp, us_visa, workExp, studies, selfPlaced,
+                    ex_name, ex_location, ex_position, ex_start, ex_end, ex_description,
+                    sd_name, sd_location, sd_position, sd_start, sd_end, sd_description,
+                    sp_name, sp_location, sp_position, sp_start, sp_end
+                }) => {
 
     const [allduration, setAllDuration] = useState([]);
     const [allApplicable, setAllApplicable] = useState([]);
@@ -75,11 +80,48 @@ const Step10 = ({step, setStep, category, country, picture, program, duration, s
             formdata.append('applicable_end', applicableData.end_date)
             formdata.append('applicable_deadline', applicableData.deadline)
             formdata.append('payment_method', "Paypal")
-            axiosReq('application', 'post', formdata).then((data) => {
+
+            if (workExp == 1) {
+                let formdata1 = new FormData();
+                formdata1.append('user_id', user_id)
+                formdata1.append('name', ex_name)
+                formdata1.append('location', ex_location)
+                formdata1.append('position', ex_position)
+                formdata1.append('start', ex_start)
+                formdata1.append('end', ex_end)
+                formdata1.append('description', ex_description)
+                axiosReq('experiences', 'post', formdata).then((data) => {
+                })
+            }
+            if (studies == 1) {
+                let formdata1 = new FormData();
+                formdata1.append('user_id', user_id)
+                formdata1.append('institute', sd_name)
+                formdata1.append('location', sd_location)
+                formdata1.append('level', sd_position)
+                formdata1.append('start', sd_start)
+                formdata1.append('end', sd_end)
+                formdata1.append('description', sd_description)
+                axiosReq('studies', 'post', formdata).then((data) => {
+                })
+            }
+            if (selfPlaced == 1) {
+                let formdata1 = new FormData();
+                formdata1.append('user_id', user_id)
+                formdata1.append('name', sp_name)
+                formdata1.append('location', sp_location)
+                formdata1.append('position', sp_position)
+                formdata1.append('start', sp_start)
+                formdata1.append('end', sp_end)
+                axiosReq('employs', 'post', formdata).then((data) => {
+                })
+            }
+
+            axiosReq('applications', 'post', formdata).then((data) => {
                 if (parseInt(data.status) === 200) {
-                    toast.success("Success")
+                    toast.success(data.message)
                 } else {
-                    toast.error("Something went wrong");
+                    toast.error(data.message);
                 }
             })
         } else {
@@ -153,7 +195,7 @@ const Step10 = ({step, setStep, category, country, picture, program, duration, s
                 : ""}
             <div className="my-2 d-flex justify-content-between">
                 <div className="w-50">
-                    <button type="button" onClick={(e) => setStep(4)} className="btn btn-info">Previous</button>
+                    <button type="button" onClick={(e) => setStep(9)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
                     <button type="button" onClick={(e) => finalSubmit(e)} className="btn btn-info">Next</button>

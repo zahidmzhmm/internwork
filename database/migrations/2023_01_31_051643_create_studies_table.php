@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('level');
             $table->date('start');
             $table->date('end');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
