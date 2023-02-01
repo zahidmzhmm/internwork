@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <th>Payment Status</th>
-                            <td>{{ $application->payment_status }}</td>
+                            <td>{!! $application->payment_status=='due'?'<a href="/user/payment/'.$application->reference.'">Due':'Paid' !!}</td>
                         </tr>
                         <tr>
                             <th>Application Status</th>
