@@ -4,6 +4,7 @@
     <section class="page-title page-updated bg-dark">
     </section><!-- /.page-title -->
     <div class="container padding-main">
+        @include("errors")
         <table class="table table-hover table-bordered table-responsive-sm table-bordered">
             <thead>
             <tr class="bg-gray">
@@ -28,7 +29,8 @@
                     <td>{{ $data->address }}</td>
                     <td>{{ $data->reg }}</td>
                     <td class="text-center">
-                        <a href="{{ url('/admin/profile-status/'.$data->user_id) }}"
+                        {!! $data->p_status===3?'<small class="text-warning">Submitted</small><br>':'' !!}
+                        <a href="{{ url('/admin/profile-status/'.$data->p_id) }}"
                            class="btn btn-secondary small btn-sm pl-2 pr-0 py-1">
                             {!! $data->p_status===1?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' !!}
                         </a>

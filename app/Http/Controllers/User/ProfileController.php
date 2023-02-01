@@ -164,4 +164,19 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => 'Crop Image Uploaded Successfully']);
         }
     }
+
+    public function status($id)
+    {
+        $profile = Profile::find($id);
+        if (!$profile) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        if ($profile->status == 1) {
+            $profile->status = 2;
+        } else {
+            $profile->status = 1;
+        }
+        $profile->save();
+        return redirect()->back()->with('success', 'Successfully Updated');
+    }
 }

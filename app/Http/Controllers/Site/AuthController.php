@@ -136,6 +136,13 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', '=', $request->email)->first();
         if (Hash::check($request->password, $user->password)) {
+            if ($user->role == 2) {
+                if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                    return redirect()->route('admin');
+                } else {
+                    return redirect()->back()->with('error', 'Email or Password wrong');
+                }
+            }
             if ($user->status !== 1) {
                 return redirect()->route('login')->with('error', 'Account Deactivated');
             }
@@ -154,9 +161,6 @@ class AuthController extends Controller
                     return redirect()->route('profile.u.edit');
                 }
                 return redirect()->route('account');
-            }
-            if (Auth::user()->role == 2) {
-                return redirect()->route('admin');
             }
         }
         return redirect()->back()->with('error', 'Email or Password wrong');

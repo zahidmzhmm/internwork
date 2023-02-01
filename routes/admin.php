@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +23,6 @@ Route::get('applications', [AdminController::class, 'applications'])->name('admi
 Route::get('appointment-list', [AdminController::class, 'appointmentList'])->name('admin.appointment.list');
 Route::get('duration', [AdminController::class, 'duration'])->name('admin.duration');
 Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.change.password');
+Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('admin.profile.status');
+Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
+Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
