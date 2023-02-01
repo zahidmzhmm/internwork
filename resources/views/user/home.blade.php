@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                                 <td>Internship/SIWES Letter</td>
-                                <td>{{ $glob_profile->internship===1?"Yes":"No" }}</td>
+                                <td>{{ $glob_profile->internship==1?"Yes":"No" }}</td>
                             </tr>
                             <tr>
                                 <td>Choice of Program</td>
@@ -82,7 +82,7 @@
                                 <td>Years of Post-Secondary Study</td>
                                 <td>{{ $glob_profile->pss_year }}</td>
                             </tr>
-                            @if($glob_profile->status===1)
+                            @if($glob_profile->status==1)
                                 <tr>
                                     <td></td>
                                     <td><a href="{{ route('profile.u.edit') }}" class="btn btn-info">Edit Profile</a>

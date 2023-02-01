@@ -63,7 +63,7 @@ const Step10 = ({
         let ref = docget.getAttribute('data-ref-gen') + digit;
         let user_id = docget.getAttribute('data-user-id');
         let applicableData = JSON.parse(Base64.decode(applicable));
-        if (category !== "" && country !== "" && program !== "" && us_visa !== "" && travel_exp !== "" && digit !== "" && picture !== "" && duration !== "" && applicable !== "" && ref !== "" && user_id !== "") {
+        if (category !== "" && country !== "" && program !== "" && us_visa !== "" && travel_exp !== "" && digit !== "" && duration !== "" && applicable !== "" && ref !== "" && user_id !== "") {
             let formdata = new FormData();
             formdata.append('user_id', user_id)
             formdata.append('destination', country)
@@ -73,7 +73,6 @@ const Step10 = ({
             formdata.append('fees', FEES)
             formdata.append('us_visa', us_visa)
             formdata.append('travel_exp', travel_exp)
-            formdata.append('picture', picture)
             formdata.append('applicable_id', applicableData.id)
             formdata.append('applicable_name', applicableData.applicable_entry)
             formdata.append('applicable_start', applicableData.start_date)

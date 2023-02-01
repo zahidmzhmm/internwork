@@ -60,7 +60,6 @@ class AppointmentController extends Controller
             'fees' => 'required',
             'us_visa' => 'required',
             'travel_exp' => 'required',
-            'picture' => 'required',
             'applicable_id' => 'required',
             'applicable_name' => 'required',
             'applicable_start' => 'required',
