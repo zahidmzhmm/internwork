@@ -5,12 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
@@ -187,6 +187,12 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Data not found');
         }
         $user = User::find($profile->user_id);
-        return $user;
+        $data = [
+            'title' => 'Welcome to CodeSolutionStuff.com',
+            'date' => date('m/d/Y')
+        ];
+        $pdf = Pdf::loadView('pdf.profile');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
     }
 }
