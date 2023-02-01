@@ -65,7 +65,9 @@
                         </li><!-- /.nav-item -->
                         <li class="nav__item with-dropdown">
                             <a href="#" data-toggle="dropdown"
-                               class="dropdown-toggle nav__item-link {{ Route::is('register') || Route::is('login') || Route::is('account') ? 'active':'' }}">Applications</a>
+                               class="dropdown-toggle nav__item-link {{ Route::is('register') || Route::is('login')|| Route::is('admin') || Route::is('admin.*') || Route::is('account.*') || Route::is('account') ? 'active':'' }}">
+                                {{ \Illuminate\Support\Facades\Auth::user()?\Illuminate\Support\Facades\Auth::user()->role==2?"Admin":"Applications":"Applications" }}
+                            </a>
                             <ul class="dropdown-menu">
                                 @guest
                                     @if (\Illuminate\Support\Facades\Route::has('register'))
@@ -83,6 +85,21 @@
                                         @if(\Illuminate\Support\Facades\Auth::user()->role==2)
                                             <li class="nav__item"><a href="{{ route('admin') }}"
                                                                      class="nav__item-link">Admin</a>
+                                            </li>
+                                            <li class="nav__item"><a href="{{ route('admin.registrations') }}"
+                                                                     class="nav__item-link">Registration</a>
+                                            </li>
+                                            <li class="nav__item"><a href="{{ route('admin.applications') }}"
+                                                                     class="nav__item-link">Applications</a>
+                                            </li>
+                                            <li class="nav__item"><a href="{{ route('admin.appointment.list') }}"
+                                                                     class="nav__item-link">Appointment List</a>
+                                            </li>
+                                            <li class="nav__item"><a href="{{ route('admin.duration') }}"
+                                                                     class="nav__item-link">Duration</a>
+                                            </li>
+                                            <li class="nav__item"><a href="{{ route('admin.change.password') }}"
+                                                                     class="nav__item-link">Change Password</a>
                                             </li>
                                         @else
                                             <li class="nav__item"><a href="{{ route('account') }}"

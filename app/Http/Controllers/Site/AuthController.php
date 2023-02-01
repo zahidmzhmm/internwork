@@ -136,6 +136,9 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', '=', $request->email)->first();
         if (Hash::check($request->password, $user->password)) {
+            if ($user->status !== 1) {
+                return redirect()->route('login')->with('error', 'Account Deactivated');
+            }
             if ($user->email_verified_at === null) {
                 $user->token = strtoupper(substr(uniqid(), 0, 6));
                 $user->save();

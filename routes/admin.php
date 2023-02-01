@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin');
+Route::get('/', [AdminController::class, 'index'])->name('admin');
+Route::get('registrations', [AdminController::class, 'registrations'])->name('admin.registrations');
+Route::get('applications', [AdminController::class, 'applications'])->name('admin.applications');
+Route::get('appointment-list', [AdminController::class, 'appointmentList'])->name('admin.appointment.list');
+Route::get('duration', [AdminController::class, 'duration'])->name('admin.duration');
+Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.change.password');

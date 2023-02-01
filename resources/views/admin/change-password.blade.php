@@ -4,6 +4,6 @@
     <section class="page-title page-updated bg-dark">
     </section><!-- /.page-title -->
     <div class="container padding-main">
-        Welcome
+        Admin Panel - Change Password
     </div>
 @endsection
