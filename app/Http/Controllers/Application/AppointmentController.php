@@ -162,4 +162,35 @@ class AppointmentController extends Controller
             return self::json_res($exception->getMessage());
         }
     }
+
+    public function destroy($id)
+    {
+        $application = Application::find($id);
+        if (!$application) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        try {
+            $application->delete();
+            return redirect()->back()->with('success', 'Successfully Deleted');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('success', 'Successfully Deleted');
+        }
+    }
+
+    public function status($id)
+    {
+        $application = Application::find($id);
+        if (!$application) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        if ($application->approve_status == 'pending' || $application->approve_status == 'declined') {
+            $application->approve_status = "approved";
+            $application->status = "closed";
+        } else {
+            $application->approve_status = "declined";
+            $application->status = "closed";
+        }
+        $application->save();
+        return redirect()->back()->with('success', 'Successfully Updated');
+    }
 }

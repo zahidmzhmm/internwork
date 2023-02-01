@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application\Application;
 use App\Models\Application\Duration;
 use App\Models\Profile;
 use App\Models\User;
@@ -34,7 +35,11 @@ class AdminController extends Controller
 
     public function applications()
     {
-        return view('admin.applications');
+        $applications = Application::join('users', 'applications.user_id', '=', 'users.id')
+            ->join("profiles", 'users.id', '=', 'profiles.user_id')
+            ->select('users.email', 'profiles.*', 'applications.*')
+            ->paginate(20);
+        return view('admin.applications', compact('applications'));
     }
 
     public function appointmentList()
