@@ -187,11 +187,7 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Data not found');
         }
         $user = User::find($profile->user_id);
-        $data = [
-            'title' => 'Welcome to CodeSolutionStuff.com',
-            'date' => date('m/d/Y')
-        ];
-        $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile', 'data'));
-        return $pdf->stream();
+        $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile'));
+        return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname);
     }
 }
