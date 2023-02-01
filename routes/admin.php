@@ -33,3 +33,8 @@ Route::get('application-delete/{id}', [AppointmentController::class, 'destroy'])
 Route::get('delete-duration/{id}', [AdminController::class, 'durationDelete'])->name('duration.delete');
 Route::post('duration', [AdminController::class, 'durationReq'])->name('duration.req');
 Route::post('update-duration/{id}', [AdminController::class, 'durationUpdate'])->name('duration.update');
+
+
+// PDF Download
+Route::get('application-download/{id}', [AppointmentController::class, 'applicationDownload'])->name('application.download');
+Route::get('profile-download/{id}', [ProfileController::class, 'profileDownload'])->name('profile.download');

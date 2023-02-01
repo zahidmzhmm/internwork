@@ -193,4 +193,13 @@ class AppointmentController extends Controller
         $application->save();
         return redirect()->back()->with('success', 'Successfully Updated');
     }
+
+    public function applicationDownload($id)
+    {
+        $profile = Application::find($id);
+        if (!$profile) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        return $profile;
+    }
 }

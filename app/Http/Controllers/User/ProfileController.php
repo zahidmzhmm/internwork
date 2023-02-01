@@ -179,4 +179,14 @@ class ProfileController extends Controller
         $profile->save();
         return redirect()->back()->with('success', 'Successfully Updated');
     }
+
+    public function profileDownload($id)
+    {
+        $profile = Profile::find($id);
+        if (!$profile) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        $user = User::find($profile->user_id);
+        return $user;
+    }
 }
