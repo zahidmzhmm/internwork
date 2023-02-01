@@ -9,6 +9,8 @@ use App\Models\Application\Employ;
 use App\Models\Application\Experience;
 use App\Models\Application\Study;
 use App\Models\Profile;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -196,10 +198,24 @@ class AppointmentController extends Controller
 
     public function applicationDownload($id)
     {
-        $profile = Application::find($id);
-        if (!$profile) {
+        $application = Application::find($id);
+        if (!$application) {
             return redirect()->back()->with('error', 'Data not found');
         }
-        return $profile;
+        $user = User::find($application->user_id);
+        $profile = Profile::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
+        $employ = Employ::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
+        $experiences = Experience::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
+        $studies = Study::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
+        $pdf = Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies'));
+        return $pdf->download("Application - " . $profile->fname . ' ' . $profile->lname);
     }
 }
