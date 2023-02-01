@@ -37,30 +37,34 @@
                         <div class="heading">
                             <h2 class="heading__title lh-1 mb-50">Contact Us Now</h2>
                         </div><!-- /.heading -->
-                        <form>
+                        <form action="{{ route('contact') }}" method="post">
+                            @csrf
+                            @include("errors")
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input type="text" class="form-control" placeholder="Name">
+                                    <div class="form-group"><input name="name" type="text" class="form-control"
+                                                                   placeholder="Name">
                                     </div>
                                 </div><!-- /.col-lg-6 -->
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input type="email" class="form-control"
+                                    <div class="form-group"><input name="email" type="email" class="form-control"
                                                                    placeholder="Email"></div>
                                 </div><!-- /.col-lg-6 -->
                             </div><!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input type="text" class="form-control" placeholder="Phone">
+                                    <div class="form-group"><input name="phone" type="text" class="form-control"
+                                                                   placeholder="Phone">
                                     </div>
                                 </div><!-- /.col-lg-6 -->
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input type="text" class="form-control"
+                                    <div class="form-group"><input name="subject" type="text" class="form-control"
                                                                    placeholder="Subject"></div>
                                 </div><!-- /.col-lg-6 -->
                             </div><!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group mb-30"><textarea class="form-control"
+                                    <div class="form-group mb-30"><textarea name="message" class="form-control"
                                                                             placeholder="Message"></textarea></div>
                                 </div><!-- /.col-lg-12 -->
                             </div><!-- /.row -->

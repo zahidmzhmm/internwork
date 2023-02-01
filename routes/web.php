@@ -23,3 +23,4 @@ Route::get('/h1b', [SiteController::class, 'h1b'])->name('h1b');
 Route::get('/internships', [SiteController::class, 'internships'])->name('internships');
 Route::get('/privacy', [SiteController::class, 'privacy'])->name('privacy');
 Route::get('/traineeships', [SiteController::class, 'traineeships'])->name('traineeships');
+Route::post('/contact', [SiteController::class, 'contactReq'])->name('contact');

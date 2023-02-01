@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PlainMailable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -40,5 +42,15 @@ class SiteController extends Controller
     public function traineeships()
     {
         return view('root.traineeships');
+    }
+
+    public function contactReq(Request $request)
+    {
+        try {
+            Mail::send(new PlainMailable($request->subject, env('MAIL_FROM_ADDRESS'), 'contact', $request->toArray()));
+            return redirect()->back()->with('success', 'Message send success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }
