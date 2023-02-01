@@ -29,10 +29,9 @@
                     <td>{{ $data->address }}</td>
                     <td>{{ $data->reg }}</td>
                     <td class="text-center">
-                        {!! $data->p_status===3?'<small class="text-warning">Submitted</small><br>':'' !!}
                         <a href="{{ url('/admin/profile-status/'.$data->p_id) }}"
                            class="btn btn-secondary small btn-sm pl-2 pr-0 py-1">
-                            {!! $data->p_status===1?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' !!}
+                            {!! $data->p_status===3 ? '<i class="fa fa-refresh"></i>' : ($data->p_status===2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>') !!}
                         </a>
                     </td>
                     <td>{{ $data->email_verified_at!==null?'Verified':'Unverified' }}</td>
