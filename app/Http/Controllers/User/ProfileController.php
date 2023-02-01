@@ -192,7 +192,6 @@ class ProfileController extends Controller
             'date' => date('m/d/Y')
         ];
         $pdf = Pdf::loadView('pdf.profile');
-        $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
     }
 }
