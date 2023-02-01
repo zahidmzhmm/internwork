@@ -46,7 +46,7 @@
     <tr>
         <td style="width: 39rem">
             @if($profile->picture!==null)
-                <img src="{{ public_path($application->picture) }}" style="width: auto;height: 6.3rem"
+                <img src="{{ public_path($profile->picture) }}" style="width: auto;height: 6.3rem"
                      alt="Photo">
             @endif
         </td>

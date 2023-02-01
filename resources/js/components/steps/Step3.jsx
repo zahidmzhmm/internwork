@@ -377,7 +377,7 @@ const Step3 = ({step, setStep, category, country, program}) => {
                     <button type="button" onClick={(e) => setStep(2)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
-                    <button type="button" onClick={(e) => setStep(4)} className="btn btn-info">Next</button>
+                    <button type="button" onClick={(e) => setStep(5)} className="btn btn-info">Next</button>
                 </div>
             </div>
         </>

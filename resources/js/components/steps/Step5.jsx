@@ -18,7 +18,7 @@ export const Step5 = ({us_visa, setTravelExp, setStep}) => {
             </div>
             <div className="my-2 d-flex justify-content-between">
                 <div className="w-50">
-                    <button type="button" onClick={(e) => setStep(4)} className="btn btn-info">Previous</button>
+                    <button type="button" onClick={(e) => setStep(3)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
                     <button type="button" onClick={(e) => setStep(6)} className="btn btn-info">Next</button>
