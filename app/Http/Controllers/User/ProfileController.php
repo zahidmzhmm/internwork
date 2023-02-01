@@ -191,7 +191,7 @@ class ProfileController extends Controller
             'title' => 'Welcome to CodeSolutionStuff.com',
             'date' => date('m/d/Y')
         ];
-        $pdf = Pdf::loadView('pdf.profile');
+        $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile', 'data'));
         return $pdf->stream();
     }
 }
