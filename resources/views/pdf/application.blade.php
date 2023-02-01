@@ -33,7 +33,7 @@
         }
 
         .text-small {
-            font-size: 11px;
+            font-size: 12px;
         }
     </style>
     <style>
@@ -101,13 +101,13 @@
     </tr>
     <tr>
         <th class="text-left pt-2">Internship:</th>
-        <td class="text-left pt-2">{{ $profile->internship }}</td>
+        <td class="text-left pt-2">{{ $profile->internship==1?"Yes":"No" }}</td>
         <th class="text-left pt-2">Program:</th>
         <td class="text-left pt-2">{{ $profile->program }}</td>
     </tr>
     <tr>
         <th class="text-left pt-2">Post-Secondary Study:</th>
-        <td class="text-left pt-2">{{ $profile->internship }}</td>
+        <td class="text-left pt-2">{{ $profile->pss_year }}</td>
         <th class="text-left pt-2"></th>
         <td class="text-left pt-2"></td>
     </tr>

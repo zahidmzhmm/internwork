@@ -188,6 +188,6 @@ class ProfileController extends Controller
         }
         $user = User::find($profile->user_id);
         $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile'));
-        return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname);
+        return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname . '.pdf');
     }
 }

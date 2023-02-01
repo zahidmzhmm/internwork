@@ -223,6 +223,6 @@ class AppointmentController extends Controller
             ->orderBy('id', 'desc')
             ->first();
         $pdf = Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies'));
-        return $pdf->download("Application - " . $profile->fname . ' ' . $profile->lname);
+        return $pdf->download("Application - " . $profile->fname . ' ' . $profile->lname . '.pdf');
     }
 }
