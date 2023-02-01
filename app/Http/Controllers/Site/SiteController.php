@@ -47,7 +47,7 @@ class SiteController extends Controller
     public function contactReq(Request $request)
     {
         try {
-            Mail::send(new PlainMailable($request->subject, env('MAIL_FROM_ADDRESS'), 'contact', $request->toArray()));
+            Mail::send(new PlainMailable($request->subject, env('MAIL_USERNAME'), 'contact', $request->toArray()));
             return redirect()->back()->with('success', 'Message send success');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());

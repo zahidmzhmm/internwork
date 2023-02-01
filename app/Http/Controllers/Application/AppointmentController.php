@@ -34,6 +34,13 @@ class AppointmentController extends Controller
         if ($last_application) {
             $last_application_id = $last_application->id;
         }
+        $application = Application::where('user_id', '=', Auth::id())
+            ->where('status', '=', 'open')
+            ->where('payment_status', '=', 'due')
+            ->first();
+        if ($application) {
+            return redirect('/user/payment/' . $application->reference);
+        }
         return view('user.apply', compact('last_application_id'));
     }
 

@@ -151,7 +151,7 @@ const Step10 = ({
                     <label htmlFor="category">Applicable Entry</label>
                 </div>
                 <div className="col-md-6 col-xl-4 d-flex">
-                    <select value={applicable !== "" ? JSON.parse(Base64.decode(applicable)).applicable_entry : ""}
+                    <select value={applicable}
                             onChange={(e) => setApplicable(e.target.value)} name="" id="" className="form-control">
                         <option value="">Select</option>
                         {allApplicable.map((data, index) =>
