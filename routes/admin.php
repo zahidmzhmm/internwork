@@ -27,3 +27,6 @@ Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('a
 Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
 Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 Route::post('change-password', [AdminController::class, 'changePasswordReq'])->name('admin.change.password.req');
+Route::post('duration', [AdminController::class, 'durationReq'])->name('duration.req');
+Route::post('update-duration/{id}', [AdminController::class, 'durationUpdate'])->name('duration.update');
+Route::get('delete-duration/{id}', [AdminController::class, 'durationDelete'])->name('duration.delete');

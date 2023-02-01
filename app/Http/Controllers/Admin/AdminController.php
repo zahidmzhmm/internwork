@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application\Duration;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,7 +44,8 @@ class AdminController extends Controller
 
     public function duration()
     {
-        return view('admin.duration');
+        $duration = Duration::orderBy('id', 'desc')->get();
+        return view('admin.duration', compact('duration'));
     }
 
     public function changePassword()
@@ -58,5 +60,62 @@ class AdminController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         return redirect()->back()->with('success', 'Password change success');
+    }
+
+    public function durationReq(Request $request)
+    {
+        $request->validate([
+            'applicable_entry' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'deadline' => 'required',
+        ]);
+        $duration = new Duration();
+        $duration->applicable_entry = $request->applicable_entry;
+        $duration->start_date = $request->start_date;
+        $duration->end_date = $request->end_date;
+        $duration->deadline = $request->deadline;
+        try {
+            $duration->save();
+            return redirect()->back()->with('success', 'Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function durationUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'applicable_entry' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'deadline' => 'required',
+        ]);
+        $duration = Duration::find($id);
+        if (!$duration) {
+            return redirect()->back()->with('error', "Data not found");
+        }
+        $duration->applicable_entry = $request->applicable_entry;
+        $duration->start_date = $request->start_date;
+        $duration->end_date = $request->end_date;
+        $duration->deadline = $request->deadline;
+        try {
+            $duration->save();
+            return redirect()->back()->with('success', 'Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function durationDelete($id)
+    {
+        $duration = Duration::find($id);
+        if (!$duration) {
+            return redirect()->back()->with('error', "Data not found");
+        }
+        if ($duration->delete()) {
+            return redirect()->back()->with('success', 'Success');
+        }
+        return redirect()->back()->with('success', 'Success');
     }
 }
