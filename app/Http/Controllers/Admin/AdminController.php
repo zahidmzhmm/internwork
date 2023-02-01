@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -46,5 +49,14 @@ class AdminController extends Controller
     public function changePassword()
     {
         return view('admin.change-password');
+    }
+
+    public function changePasswordReq(Request $request)
+    {
+        $request->validate(['new_password' => 'required|min:7']);
+        $user = User::find(Auth::id());
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect()->back()->with('success', 'Password change success');
     }
 }
