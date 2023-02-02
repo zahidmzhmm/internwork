@@ -203,12 +203,12 @@ class AuthController extends Controller
         $request->validate(['code' => 'required|string']);
         $user = User::where('token', '=', $request->code)->first();
         if (!$user) {
-            return redirect()->route('verification.sent');
+            return redirect()->route('verification.sent')->with('error', 'Token error');
         }
         $user->email_verified_at = Carbon::now();
         $user->token = NULL;
-        $user->save();
-        return redirect()->route('login')->with('success', 'Verification Success');
+        \auth()->login($user);
+        return redirect()->route('profile.u.edit')->with('success', 'Verification Success');
     }
 
     public function logout()

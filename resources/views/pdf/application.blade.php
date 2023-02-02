@@ -100,7 +100,7 @@
         <td class="text-left pt-2">{{ $profile->institute }}</td>
     </tr>
     <tr>
-        <th class="text-left pt-2">Internship:</th>
+        <th class="text-left pt-2">Internship\SIWES Letter:</th>
         <td class="text-left pt-2">{{ $profile->internship==1?"Yes":"No" }}</td>
         <th class="text-left pt-2">Program:</th>
         <td class="text-left pt-2">{{ $profile->program }}</td>

@@ -133,7 +133,7 @@
                             <div class="col-sm-6 my-2">
                                 <select name="internship" id=""
                                         class="form-control @error('internship') is-invalid @enderror">
-                                    <option value="">Internship\SIWESS Letter</option>
+                                    <option value="">Internship\SIWES Letter</option>
                                     <option value="1">Yes</option>
                                     <option value="2">No</option>
                                 </select>
