@@ -135,6 +135,9 @@ class AuthController extends Controller
             'password' => 'required|min:7'
         ]);
         $user = User::where('email', '=', $request->email)->first();
+        if(!$user){
+                    return redirect()->back()->with('error', 'Email or Password wrong');
+        }
         if (Hash::check($request->password, $user->password)) {
             if ($user->role == 2) {
                 if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
