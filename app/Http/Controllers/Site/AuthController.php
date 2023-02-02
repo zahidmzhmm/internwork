@@ -146,10 +146,10 @@ class AuthController extends Controller
                     return redirect()->back()->with('error', 'Email or Password wrong');
                 }
             }
-            if ($user->status !== 1) {
+            if ($user->status != 1) {
                 return redirect()->route('login')->with('error', 'Account Deactivated');
             }
-            if ($user->email_verified_at === null) {
+            if ($user->email_verified_at == null) {
                 $user->token = strtoupper(substr(uniqid(), 0, 6));
                 $user->save();
                 Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
@@ -160,7 +160,7 @@ class AuthController extends Controller
             }
             if (Auth::user()->role == 1) {
                 $profile = Profile::where('user_id', '=', Auth::id())->first();
-                if ($profile->picture === null) {
+                if ($profile->picture == null) {
                     return redirect()->route('profile.u.edit');
                 }
                 return redirect()->route('account');
