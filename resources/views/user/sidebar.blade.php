@@ -1,9 +1,9 @@
 <nav class="nav flex-column sidebar rounded">
     <br class="my-2">
     <a class="nav-link {{ Route::is('account')?'active':'' }}" href="{{ route('account') }}">Dashboard</a>
-    @if($glob_profile->status===2 || $glob_profile->status===3)
+    @if($glob_profile->status==2 || $glob_profile->status==3)
         <a class="nav-link {{ Route::is('apply') || Route::is('payment')?'active':'' }}"
-           href="{{ $glob_profile->status===2?route('apply'):"#" }}" {{ $glob_profile->status===3?"data-toggle=modal data-target=#exampleModal":"" }}>Apply</a>
+           href="{{ $glob_profile->status==2?route('apply'):"#" }}" {{ $glob_profile->status==3?"data-toggle=modal data-target=#exampleModal":"" }}>Apply</a>
     @endif
     <a class="nav-link {{ Route::is('upload')?'active':'' }}" href="#">Upload</a>
     <a class="nav-link {{ Route::is('download')?'active':'' }}" href="#">Download</a>

@@ -31,14 +31,14 @@
                     <td class="text-center">
                         <a href="{{ url('/admin/profile-status/'.$data->p_id) }}"
                            class="btn btn-secondary small btn-sm pl-2 pr-0 py-1">
-                            {!! $data->p_status===3 ? '<i class="fa fa-refresh"></i>' : ($data->p_status===2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>') !!}
+                            {!! $data->p_status==3 ? '<i class="fa fa-refresh"></i>' : ($data->p_status==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>') !!}
                         </a>
                     </td>
-                    <td>{{ $data->email_verified_at!==null?'Verified':'Unverified' }}</td>
+                    <td>{{ $data->email_verified_at!=null?'Verified':'Unverified' }}</td>
                     <td>
                         <a href="{{ url('/admin/user-status/'.$data->user_id) }}"
                            class="btn btn-warning small btn-sm pl-2 pr-0 py-1">
-                            {!! $data->u_status!==1?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' !!}
+                            {!! $data->u_status!=1?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>' !!}
                         </a>
                         <a href="{{ url('/admin/profile-download/'.$data->id) }}"
                            class="btn btn-info small btn-sm pl-2 pr-0 py-1"><i

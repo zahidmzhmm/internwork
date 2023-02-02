@@ -135,8 +135,8 @@ class AuthController extends Controller
             'password' => 'required|min:7'
         ]);
         $user = User::where('email', '=', $request->email)->first();
-        if(!$user){
-                    return redirect()->back()->with('error', 'Email or Password wrong');
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email or Password wrong');
         }
         if (Hash::check($request->password, $user->password)) {
             if ($user->role == 2) {
@@ -210,6 +210,7 @@ class AuthController extends Controller
         }
         $user->email_verified_at = Carbon::now();
         $user->token = NULL;
+        $user->save();
         \auth()->login($user);
         return redirect()->route('profile.u.edit')->with('success', 'Verification Success');
     }

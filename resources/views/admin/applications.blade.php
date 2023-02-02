@@ -35,7 +35,7 @@
                     <td>
                         <a href="{{ url('/admin/application-status/'.$data->id) }}"
                            class="btn btn-warning small btn-sm pl-2 pr-0 py-1">
-                            {!! $data->approve_status==="approved"?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>' !!}
+                            {!! $data->approve_status=="approved"?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>' !!}
                         </a>
                         <a href="{{ url('/admin/application-download/'.$data->id) }}"
                            class="btn btn-info small btn-sm pl-2 pr-0 py-1"><i

@@ -1,4 +1,4 @@
-@if($glob_profile->status===3 && isset($application))
+@if($glob_profile->status==3 && isset($application))
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
