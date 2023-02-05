@@ -84,11 +84,11 @@
                             </tr>
                             <tr>
                                 <td>Application Reference</td>
-                                <td>{{ isset($application->reference)??$application->reference }}</td>
+                                <td>{{ isset($application->reference)?$application->reference:"" }}</td>
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td>{{ isset($application->status)??$application->status }}</td>
+                                <td>{{ isset($application->status)?$application->status:"" }}</td>
                             </tr>
                             @if($glob_profile->status==1)
                                 <tr>
