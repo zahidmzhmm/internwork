@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('path')->nullable();
             $table->integer('uploaded')->default(1);
+            $table->integer('type')->default(1);
             $table->timestamps();
         });
     }
