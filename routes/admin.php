@@ -26,10 +26,10 @@ Route::get('duration', [AdminController::class, 'duration'])->name('admin.durati
 Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.change.password');
 Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('admin.profile.status');
 Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
-Route::get('application-status/{id}', [AppointmentController::class, 'status'])->name('admin.profile.status');
+Route::get('application-status/{id}', [AppointmentController::class, 'status'])->name('admin.application.status');
 Route::post('change-password', [AdminController::class, 'changePasswordReq'])->name('admin.change.password.req');
 Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
-Route::get('application-delete/{id}', [AppointmentController::class, 'destroy'])->name('admin.user.destroy');
+Route::get('application-delete/{id}', [AppointmentController::class, 'destroy'])->name('admin.application.destroy');
 Route::get('delete-duration/{id}', [AdminController::class, 'durationDelete'])->name('duration.delete');
 Route::post('duration', [AdminController::class, 'durationReq'])->name('duration.req');
 Route::post('update-duration/{id}', [AdminController::class, 'durationUpdate'])->name('duration.update');

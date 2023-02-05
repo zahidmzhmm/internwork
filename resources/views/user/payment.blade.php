@@ -19,7 +19,7 @@
             <div class="col-md-4">
                 @include("user.sidebar")
             </div>
-            <form action="{{ route('payment.pay') }}" method="post" class="col-md-8">
+            <form id="order-form" action="{{ route('payment.pay') }}" method="post" class="col-md-8">
                 <div class="dashb_contents rounded">
                     @csrf
                     <input type="hidden" name="application" value="{{ $application->reference }}">
@@ -44,7 +44,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-md-6">
                                 <label for="">Select your payment method</label>
                             </div>
@@ -53,14 +53,15 @@
                                        class="payment_method"
                                        id="paystack">&nbsp;&nbsp;<label
                                     for="paystack">Paystack</label> &nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="payment_method" value="paypal" class="payment_method"
-                                       id="paypal">&nbsp;&nbsp;<label
-                                    for="paypal">Paypal</label> &nbsp;&nbsp;&nbsp;
+                                <div class="mt-3">
+                                    <div id="paypal-button-container"></div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;
                                 <input type="radio" name="payment_method" value="waiver" class="payment_method"
                                        id="waiver">&nbsp;&nbsp;<label
                                     for="waiver">Fee Waiver Code</label> &nbsp;&nbsp;&nbsp;
                             </div>
-                            <div class="col-md-8 col-xl-4 ml-auto">
+                            <div class="col-md-8 col-xl-5 ml-auto">
                                 <input type="text" id="waiver_code" name="code" class="form-control d-none"
                                        placeholder="Code">
                             </div>
@@ -94,5 +95,43 @@
                 field_code.addClass("d-none")
             }
         })
+    </script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AVK2ISVSdQprQNKtevmz4fDAJ_L6kkHuXFLkmS5QcRAy3KJy4TwoCjLBngqZYIrU-jaUIczZCCLdjqwy&enable-funding=venmo&currency=EUR"
+        data-sdk-integration-source="button-factory"></script>
+    <script>
+        function initPayPalButton() {
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+                },
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{"amount": {"currency_code": "EUR", "value": {{ 50 }}}}]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (orderData) {
+                        let forms = $("#order-form");
+                        forms.append('<input type="hidden" name="reference" value="{{ $application->reference }}">')
+                        forms.append('<input type="hidden" name="payment_method" value="paypal">')
+                        forms.append('<input type="hidden" name="status" value="paid">')
+                        forms.append('<input type="hidden" name="_method" value="post">')
+                        forms.append('<input type="hidden" name="_token" value="{{ csrf_token() }}">')
+                        setTimeout(() => {
+                            forms.submit()
+                        }, 2000)
+                    });
+                },
+                onError: function (err) {
+                    window.location.href = '/account'
+                }
+            }).render('#paypal-button-container');
+        }
+
+        initPayPalButton();
     </script>
 @endsection

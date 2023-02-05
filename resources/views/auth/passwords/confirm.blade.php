@@ -13,7 +13,7 @@
                         {{ __('Please confirm your password before continuing.') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('password.confirm') }}">
+                        <form method="POST" action="{{ route('password.confirm.req') }}">
                             @csrf
                             @include("errors")
                             <input id="password" type="password"

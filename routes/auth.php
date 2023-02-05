@@ -29,7 +29,7 @@ Route::post('/login', [AuthController::class, 'loginReq'])->name('login.post');
 Route::post('/register', [AuthController::class, 'registerReq'])->name('register.post');
 Route::post('/password/email', [AuthController::class, 'passwordEmail'])->name('password.email');
 Route::post('/password/reset', [AuthController::class, 'passwordUpdate'])->name('password.update');
-Route::post('/password/change', [AuthController::class, 'passwordConfirm'])->name('password.confirm');
+Route::post('/password/change', [AuthController::class, 'passwordConfirm'])->name('password.confirm.req');
 Route::post('/verification/check', [AuthController::class, 'verification'])->name('verification.check');
 
 // Admin Authentication Get Request

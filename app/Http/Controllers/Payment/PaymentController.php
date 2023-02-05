@@ -48,7 +48,9 @@ class PaymentController extends Controller
             return $this->mark_paid($application, "waiver");
         }
         if ($request->payment_method == 'paypal') {
-
+            if ($request->status == 'paid') {
+                return $this->mark_paid($application, "paypal");
+            }
         }
         if ($request->payment_method == 'paystack') {
             return $this->paystack($application, $request->user());
@@ -61,7 +63,7 @@ class PaymentController extends Controller
         $application->req_ref = $ref;
         $application->save();
         $data = array(
-            "amount" => $application->fees * 100,
+            "amount" => $application->fees * 640 * 100,
             "reference" => $ref,
             "email" => $user->email,
             "currency" => env('PAYSTACK_CURRENCY'),

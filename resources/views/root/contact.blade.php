@@ -37,7 +37,7 @@
                         <div class="heading">
                             <h2 class="heading__title lh-1 mb-50">Contact Us Now</h2>
                         </div><!-- /.heading -->
-                        <form action="{{ route('contact') }}" method="post">
+                        <form action="{{ route('contact.req') }}" method="post">
                             @csrf
                             @include("errors")
                             <div class="row">
