@@ -235,19 +235,13 @@ class AppointmentController extends Controller
         }
     }
 
-    public function status($id)
+    public function status($status, $id)
     {
         $application = Application::find($id);
         if (!$application) {
             return redirect()->back()->with('error', 'Data not found');
         }
-        if ($application->approve_status == 'pending' || $application->approve_status == 'declined') {
-            $application->approve_status = "approved";
-            $application->status = "closed";
-        } else {
-            $application->approve_status = "declined";
-            $application->status = "closed";
-        }
+        $application->approve_status = $status;
         $application->save();
         return redirect()->back()->with('success', 'Successfully Updated');
     }

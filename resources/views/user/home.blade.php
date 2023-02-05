@@ -88,7 +88,7 @@
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td>{{ isset($application->status)?$application->status:"" }}</td>
+                                <td>{{ isset($application->approve_status)?$application->approve_status:"" }}</td>
                             </tr>
                             @if($glob_profile->status==1)
                                 <tr>

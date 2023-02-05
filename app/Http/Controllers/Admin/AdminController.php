@@ -9,6 +9,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -33,12 +34,19 @@ class AdminController extends Controller
         return view('admin.registrations', compact('profiles'));
     }
 
-    public function applications()
+    public function applications(Request $request)
     {
-        $applications = Application::join('users', 'applications.user_id', '=', 'users.id')
-            ->join("profiles", 'users.id', '=', 'profiles.user_id')
-            ->select('users.email', 'profiles.*', 'applications.*')
-            ->paginate(20);
+        $applications = DB::table('applications')
+            ->join('users', 'applications.user_id', '=', 'users.id')
+            ->join("profiles", 'users.id', '=', 'profiles.user_id');
+        if (isset($request->cat) && !empty($request->cat)) {
+            $applications->where('applications.category', '=', $request->cat);
+        }
+        if (isset($request->status) && !empty($request->status)) {
+            $applications->where('applications.approve_status', '=', $request->status);
+        }
+        $applications->select('users.email', 'profiles.*', 'applications.*');
+        $applications = $applications->paginate(20);
         return view('admin.applications', compact('applications'));
     }
 

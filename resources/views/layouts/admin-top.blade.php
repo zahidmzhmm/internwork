@@ -6,8 +6,21 @@
     <li class="nav__item"><a href="{{ route('admin.registrations') }}"
                              class="nav__item-link {{ Route::is('admin.registrations')?'active':'' }}">Registration</a>
     </li>
-    <li class="nav__item"><a href="{{ route('admin.applications') }}"
-                             class="nav__item-link {{ Route::is('admin.applications')?'active':'' }}">Applications</a>
+    <li class="nav__item with-dropdown">
+        <a href="#" data-toggle="dropdown"
+           class="dropdown-toggle nav__item-link {{ Route::is('admin.applications')?'active':'' }}">Applications</a>
+        <ul class="dropdown-menu">
+            <li class="nav__item"><a href="{{ url('/admin/applications?cat=Internship') }}" class="nav__item-link">Internship</a>
+            </li>
+            <!-- /.nav-item -->
+            <li class="nav__item"><a href="{{ url('/admin/applications?cat=Traineeship') }}" class="nav__item-link">Traineeship</a>
+            </li>
+            <!-- /.nav-item -->
+            <li class="nav__item"><a href="{{ url('/admin/applications?cat=H1B') }}" class="nav__item-link">H1-B</a>
+            </li>
+            <!-- /.nav-item -->
+        </ul><!-- /.dropdown-menu -->
+    </li><!-- /.nav-item -->
     </li>
     <li class="nav__item"><a href="{{ route('admin.appointment.list') }}"
                              class="nav__item-link {{ Route::is('admin.appointment.list')?'active':'' }}">Appointment
