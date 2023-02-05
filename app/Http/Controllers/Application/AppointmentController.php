@@ -8,6 +8,8 @@ use App\Models\Application\Duration;
 use App\Models\Application\Employ;
 use App\Models\Application\Experience;
 use App\Models\Application\Study;
+use App\Models\Application\Travel;
+use App\Models\Application\Visa;
 use App\Models\Profile;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -165,6 +167,52 @@ class AppointmentController extends Controller
         $sp->position = $request->position;
         $sp->start = Carbon::parse($request->start);
         $sp->end = Carbon::parse($request->end);
+        try {
+            $sp->save();
+            return self::json_res("Success", 200, $sp);
+        } catch (\Exception $exception) {
+            return self::json_res($exception->getMessage());
+        }
+    }
+
+    public function visas(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'decision' => 'required',
+            'place' => 'required',
+        ]);
+        $sp = new Visa();
+        $sp->user_id = $request->user_id;
+        $sp->category = $request->category;
+        $sp->year = $request->year;
+        $sp->decision = $request->decision;
+        $sp->place = $request->place;
+        try {
+            $sp->save();
+            return self::json_res("Success", 200, $sp);
+        } catch (\Exception $exception) {
+            return self::json_res($exception->getMessage());
+        }
+    }
+
+    public function travels(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'country' => 'required',
+            'purpose' => 'required',
+            'duration' => 'required',
+            'year' => 'required',
+        ]);
+        $sp = new Travel();
+        $sp->user_id = $request->user_id;
+        $sp->country = $request->country;
+        $sp->purpose = $request->purpose;
+        $sp->duration = $request->duration;
+        $sp->year = $request->year;
         try {
             $sp->save();
             return self::json_res("Success", 200, $sp);

@@ -25,3 +25,5 @@ Route::post('applications', [AppointmentController::class, 'applications'])->nam
 Route::post('experiences', [AppointmentController::class, 'experiences'])->name('experiences');
 Route::post('studies', [AppointmentController::class, 'studies'])->name('studies');
 Route::post('employs', [AppointmentController::class, 'employs'])->name('employs');
+Route::post('visas', [AppointmentController::class, 'visas'])->name('visas');
+Route::post('travels', [AppointmentController::class, 'travels'])->name('travels');
