@@ -4,10 +4,26 @@ import {axiosReq, FEES} from "../config";
 import {Base64} from "js-base64";
 
 const Step10 = ({
-                    step, setStep, category, country, picture, program, duration, setDuration, applicable, setApplicable, digit, travel_exp, us_visa, workExp, studies, selfPlaced,
-                    ex_name, ex_location, ex_position, ex_start, ex_end, ex_description,
-                    sd_name, sd_location, sd_position, sd_start, sd_end, sd_description,
-                    sp_name, sp_location, sp_position, sp_start, sp_end
+                    step,
+                    setStep,
+                    category,
+                    country,
+                    program,
+                    duration,
+                    setDuration,
+                    applicable,
+                    setApplicable,
+                    digit,
+                    travel_exp,
+                    us_visa,
+                    workExp,
+                    studies,
+                    selfPlaced,
+                    experience,
+                    studied,
+                    placed,
+                    travel,
+                    visa
                 }) => {
 
     const [allduration, setAllDuration] = useState([]);

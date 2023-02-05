@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Step3 = ({step, setStep, category, country, program}) => {
+const Step3 = ({setStep, category, country}) => {
 
     return (
         <>

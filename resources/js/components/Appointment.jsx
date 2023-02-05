@@ -90,11 +90,9 @@ const Appointment = () => {
                        setDigit={setDigit}
                 />}
             {step === 3 &&
-                <Step3 step={step}
-                       setStep={setStep}
+                <Step3 setStep={setStep}
                        category={category}
                        country={country}
-                       program={program}
                 />}
             {step === 5 &&
                 <Step5 setStep={setStep}
@@ -102,66 +100,40 @@ const Appointment = () => {
                        us_visa={us_visa}
                        setTravelExp={setTravelExp}
                        setUSVisa={setUSVisa}
+                       setTravel={setTravel}
+                       travel={travel}
                 />
             }
             {step === 6 &&
                 <Step6 setStep={setStep}
-                       travel_exp={travel_exp}
                        us_visa={us_visa}
-                       setTravelExp={setTravelExp}
                        setUSVisa={setUSVisa}
+                       visa={visa}
+                       setVisa={setVisa}
                 />
             }
             {step === 7 &&
                 <Step7 setStep={setStep}
                        workExp={workExp}
                        setWorkExp={setWorkExp}
-                       ex_name={ex_name}
-                       ex_location={ex_location}
-                       ex_position={ex_position}
-                       ex_start={ex_start}
-                       ex_end={ex_end}
-                       ex_description={ex_description}
-                       setex_name={setex_name}
-                       setex_location={setex_location}
-                       setex_position={setex_position}
-                       setex_start={setex_start}
-                       setex_end={setex_end}
-                       setex_description={setex_description}
+                       experience={experience}
+                       setExperience={setExperience}
                 />
             }
             {step === 8 &&
                 <Step8 setStep={setStep}
                        studies={studies}
                        setStudies={setStudies}
-                       sd_name={sd_name}
-                       sd_location={sd_location}
-                       sd_position={sd_position}
-                       sd_start={sd_start}
-                       sd_end={sd_end}
-                       sd_description={sd_description}
-                       setsd_name={setsd_name}
-                       setsd_location={setsd_location}
-                       setsd_position={setsd_position}
-                       setsd_start={setsd_start}
-                       setsd_end={setsd_end}
-                       setsd_description={setsd_description}
+                       studied={studied}
+                       setStudied={setStudied}
                 />
             }
             {step === 9 &&
                 <Step9 setStep={setStep}
                        selfPlaced={selfPlaced}
                        setSelfPlaced={setSelfPlaced}
-                       sp_name={sp_name}
-                       sp_location={sp_location}
-                       sp_position={sp_position}
-                       sp_start={sp_start}
-                       sp_end={sp_end}
-                       setsp_name={setsp_name}
-                       setsp_location={setsp_location}
-                       setsp_position={setsp_position}
-                       setsp_start={setsp_start}
-                       setsp_end={setsp_end}
+                       placed={placed}
+                       setPlaced={setPlaced}
                 />
             }
             {step === 10 &&
@@ -176,29 +148,16 @@ const Appointment = () => {
                     setDuration={setDuration}
                     applicable={applicable}
                     setApplicable={setApplicable}
-                    picture={picture}
                     travel_exp={travel_exp}
                     us_visa={us_visa}
                     workExp={workExp}
                     studies={studies}
                     selfPlaced={selfPlaced}
-                    ex_name={ex_name}
-                    ex_location={ex_location}
-                    ex_position={ex_position}
-                    ex_start={ex_start}
-                    ex_end={ex_end}
-                    ex_description={ex_description}
-                    sd_name={sd_name}
-                    sd_location={sd_location}
-                    sd_position={sd_position}
-                    sd_start={sd_start}
-                    sd_end={sd_end}
-                    sd_description={sd_description}
-                    sp_name={sp_name}
-                    sp_location={sp_location}
-                    sp_position={sp_position}
-                    sp_start={sp_start}
-                    sp_end={sp_end}
+                    experience={experience}
+                    placed={placed}
+                    studied={studied}
+                    travel={travel}
+                    visa={visa}
                 />}
         </>
     );

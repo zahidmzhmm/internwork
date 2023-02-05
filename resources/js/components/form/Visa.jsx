@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Visa = ({data, setData}) => {
+const Visa = ({data, setData, allData, key}) => {
     return (
         <>
             <div className="row my-2">
@@ -9,7 +9,14 @@ const Visa = ({data, setData}) => {
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="text" className="form-control" value={data.category}
-                           onChange={(e) => setData.category(e.target.value)}/>
+                           onChange={(e) => setData(
+                               allData.map((item) => {
+                                   if (item.id === data.id) {
+                                       return {...data, category: e.target.value};
+                                   }
+                                   return item;
+                               })
+                           )}/>
                 </div>
             </div>
             <div className="row my-2">
@@ -18,7 +25,14 @@ const Visa = ({data, setData}) => {
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="text" className="form-control" value={data.year}
-                           onChange={(e) => setData.year(e.target.value)}/>
+                           onChange={(e) => setData(
+                               allData.map((item) => {
+                                   if (item.id === data.id) {
+                                       return {...data, year: e.target.value};
+                                   }
+                                   return item;
+                               })
+                           )}/>
                 </div>
             </div>
             <div className="row my-2">
@@ -27,7 +41,14 @@ const Visa = ({data, setData}) => {
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="text" className="form-control" value={data.decision}
-                           onChange={(e) => setData.decision(e.target.value)}/>
+                           onChange={(e) => setData(
+                               allData.map((item) => {
+                                   if (item.id === data.id) {
+                                       return {...data, decision: e.target.value};
+                                   }
+                                   return item;
+                               })
+                           )}/>
                 </div>
             </div>
             <div className="row my-2">
@@ -36,7 +57,14 @@ const Visa = ({data, setData}) => {
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="text" className="form-control" value={data.place}
-                           onChange={(e) => setData.place(e.target.value)}/>
+                           onChange={(e) => setData(
+                               allData.map((item) => {
+                                   if (item.id === data.id) {
+                                       return {...data, place: e.target.value};
+                                   }
+                                   return item;
+                               })
+                           )}/>
                 </div>
             </div>
         </>
