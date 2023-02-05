@@ -1,20 +1,40 @@
 import React, {useEffect} from 'react';
 import {toast} from "react-hot-toast";
+import Studied from "../form/Studied";
+import Placed from "../form/Placed";
 
 const Step9 = ({setStep, selfPlaced, setSelfPlaced, placed, setPlaced}) => {
 
     useEffect(() => {
     }, [selfPlaced])
 
-    const step8Submit = (e) => {
+    const addNew = () => {
+        setPlaced([...placed, {
+            id: placed.length + 1,
+            category: "",
+            year: "",
+            decision: "",
+            place: "",
+        }])
+    }
+
+    const handleRemove = (id) => {
+        if (id > 1) {
+            setPlaced(placed.filter((item) => item.id !== id));
+        } else {
+            toast.error("Minimum 1 Item required")
+        }
+    };
+    const step8Submit = (page) => {
+        let length = placed.length - 1;
         if (selfPlaced == 1) {
-            if (sp_name !== "" && sp_location !== "" && sp_position !== "" && sp_start !== "" && sp_end !== "") {
-                setStep(10)
+            if (placed[length].name !== "" && placed[length].location !== "" && placed[length].position !== "" && placed[length].start !== "" && placed[length].end !== "") {
+                setStep(page)
             } else {
                 toast.error("All field is required")
             }
         } else {
-            setStep(10)
+            setStep(page)
         }
     }
 
@@ -36,50 +56,19 @@ const Step9 = ({setStep, selfPlaced, setSelfPlaced, placed, setPlaced}) => {
             {selfPlaced == 1
                 &&
                 <>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Name of Employer</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sp_name}
-                                   onChange={(e) => setsp_name(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Location</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sp_location}
-                                   onChange={(e) => setsp_location(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Level of Study</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sp_position}
-                                   onChange={(e) => setsp_position(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Program Start(Arrival) Date</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="date" className="form-control" value={sp_start}
-                                   onChange={(e) => setsp_start(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Program End(Departure) Date</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="date" className="form-control" value={sp_end}
-                                   onChange={(e) => setsp_end(e.target.value)}/>
-                        </div>
+                    {placed.map((item, index) =>
+                        <>
+                            <Placed setData={setPlaced} allData={placed} key={index} data={item}/>
+                            <hr/>
+                        </>
+                    )}
+                    <div className="d-flex justify-content-between">
+                        <button className="btn btn-info mb-3 btn-sm"
+                                onClick={(e) => addNew()}>Add New
+                        </button>
+                        <button className="btn btn-danger mb-3 btn-sm"
+                                onClick={(e) => handleRemove(placed.length)}>Delete
+                        </button>
                     </div>
                 </>}
             <div className="my-2 d-flex justify-content-between">
@@ -87,7 +76,7 @@ const Step9 = ({setStep, selfPlaced, setSelfPlaced, placed, setPlaced}) => {
                     <button type="button" onClick={(e) => setStep(8)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
-                    <button type="button" onClick={(e) => step8Submit(e)} className="btn btn-info">Next</button>
+                    <button type="button" onClick={(e) => step8Submit(10)} className="btn btn-info">Next</button>
                 </div>
             </div>
         </>

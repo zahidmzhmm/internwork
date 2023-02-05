@@ -1,22 +1,43 @@
 import React, {useEffect} from 'react';
 import {toast} from "react-hot-toast";
+import Studied from "../form/Studied";
 
 const Step8 = ({setStep, studies, setStudies, studied, setStudied}) => {
 
     useEffect(() => {
     }, [studies])
 
-    const step8Submit = (e) => {
+    const addNew = () => {
+        setStudied([...studied, {
+            id: studied.length + 1,
+            category: "",
+            year: "",
+            decision: "",
+            place: "",
+        }])
+    }
+
+    const handleRemove = (id) => {
+        if (id > 1) {
+            setStudied(studied.filter((item) => item.id !== id));
+        } else {
+            toast.error("Minimum 1 Item required")
+        }
+    };
+
+    const nextstep = (page) => {
+        let length = studied.length - 1;
         if (studies == 1) {
-            if (sd_name !== "" && sd_location !== "" && sd_position !== "" && sd_start !== "" && sd_end !== "" && sd_description !== "") {
-                setStep(9)
+            if (studied[length].institute !== "" && studied[length].location !== "" && studied[length].level !== "" && studied[length].start !== "" && studied[length].end !== "" && studied[length].description !== "") {
+                setStep(page)
             } else {
                 toast.error("All field is required")
             }
         } else {
-            setStep(9)
+            setStep(page)
         }
     }
+
 
     return (
         <>
@@ -36,59 +57,19 @@ const Step8 = ({setStep, studies, setStudies, studied, setStudied}) => {
             {studies == 1
                 &&
                 <>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Name of Institution</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sd_name}
-                                   onChange={(e) => setsd_name(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Location</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sd_location}
-                                   onChange={(e) => setsd_location(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Level of Study</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sd_position}
-                                   onChange={(e) => setsd_position(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Program Start(Arrival) Date</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="date" className="form-control" value={sd_start}
-                                   onChange={(e) => setsd_start(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Program End(Departure) Date</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="date" className="form-control" value={sd_end}
-                                   onChange={(e) => setsd_end(e.target.value)}/>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-8 d-flex align-items-center">
-                            <label htmlFor="category">Course of Study</label>
-                        </div>
-                        <div className="col-md-4 d-flex">
-                            <input type="text" className="form-control" value={sd_description}
-                                   onChange={(e) => setsd_description(e.target.value)}/>
-                        </div>
+                    {studied.map((item, index) =>
+                        <>
+                            <Studied setData={setStudied} allData={studied} key={index} data={item}/>
+                            <hr/>
+                        </>
+                    )}
+                    <div className="d-flex justify-content-between">
+                        <button className="btn btn-info mb-3 btn-sm"
+                                onClick={(e) => addNew()}>Add New
+                        </button>
+                        <button className="btn btn-danger mb-3 btn-sm"
+                                onClick={(e) => handleRemove(studied.length)}>Delete
+                        </button>
                     </div>
                 </>}
             <div className="my-2 d-flex justify-content-between">
@@ -96,7 +77,7 @@ const Step8 = ({setStep, studies, setStudies, studied, setStudied}) => {
                     <button type="button" onClick={(e) => setStep(7)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
-                    <button type="button" onClick={(e) => step8Submit(e)} className="btn btn-info">Next</button>
+                    <button type="button" onClick={(e) => nextstep(9)} className="btn btn-info">Next</button>
                 </div>
             </div>
         </>

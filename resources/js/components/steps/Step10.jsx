@@ -79,7 +79,7 @@ const Step10 = ({
         let ref = docget.getAttribute('data-ref-gen') + digit;
         let user_id = docget.getAttribute('data-user-id');
         let applicableData = JSON.parse(Base64.decode(applicable));
-        if (category !== "" && country !== "" && program !== "" && us_visa !== "" && travel_exp !== "" && digit !== "" && duration !== "" && applicable !== "" && ref !== "" && user_id !== "") {
+        if (category !== "" && country !== "" && digit !== "" && program !== "" && duration !== "" && applicable !== "" && travel_exp !== "" && us_visa !== "" && workExp !== "" && studies !== "" && selfPlaced !== "" && ref !== "" && user_id !== "") {
             let formdata = new FormData();
             formdata.append('user_id', user_id)
             formdata.append('destination', country)
@@ -94,41 +94,47 @@ const Step10 = ({
             formdata.append('applicable_start', applicableData.start_date)
             formdata.append('applicable_end', applicableData.end_date)
             formdata.append('applicable_deadline', applicableData.deadline)
-            formdata.append('payment_method', "Paypal")
+            formdata.append('payment_method', "Paystack")
 
             if (workExp == 1) {
-                let formdata1 = new FormData();
-                formdata1.append('user_id', user_id)
-                formdata1.append('name', ex_name)
-                formdata1.append('location', ex_location)
-                formdata1.append('position', ex_position)
-                formdata1.append('start', ex_start)
-                formdata1.append('end', ex_end)
-                formdata1.append('description', ex_description)
-                axiosReq('experiences', 'post', formdata1).then((data) => {
+                experience.map((item, index) => {
+                    let formdata1 = new FormData();
+                    formdata1.append('user_id', user_id)
+                    formdata1.append('name', item.name)
+                    formdata1.append('location', item.location)
+                    formdata1.append('position', item.position)
+                    formdata1.append('start', item.start)
+                    formdata1.append('end', item.end)
+                    formdata1.append('description', item.description)
+                    axiosReq('experiences', 'post', formdata1).then((data) => {
+                    })
                 })
             }
             if (studies == 1) {
-                let formdata2 = new FormData();
-                formdata2.append('user_id', user_id)
-                formdata2.append('institute', sd_name)
-                formdata2.append('location', sd_location)
-                formdata2.append('level', sd_position)
-                formdata2.append('start', sd_start)
-                formdata2.append('end', sd_end)
-                formdata2.append('description', sd_description)
-                axiosReq('studies', 'post', formdata2).then((data) => {
+                studied.map((item, index) => {
+                    let formdata2 = new FormData();
+                    formdata2.append('user_id', user_id)
+                    formdata2.append('institute', item.name)
+                    formdata2.append('location', item.location)
+                    formdata2.append('level', item.position)
+                    formdata2.append('start', item.start)
+                    formdata2.append('end', item.end)
+                    formdata2.append('description', item.description)
+                    axiosReq('studies', 'post', formdata2).then((data) => {
+                    })
                 })
             }
             if (selfPlaced == 1) {
-                let formdata3 = new FormData();
-                formdata3.append('user_id', user_id)
-                formdata3.append('name', sp_name)
-                formdata3.append('location', sp_location)
-                formdata3.append('position', sp_position)
-                formdata3.append('start', sp_start)
-                formdata3.append('end', sp_end)
-                axiosReq('employs', 'post', formdata3).then((data) => {
+                placed.map((item, index) => {
+                    let formdata3 = new FormData();
+                    formdata3.append('user_id', user_id)
+                    formdata3.append('name', item.name)
+                    formdata3.append('location', item.location)
+                    formdata3.append('position', item.position)
+                    formdata3.append('start', item.start)
+                    formdata3.append('end', item.end)
+                    axiosReq('employs', 'post', formdata3).then((data) => {
+                    })
                 })
             }
             axiosReq('applications', 'post', formdata).then((data) => {
