@@ -53,6 +53,7 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
+            'category' => 'required',
             'destination' => 'required',
             'program' => 'required',
             'duration' => 'required',
@@ -69,6 +70,7 @@ class AppointmentController extends Controller
         ]);
         $apnt = new Application();
         $apnt->user_id = $request->user_id;
+        $apnt->category = $request->category;
         $apnt->destination = $request->destination;
         $apnt->program = $request->program;
         $apnt->duration = $request->duration;
