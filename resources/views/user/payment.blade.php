@@ -19,7 +19,7 @@
             <div class="col-md-4">
                 @include("user.sidebar")
             </div>
-            <form action="{{ route('paystack') }}" method="post" class="col-md-8">
+            <form action="{{ route('payment.pay') }}" method="post" class="col-md-8">
                 <div class="dashb_contents rounded">
                     @csrf
                     <input type="hidden" name="application" value="{{ $application->reference }}">
@@ -49,8 +49,20 @@
                                 <label for="">Select your payment method</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="radio" checked value="1" class="" id="paystack">&nbsp;&nbsp;<label
-                                    for="paystack">Paystack</label>
+                                <input type="radio" checked name="payment_method" value="paystack"
+                                       class="payment_method"
+                                       id="paystack">&nbsp;&nbsp;<label
+                                    for="paystack">Paystack</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="payment_method" value="paypal" class="payment_method"
+                                       id="paypal">&nbsp;&nbsp;<label
+                                    for="paypal">Paypal</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="payment_method" value="waiver" class="payment_method"
+                                       id="waiver">&nbsp;&nbsp;<label
+                                    for="waiver">Fee Waiver Code</label> &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="col-md-8 col-xl-4 ml-auto">
+                                <input type="text" id="waiver_code" name="code" class="form-control d-none"
+                                       placeholder="Code">
                             </div>
                         </div>
                         <div class="my-2 d-flex align-items-start">
@@ -69,4 +81,18 @@
             </form>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        $(".payment_method").on("click", function () {
+            let field_code = $("#waiver_code");
+            if (this.value === 'waiver') {
+                field_code.removeClass("d-none")
+                field_code.addClass("d-block")
+            } else {
+                field_code.removeClass("d-block")
+                field_code.addClass("d-none")
+            }
+        })
+    </script>
 @endsection
