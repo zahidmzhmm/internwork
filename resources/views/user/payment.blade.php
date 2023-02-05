@@ -97,7 +97,7 @@
         })
     </script>
     <script
-        src="https://www.paypal.com/sdk/js?client-id=AVK2ISVSdQprQNKtevmz4fDAJ_L6kkHuXFLkmS5QcRAy3KJy4TwoCjLBngqZYIrU-jaUIczZCCLdjqwy&enable-funding=venmo&currency=EUR"
+        src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID') }}&enable-funding=venmo&currency=EUR"
         data-sdk-integration-source="button-factory"></script>
     <script>
         function initPayPalButton() {
