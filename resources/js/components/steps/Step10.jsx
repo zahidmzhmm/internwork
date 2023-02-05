@@ -82,6 +82,7 @@ const Step10 = ({
         if (category !== "" && country !== "" && digit !== "" && program !== "" && duration !== "" && applicable !== "" && travel_exp !== "" && us_visa !== "" && workExp !== "" && studies !== "" && selfPlaced !== "" && ref !== "" && user_id !== "") {
             let formdata = new FormData();
             formdata.append('user_id', user_id)
+            formdata.append('category', category)
             formdata.append('destination', country)
             formdata.append('program', program)
             formdata.append('duration', duration)
@@ -114,7 +115,7 @@ const Step10 = ({
                 studied.map((item, index) => {
                     let formdata2 = new FormData();
                     formdata2.append('user_id', user_id)
-                    formdata2.append('institute', item.name)
+                    formdata2.append('institute', item.institute)
                     formdata2.append('location', item.location)
                     formdata2.append('level', item.position)
                     formdata2.append('start', item.start)
@@ -134,6 +135,30 @@ const Step10 = ({
                     formdata3.append('start', item.start)
                     formdata3.append('end', item.end)
                     axiosReq('employs', 'post', formdata3).then((data) => {
+                    })
+                })
+            }
+            if (us_visa == 1) {
+                visa.map((item, index) => {
+                    let formdata3 = new FormData();
+                    formdata3.append('user_id', user_id)
+                    formdata3.append('category', item.category)
+                    formdata3.append('year', item.year)
+                    formdata3.append('decision', item.decision)
+                    formdata3.append('place', item.place)
+                    axiosReq('visas', 'post', formdata3).then((data) => {
+                    })
+                })
+            }
+            if (travel_exp == 1) {
+                travel.map((item, index) => {
+                    let formdata3 = new FormData();
+                    formdata3.append('user_id', user_id)
+                    formdata3.append('country', item.country)
+                    formdata3.append('purpose', item.purpose)
+                    formdata3.append('duration', item.duration)
+                    formdata3.append('year', item.year)
+                    axiosReq('travels', 'post', formdata3).then((data) => {
                     })
                 })
             }
