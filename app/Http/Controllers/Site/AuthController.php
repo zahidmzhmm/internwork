@@ -178,7 +178,8 @@ class AuthController extends Controller
         }
         $user->code = strtoupper(substr(uniqid(), 0, 6));
         $user->save();
-        Mail::send(new PlainMailable("Forget Password", $user->email, 'request-reset', $user));
+        $profile = Profile::where('user_id', '=', $user->id)->first();
+        Mail::send(new PlainMailable("RESET ACCOUNT PASSWORD", $user->email, 'request-reset', ['user' => $user, 'profile' => $profile]));
         return redirect()->route('password.change')->with('success', 'Security code has been sent');
     }
 
