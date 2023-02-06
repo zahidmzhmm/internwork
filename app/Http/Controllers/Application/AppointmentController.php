@@ -267,7 +267,7 @@ class AppointmentController extends Controller
         if (!$application) {
             return redirect()->back()->with('error', 'Data not found');
         }
-        return $this->applicationPdfMaker($application)->stream("Application - " . $application->reference . '.pdf');
+        return $this->applicationPdfMaker($application)->download("Application - " . $application->reference . '.pdf');
     }
 
     public function applicationPdfMaker($application)
