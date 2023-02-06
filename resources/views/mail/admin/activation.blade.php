@@ -1,6 +1,3 @@
-Dear Admin,
-<br><br>
-New User Registered
-<br><br>
-Regards,<br>
-{{ env('APP_NAME') }}
+Username = {{ $data['user']->username }} <br>
+Email = {{ $data['user']->email }} <br>
+Intern Registration Successful <br>
