@@ -214,7 +214,7 @@ class AuthController extends Controller
         $user->save();
         $profile = Profile::where('user_id', '=', $user->id)->first();
         Mail::send(new PlainMailable("ACCOUNT ACTIVATED SUCCESSFULLY", $user->email, 'user.activation', ['profile' => $profile, 'user' => $user]));
-        Mail::send(new PlainMailable("New User Registered", $user->email, 'admin.activation', ['profile' => $profile, 'user' => $user]));
+        Mail::send(new PlainMailable("New User Registered", env('APP_EMAIL'), 'admin.activation', ['profile' => $profile, 'user' => $user]));
         \auth()->login($user);
         return redirect()->route('profile.u.edit')->with('success', 'Verification Success');
     }
