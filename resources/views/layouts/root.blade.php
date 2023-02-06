@@ -8,10 +8,12 @@
     <meta name="description" content="Besor Associates | Educational Travel Consultants">
     <link href="{{ asset('assets/images/favicon/favicon.png') }}" rel="icon">
     <title>Besor Associates | Educational Travel Consultants</title>
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700%7cSource+Sans+Pro:300,300i,400,400i,600,600i,700">
     <link rel="stylesheet" href="{{ asset('assets/css/libraries.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/datepicker/datepicker.min.css') }}">
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @yield('head')
@@ -51,8 +53,8 @@
     <!-- ============================
         Slider
     ============================== -->
-@yield('content')
-<!-- ========================
+    @yield('content')
+    <!-- ========================
        Footer
      ========================== -->
     <footer id="footer1" class="footer footer-1 bg-heading">
@@ -106,6 +108,18 @@
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/datepicker/datepicker.min.js') }}"></script>
+
+    <script>
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy'
+        });
+        $('.datepickerMonth').datepicker({
+            format: "mm-yyyy",
+            viewMode: "months",
+            minViewMode: "months"
+        });
+    </script>
 @yield('footer')
 </body>
 </html>
