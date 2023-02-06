@@ -93,9 +93,9 @@ const Step10 = ({
             formdata.append('travel_exp', travel_exp)
             formdata.append('applicable_id', applicableData.id)
             formdata.append('applicable_name', applicableData.applicable_entry)
-            formdata.append('applicable_start', applicableData.start_date)
-            formdata.append('applicable_end', applicableData.end_date)
-            formdata.append('applicable_deadline', applicableData.deadline)
+            formdata.append('applicable_start', moment(applicableData.start_date).format('Do MMMM YYYY'))
+            formdata.append('applicable_end', moment(applicableData.start_date).add(duration, 'months').format('Do MMMM YYYY'))
+            formdata.append('applicable_deadline', moment(applicableData.deadline).format('Do MMMM YYYY'))
             formdata.append('payment_method', "Paystack")
 
             if (workExp == 1) {
