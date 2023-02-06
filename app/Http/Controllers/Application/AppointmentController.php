@@ -46,6 +46,11 @@ class AppointmentController extends Controller
         return view('user.apply', compact('last_application_id'));
     }
 
+    public function view($id)
+    {
+        return $id;
+    }
+
     public function durations()
     {
         return Duration::all();

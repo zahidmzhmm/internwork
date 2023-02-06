@@ -28,6 +28,7 @@ Route::get('change-password', [AdminController::class, 'changePassword'])->name(
 Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('admin.profile.status');
 Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
 Route::get('application-status/{status}/{id}', [AppointmentController::class, 'status'])->name('admin.application.status');
+Route::get('application-view/{id}', [AppointmentController::class, 'view'])->name('admin.application.view');
 Route::post('change-password', [AdminController::class, 'changePasswordReq'])->name('admin.change.password.req');
 Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 Route::get('application-delete/{id}', [AppointmentController::class, 'destroy'])->name('admin.application.destroy');

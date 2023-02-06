@@ -23,12 +23,12 @@
             <tr class="bg-gray">
                 <th>SN</th>
                 <th>NAME</th>
-                <th>EMAIL</th>
-                <th>DESTINATION</th>
                 <th>PROGRAM</th>
+                <th>DESTINATION</th>
                 <th>DURATION</th>
-                <th>Payment Method</th>
-                <th>Payment Status</th>
+                <th>AMOUNT</th>
+                <th>Status</th>
+                <th>Application Date</th>
                 <th style="width: 8rem">ACTION</th>
             </tr>
             </thead>
@@ -36,40 +36,50 @@
             @foreach($applications as $item=>$data)
                 <tr>
                     <td>{{ $item+1 }}</td>
-                    <td>{{ $data->fname.' '.$data->lname }}</td>
-                    <td>{{ $data->email }}</td>
-                    <td>{{ $data->destination }}</td>
+                    <td><a href="{{ url('/admin/application-view/'.$data->id) }}">{{ $data->fname.' '.$data->lname }}</a></td>
                     <td>{{ $data->program }}</td>
+                    <td>{{ $data->destination }}</td>
                     <td>{{ $data->duration }}</td>
-                    <td>{{ $data->payment_method }}</td>
+                    <td>${{ $data->fees }}</td>
                     <td>{{ $data->payment_status }}</td>
+                    <td>{{ $data->created_at }}</td>
                     <td class="">
-                        <select onchange="changestatus(this,{{$data->id}})" class="form-control mb-2"
-                                style="width: 5rem;height: auto">
-                            <option {{ $data->approve_status=='PENDING'?'selected':'' }} value="PENDING">PENDING
-                            </option>
-                            <option
-                                {{ $data->approve_status=='ADMINISTRATIVE_REVIEW'?'selected':'' }} value="ADMINISTRATIVE_REVIEW">
-                                Administrative Review
-                            </option>
-                            <option {{ $data->approve_status=='IN_PROCESS'?'selected':'' }} value="IN_PROCESS"> In
-                                Process
-                            </option>
-                            <option {{ $data->approve_status=='ACTIVE'?'selected':'' }} value="ACTIVE"> Active</option>
-                            <option
-                                {{ $data->approve_status=='PLACEMENT_INTERVIEW'?'selected':'' }} value="PLACEMENT_INTERVIEW">
-                                Placement Interview
-                            </option>
-                            <option {{ $data->approve_status=='HIRED'?'selected':'' }} value="HIRED"> Hired</option>
-                            <option {{ $data->approve_status=='INACTIVE'?'selected':'' }} value="INACTIVE"> Inactive
-                            </option>
-                        </select>
-                        <a href="{{ url('/admin/application-download/'.$data->id) }}"
-                           class="btn btn-info small btn-sm pl-2 pr-0 py-1"><i
-                                class="fa fa-download"></i></a>
-                        <a href="{{ url('/admin/application-delete/'.$data->id) }}"
-                           class="btn btn-danger small btn-sm pl-2 pr-0 py-1"><i
-                                class="fa fa-trash"></i></a>
+                        <table class="">
+                            <tr>
+                                <td class="text-center">
+                                    <a href="#" class="">Upload</a>
+                                    <a href="#" class="">Appointment</a>
+                                </td>
+                                <td>
+                                    <select onchange="changestatus(this,{{$data->id}})" class="form-control mb-2"
+                                            style="width: 5rem;height: auto">
+                                        <option {{ $data->approve_status=='PENDING'?'selected':'' }} value="PENDING">PENDING
+                                        </option>
+                                        <option
+                                            {{ $data->approve_status=='ADMINISTRATIVE_REVIEW'?'selected':'' }} value="ADMINISTRATIVE_REVIEW">
+                                            Administrative Review
+                                        </option>
+                                        <option {{ $data->approve_status=='IN_PROCESS'?'selected':'' }} value="IN_PROCESS"> In
+                                            Process
+                                        </option>
+                                        <option {{ $data->approve_status=='ACTIVE'?'selected':'' }} value="ACTIVE"> Active</option>
+                                        <option
+                                            {{ $data->approve_status=='PLACEMENT_INTERVIEW'?'selected':'' }} value="PLACEMENT_INTERVIEW">
+                                            Placement Interview
+                                        </option>
+                                        <option {{ $data->approve_status=='HIRED'?'selected':'' }} value="HIRED"> Hired</option>
+                                        <option {{ $data->approve_status=='INACTIVE'?'selected':'' }} value="INACTIVE"> Inactive
+                                        </option>
+                                    </select>
+                                    <a href="{{ url('/admin/application-download/'.$data->id) }}"
+                                       class="btn btn-info small btn-sm pl-2 pr-0 py-1"><i
+                                            class="fa fa-download"></i></a>
+                                    <a href="{{ url('/admin/application-delete/'.$data->id) }}"
+                                       class="btn btn-danger small btn-sm pl-2 pr-0 py-1"><i
+                                            class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             @endforeach
