@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {toast} from "react-hot-toast";
 import {axiosReq, FEES} from "../config";
 import {Base64} from "js-base64";
+import moment from "moment";
 
 const Step10 = ({
                     step,
@@ -32,45 +33,45 @@ const Step10 = ({
     useEffect(() => {
         if (country == "Australia" && category == "Internship") {
             setAllDuration([
-                {name: "6 months"},
-                {name: "12 months"}
+                {name: "6 months", value: 6},
+                {name: "12 months", value: 12}
             ])
         }
         if (country == "Denmark" && category == "Internship") {
             setAllDuration([
-                {name: "12 months"}
+                {name: "12 months", value: 12}
             ])
         }
         if (country == "Sweden" && category == "Internship") {
             setAllDuration([
-                {name: "6 months"},
-                {name: "12 months"},
+                {name: "6 months", value: 6},
+                {name: "12 months", value: 12},
             ])
         }
         if (country == "South Africa" && category == "Internship") {
             setAllDuration([
-                {name: "6 months"},
+                {name: "6 months", value: 6},
             ])
         }
         if (country == "United States" && category == "Internship") {
             setAllDuration([
-                {name: "6 months"},
-                {name: "12 months"},
+                {name: "6 months", value: 6},
+                {name: "12 months", value: 12},
             ])
         }
         if (country == "Sweden" && category == "Traineeship") {
             setAllDuration([
-                {name: "12 months"},
+                {name: "12 months", value: 12},
             ])
         }
         if (country == "United States" && category == "Traineeship") {
             setAllDuration([
-                {name: "12 months"},
+                {name: "12 months", value: 12},
             ])
         }
         if (country == "United States" && category == "H1B") {
             setAllDuration([
-                {name: "24 months"},
+                {name: "24 months", value: 24},
             ])
         }
     }, [step])
@@ -180,14 +181,14 @@ const Step10 = ({
         <>
             <div className="row my-2">
                 <div className="col-md-6 col-xl-8 d-flex align-items-center">
-                    <label htmlFor="category">Select Your Applicant Category</label>
+                    <label htmlFor="category">Select Your Applicant Duration</label>
                 </div>
                 <div className="col-md-6 col-xl-4 d-flex">
                     <select value={duration} onChange={(e) => setDuration(e.target.value)} name="" id=""
                             className="form-control">
                         <option value="">Select</option>
                         {allduration.map((data, index) =>
-                            <option value={data.name} key={index}>{data.name}</option>
+                            <option value={data.value} key={index}>{data.name}</option>
                         )}
                     </select>
                 </div>
@@ -207,7 +208,7 @@ const Step10 = ({
                     </select>
                 </div>
             </div>
-            {applicable !== "" ?
+            {applicable && duration !== "" ?
                 <>
                     <div className="row my-2">
                         <div className="col-md-6 col-xl-8 d-flex align-items-center">
@@ -215,7 +216,7 @@ const Step10 = ({
                         </div>
                         <div className="col-md-6 col-xl-4 d-flex">
                             <input type="text" className="form-control disabled" disabled
-                                   value={JSON.parse(Base64.decode(applicable)).start_date}/>
+                                   value={moment(JSON.parse(Base64.decode(applicable)).start_date).format('Do MMMM YYYY')}/>
                         </div>
                     </div>
                     <div className="row my-2">
@@ -224,7 +225,7 @@ const Step10 = ({
                         </div>
                         <div className="col-md-6 col-xl-4 d-flex">
                             <input type="text" className="form-control disabled" disabled
-                                   value={JSON.parse(Base64.decode(applicable)).end_date}/>
+                                   value={moment(JSON.parse(Base64.decode(applicable)).start_date).add(duration, 'months').format('Do MMMM YYYY')}/>
                         </div>
                     </div>
                     <div className="row my-2">
@@ -233,7 +234,7 @@ const Step10 = ({
                         </div>
                         <div className="col-md-6 col-xl-4 d-flex">
                             <input type="text" className="form-control disabled" disabled
-                                   value={JSON.parse(Base64.decode(applicable)).deadline}/>
+                                   value={moment(JSON.parse(Base64.decode(applicable)).deadline).format('Do MMMM YYYY')}/>
                         </div>
                     </div>
                 </>
