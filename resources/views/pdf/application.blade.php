@@ -129,7 +129,7 @@
         <th class="text-left pt-2">Program</th>
         <td class="text-left pt-2">{{ $application->program }}</td>
         <th class="text-left pt-2">Duration</th>
-        <td class="text-left pt-2">{{ $application->duration }}</td>
+        <td class="text-left pt-2">{{ $application->duration }} months</td>
     </tr>
     <tr>
         <th class="text-left pt-2">US Visa</th>
@@ -235,5 +235,21 @@
         </tbody>
     </table>
 @endif
+<table class="main-content pt-2 text-small table table-bordered">
+    <tbody>
+    <tr>
+        <th class="text-left pt-2">Signature</th>
+        <td class="text-left pt-2"></td>
+        <th class="text-left pt-2">Parent Signature</th>
+        <td class="text-left pt-2"></td>
+    </tr>
+    <tr>
+        <th class="text-left pt-2">Date</th>
+        <td class="text-left pt-2"></td>
+        <th class="text-left pt-2">Date</th>
+        <td class="text-left pt-2"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

@@ -16,6 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -92,9 +93,15 @@ class AppointmentController extends Controller
         $apnt->applicable_end = $request->applicable_end;
         $apnt->applicable_deadline = $request->applicable_deadline;
         $apnt->payment_method = $request->payment_method;
-        $profile = Profile::where('user_id', '=', $request->user_id);
+        $profile = Profile::where('user_id', '=', $request->user_id)->first();
         try {
             $apnt->save();
+            $pdf = $this->applicationPdfMaker($apnt);
+            Mail::send('mail.admin.application', ['profile' => $profile, 'application' => $apnt], function ($message) use ($pdf, $apnt) {
+                $message->to(env('APP_EMAIL'));
+                $message->subject('NEW INTERNSHIP APPLICATION');
+                $message->attachData($pdf->output(), $apnt->reference . '.pdf');
+            });
             return self::json_res("Success", 200, $apnt);
         } catch (\Exception $exception) {
             return self::json_res($exception->getMessage());
@@ -232,7 +239,10 @@ class AppointmentController extends Controller
         if (!$application) {
             return redirect()->back()->with('error', 'Data not found');
         }
+        $profile = Profile::where('user_id', '=', $application->user_id)->orderBy('id', 'desc')->first();
         try {
+            $profile->status = 1;
+            $profile->save();
             $application->delete();
             return redirect()->back()->with('success', 'Successfully Deleted');
         } catch (\Exception $exception) {
@@ -257,6 +267,11 @@ class AppointmentController extends Controller
         if (!$application) {
             return redirect()->back()->with('error', 'Data not found');
         }
+        return $this->applicationPdfMaker($application)->stream("Application - " . $application->reference . '.pdf');
+    }
+
+    public function applicationPdfMaker($application)
+    {
         $user = User::find($application->user_id);
         $profile = Profile::where('user_id', '=', $application->user_id)
             ->orderBy('id', 'desc')
@@ -270,7 +285,6 @@ class AppointmentController extends Controller
         $studies = Study::where('user_id', '=', $application->user_id)
             ->orderBy('id', 'desc')
             ->first();
-        $pdf = Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies'));
-        return $pdf->download("Application - " . $profile->fname . ' ' . $profile->lname . '.pdf');
+        return Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies'));
     }
 }
