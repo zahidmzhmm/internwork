@@ -39,7 +39,7 @@
                     <td><a href="{{ url('/admin/application-view/'.$data->id) }}">{{ $data->fname.' '.$data->lname }}</a></td>
                     <td>{{ $data->program }}</td>
                     <td>{{ $data->destination }}</td>
-                    <td>{{ $data->duration }}</td>
+                    <td>{{ $data->duration }} months</td>
                     <td>${{ $data->fees }}</td>
                     <td>{{ $data->payment_status }}</td>
                     <td>{{ $data->created_at }}</td>
