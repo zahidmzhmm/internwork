@@ -83,11 +83,15 @@
                                 <td>{{ $glob_profile->pss_year }}</td>
                             </tr>
                             <tr>
+                                <td>Application Category</td>
+                                <td>{{ isset($application->category)?$application->category:"" }}</td>
+                            </tr>
+                            <tr>
                                 <td>Application Reference</td>
                                 <td>{{ isset($application->reference)?$application->reference:"" }}</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
+                                <td>Application Status</td>
                                 <td>{{ isset($application->approve_status)?$application->approve_status:"" }}</td>
                             </tr>
                             @if($glob_profile->status==1)
