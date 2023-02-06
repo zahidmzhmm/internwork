@@ -1,5 +1,10 @@
 @extends('layouts.root')
-
+@section('head')
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@endsection
 @section('content')
     <section class="page-title page-updated bg-dark">
     </section><!-- /.page-title -->
@@ -17,12 +22,14 @@
                                     <input type="text" name="applicable_entry" class="form-control" placeholder="Entry">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="start_date" class="form-control" placeholder="Start Date">
+                                    <input type="text" id="datepicker" name="start_date" class="form-control"
+                                           placeholder="Start Date">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" name="deadline" class="form-control" placeholder="Deadline">
+                                    <input type="text" id="datepicker" name="deadline" class="form-control"
+                                           placeholder="Deadline">
                                 </div>
                             </div>
                             <button class="btn btn-info mt-2">Add</button>
@@ -41,13 +48,14 @@
                                                value="{{ $data->applicable_entry }}" placeholder="Entry">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="start_date" class="form-control"
-                                               value="{{ $data->start_date }}" placeholder="Start Date">
+                                        <input type="date" name="start_date" class="form-control"
+                                               value="{{ \Carbon\Carbon::parse($data->start_date)->format('m-d-Y') }}"
+                                               placeholder="Start Date">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input type="text" name="deadline" class="form-control"
+                                        <input type="date" name="deadline" class="form-control"
                                                value="{{ $data->deadline }}" placeholder="Deadline">
                                     </div>
                                 </div>
@@ -61,4 +69,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
 @endsection

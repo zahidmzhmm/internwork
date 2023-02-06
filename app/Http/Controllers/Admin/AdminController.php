@@ -8,6 +8,7 @@ use App\Models\Application\Duration;
 use App\Models\Coupon;
 use App\Models\Profile;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -81,14 +82,12 @@ class AdminController extends Controller
         $request->validate([
             'applicable_entry' => 'required',
             'start_date' => 'required',
-            'end_date' => 'required',
             'deadline' => 'required',
         ]);
         $duration = new Duration();
         $duration->applicable_entry = $request->applicable_entry;
-        $duration->start_date = $request->start_date;
-        $duration->end_date = $request->end_date;
-        $duration->deadline = $request->deadline;
+        $duration->start_date = Carbon::parse($request->start_date);
+        $duration->deadline = Carbon::parse($request->deadline);
         try {
             $duration->save();
             return redirect()->back()->with('success', 'Success');

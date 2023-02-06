@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->id();
             $table->string('applicable_entry');
             $table->string('start_date');
-            $table->string('end_date');
             $table->string('deadline');
             $table->timestamps();
         });
