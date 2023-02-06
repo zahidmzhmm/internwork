@@ -22,9 +22,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" name="end_date" class="form-control" placeholder="End Date">
-                                </div>
-                                <div class="col-sm-6">
                                     <input type="text" name="deadline" class="form-control" placeholder="Deadline">
                                 </div>
                             </div>
@@ -49,10 +46,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <input type="text" name="end_date" class="form-control"
-                                               value="{{ $data->end_date }}" placeholder="End Date">
-                                    </div>
                                     <div class="col-sm-6">
                                         <input type="text" name="deadline" class="form-control"
                                                value="{{ $data->deadline }}" placeholder="Deadline">

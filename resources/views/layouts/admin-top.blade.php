@@ -29,6 +29,9 @@
     <li class="nav__item"><a href="{{ route('admin.duration') }}"
                              class="nav__item-link {{ Route::is('admin.duration')?'active':'' }}">Duration</a>
     </li>
+    <li class="nav__item"><a href="{{ route('admin.coupon') }}"
+                             class="nav__item-link {{ Route::is('admin.coupon')?'active':'' }}">Coupon</a>
+    </li>
     <li class="nav__item"><a href="{{ route('admin.change.password') }}"
                              class="nav__item-link {{ Route::is('admin.change.password')?'active':'' }}">Change
             Password</a>

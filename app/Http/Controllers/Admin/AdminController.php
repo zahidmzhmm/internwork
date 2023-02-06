@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Application\Application;
 use App\Models\Application\Duration;
+use App\Models\Coupon;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -130,5 +131,48 @@ class AdminController extends Controller
             return redirect()->back()->with('success', 'Success');
         }
         return redirect()->back()->with('success', 'Success');
+    }
+
+    public function coupon()
+    {
+        $coupons = Coupon::get();
+        return view('admin.coupon', compact('coupons'));
+    }
+
+    public function couponReq(Request $request)
+    {
+        $request->validate(['code' => 'required|unique:coupons']);
+        $coupon = new Coupon();
+        $coupon->code = $request->code;
+        try {
+            $coupon->save();
+            return redirect()->back()->with('success', 'Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error_message', $exception->getMessage());
+        }
+    }
+
+    public function couponUpdate(Request $request, $id)
+    {
+        $request->validate(['code' => 'required|unique:coupons']);
+        $coupon = Coupon::find($id);
+        if (!$coupon) {
+            return redirect()->back()->with('error_message', "Data not found!");
+        }
+        $coupon->code = $request->code;
+        try {
+            $coupon->save();
+            return redirect()->back()->with('success', 'Success');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error_message', $exception->getMessage());
+        }
+    }
+
+    public function deleteCoupon($id)
+    {
+        $coupon = Coupon::find($id);
+        $coupon->delete();
+        return redirect()->back()->with('success', "Success");
+
     }
 }

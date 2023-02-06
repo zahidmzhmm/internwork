@@ -4,7 +4,6 @@
 use App\Http\Controllers\Application\AppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Payment\PaymentController;
-use App\Http\Controllers\Payment\PaypalController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
