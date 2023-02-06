@@ -14,7 +14,7 @@
                             <div class="row">
                                 @csrf
                                 <div class="col-sm-6">
-                                    <input type="text" name="code" class="form-control" placeholder="Entry">
+                                    <input type="text" name="code" class="form-control" placeholder="Code">
                                     @error('code')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
