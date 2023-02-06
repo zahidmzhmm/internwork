@@ -1,10 +1,4 @@
 @extends('layouts.root')
-@section('head')
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-@endsection
 @section('content')
     <section class="page-title page-updated bg-dark">
     </section><!-- /.page-title -->
@@ -22,13 +16,13 @@
                                     <input type="text" name="applicable_entry" class="form-control" placeholder="Entry">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" id="datepicker" name="start_date" class="form-control"
+                                    <input type="text" name="start_date" class="form-control datepickerMonth"
                                            placeholder="Start Date">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" id="datepicker" name="deadline" class="form-control"
+                                    <input type="text" name="deadline" class="form-control datepicker"
                                            placeholder="Deadline">
                                 </div>
                             </div>
@@ -48,15 +42,16 @@
                                                value="{{ $data->applicable_entry }}" placeholder="Entry">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="date" name="start_date" class="form-control"
-                                               value="{{ \Carbon\Carbon::parse($data->start_date)->format('m-d-Y') }}"
+                                        <input type="text" name="start_date" class="form-control datepickerMonth"
+                                               value="{{ \Carbon\Carbon::parse($data->start_date)->format('m-Y') }}"
                                                placeholder="Start Date">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input type="date" name="deadline" class="form-control"
-                                               value="{{ $data->deadline }}" placeholder="Deadline">
+                                        <input type="text" name="deadline" class="form-control datepicker"
+                                               value="{{ \Carbon\Carbon::parse($data->deadline)->format('d-m-Y') }}"
+                                               placeholder="Deadline">
                                     </div>
                                 </div>
                                 <button class="btn btn-info mt-2">Update</button>
@@ -69,11 +64,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('footer')
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
 @endsection
