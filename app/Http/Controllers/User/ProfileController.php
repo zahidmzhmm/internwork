@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
@@ -189,5 +190,35 @@ class ProfileController extends Controller
         $user = User::find($profile->user_id);
         $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile'));
         return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname . '.pdf');
+    }
+
+    public function upload(Request $request)
+    {
+        $application = 0;
+        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        if ($appl) {
+            $application = $appl;
+        }
+        return view('user.upload', compact('application'));
+    }
+
+    public function download(Request $request)
+    {
+        $application = 0;
+        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        if ($appl) {
+            $application = $appl;
+        }
+        return view('user.download', compact('application'));
+    }
+
+    public function appointment(Request $request)
+    {
+        $application = 0;
+        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        if ($appl) {
+            $application = $appl;
+        }
+        return view('user.appointment', compact('application'));
     }
 }

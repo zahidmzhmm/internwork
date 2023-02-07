@@ -27,3 +27,6 @@ Route::get('payment/{ref}', [PaymentController::class, 'payment'])->name('paymen
 Route::post('payment/paystack', [PaymentController::class, 'paystack'])->name('paystack');
 Route::get('payment/paystack/callback', [PaymentController::class, 'paystackCallback'])->name('paystack.callback');
 Route::post('payment', [PaymentController::class, 'pay'])->name('payment.pay');
+Route::get('upload', [ProfileController::class, 'upload'])->name('user.upload');
+Route::get('download', [ProfileController::class, 'download'])->name('user.download');
+Route::get('appointment', [ProfileController::class, 'appointment'])->name('user.appointment');
