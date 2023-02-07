@@ -89,12 +89,18 @@ class ApplicationController extends Controller
         $apnt->applicable_deadline = $request->applicable_deadline;
         $apnt->payment_method = $request->payment_method;
         $profile = Profile::where('user_id', '=', $request->user_id)->first();
+        $user = User::find($request->user_id);
         try {
             $apnt->save();
             $pdf = $this->applicationPdfMaker($apnt);
             Mail::send('mail.admin.application', ['profile' => $profile, 'application' => $apnt], function ($message) use ($pdf, $apnt) {
                 $message->to(env('APP_EMAIL'));
                 $message->subject('NEW INTERNSHIP APPLICATION');
+                $message->attachData($pdf->output(), $apnt->reference . '.pdf');
+            });
+            Mail::send('mail.user.application', ['profile' => $profile, 'application' => $apnt], function ($message) use ($pdf, $user, $apnt) {
+                $message->to($user->email);
+                $message->subject($apnt->category . ' Application Confirmation');
                 $message->attachData($pdf->output(), $apnt->reference . '.pdf');
             });
             return self::json_res("Success", 200, $apnt);
