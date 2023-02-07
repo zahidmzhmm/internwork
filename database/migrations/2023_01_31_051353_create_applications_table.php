@@ -24,7 +24,6 @@ return new class extends Migration {
             $table->string('fees');
             $table->string('us_visa');
             $table->string('travel_exp');
-            $table->string('picture')->nullable();
             $table->integer('applicable_id');
             $table->string('applicable_name');
             $table->string('applicable_start');
