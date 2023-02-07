@@ -13,6 +13,7 @@
                     <h4 class="header_title">Uploads</h4>
                     <div class="dash_contents">
                         @include("errors")
+                        @if($glob_profile->status==2 || $glob_profile->status==3)
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
@@ -49,6 +50,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                            {!! $glob_profile->status==3?"<p>Your application already submitted</p>":"<p>Your account isn't approve yet</p>" !!}
+                        @endif
                     </div>
                 </div>
             </div>

@@ -13,36 +13,41 @@
                     <h4 class="header_title">Downloads</h4>
                     <div class="dash_contents">
                         @include("errors")
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                            <tr>
-                                <th>SN</th>
-                                <th>File</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($downloads as $item=>$data)
+                        @if($glob_profile->status==2 || $glob_profile->status==3)
+                            <table class="table table-hover table-bordered">
+                                <thead>
                                 <tr>
-                                    <td>{{ $item+1 }}</td>
-                                    <td>
-                                        @if($data->uploaded==2 && \Illuminate\Support\Facades\File::exists(public_path($data->path)))
-                                            <a target="_blank" href="{{ url($data->path) }}">{{ $data->title }}</a>
-                                        @else
-                                            {{ $data->title }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($data->uploaded==2 && \Illuminate\Support\Facades\File::exists(public_path($data->path)))
-                                            <a class="btn btn-info btn-sm" target="_blank" href="{{ url($data->path) }}">Download</a>
-                                        @else
-                                            <a href="#" class="btn btn-info btn-sm disabled" disabled>Download</a>
-                                        @endif
-                                    </td>
+                                    <th>SN</th>
+                                    <th>File</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($downloads as $item=>$data)
+                                    <tr>
+                                        <td>{{ $item+1 }}</td>
+                                        <td>
+                                            @if($data->uploaded==2 && \Illuminate\Support\Facades\File::exists(public_path($data->path)))
+                                                <a target="_blank" href="{{ url($data->path) }}">{{ $data->title }}</a>
+                                            @else
+                                                {{ $data->title }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->uploaded==2 && \Illuminate\Support\Facades\File::exists(public_path($data->path)))
+                                                <a class="btn btn-info btn-sm" target="_blank"
+                                                   href="{{ url($data->path) }}">Download</a>
+                                            @else
+                                                <a href="#" class="btn btn-info btn-sm disabled" disabled>Download</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            {!! $glob_profile->status==3?"<p>Your application already submitted</p>":"<p>Your account isn't approve yet</p>" !!}
+                        @endif
                     </div>
                 </div>
             </div>
