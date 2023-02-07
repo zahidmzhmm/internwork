@@ -86,7 +86,6 @@ class ApplicationController extends Controller
         $apnt->fees = $request->fees;
         $apnt->us_visa = $request->us_visa;
         $apnt->travel_exp = $request->travel_exp;
-        $apnt->picture = self::fileUpload($request->file('picture'), 'applications');
         $apnt->applicable_id = $request->applicable_id;
         $apnt->applicable_name = $request->applicable_name;
         $apnt->applicable_start = $request->applicable_start;
