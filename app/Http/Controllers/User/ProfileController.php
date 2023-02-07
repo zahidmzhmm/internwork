@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\Uploads;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Foundation\Application;
@@ -190,26 +191,6 @@ class ProfileController extends Controller
         $user = User::find($profile->user_id);
         $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile'));
         return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname . '.pdf');
-    }
-
-    public function upload(Request $request)
-    {
-        $application = 0;
-        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
-        if ($appl) {
-            $application = $appl;
-        }
-        return view('user.upload', compact('application'));
-    }
-
-    public function download(Request $request)
-    {
-        $application = 0;
-        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
-        if ($appl) {
-            $application = $appl;
-        }
-        return view('user.download', compact('application'));
     }
 
     public function appointment(Request $request)
