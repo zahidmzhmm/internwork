@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Application\AppointmentController;
+use App\Http\Controllers\Application\ApplicationController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +27,11 @@ Route::get('coupon', [AdminController::class, 'coupon'])->name('admin.coupon');
 Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.change.password');
 Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('admin.profile.status');
 Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
-Route::get('application-status/{status}/{id}', [AppointmentController::class, 'status'])->name('admin.application.status');
-Route::get('application-view/{id}', [AppointmentController::class, 'view'])->name('admin.application.view');
+Route::get('application-status/{status}/{id}', [ApplicationController::class, 'status'])->name('admin.application.status');
+Route::get('application-view/{id}', [ApplicationController::class, 'view'])->name('admin.application.view');
 Route::post('change-password', [AdminController::class, 'changePasswordReq'])->name('admin.change.password.req');
 Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
-Route::get('application-delete/{id}', [AppointmentController::class, 'destroy'])->name('admin.application.destroy');
+Route::get('application-delete/{id}', [ApplicationController::class, 'destroy'])->name('admin.application.destroy');
 Route::get('delete-duration/{id}', [AdminController::class, 'durationDelete'])->name('duration.delete');
 Route::post('duration', [AdminController::class, 'durationReq'])->name('duration.req');
 Route::post('update-duration/{id}', [AdminController::class, 'durationUpdate'])->name('duration.update');
@@ -40,5 +40,5 @@ Route::post('update-coupon/{id}', [AdminController::class, 'couponUpdate'])->nam
 Route::get('delete-coupon/{id}', [AdminController::class, 'deleteCoupon'])->name('admin.coupon.delete');
 
 // PDF Download
-Route::get('application-download/{id}', [AppointmentController::class, 'applicationDownload'])->name('application.download');
+Route::get('application-download/{id}', [ApplicationController::class, 'applicationDownload'])->name('application.download');
 Route::get('profile-download/{id}', [ProfileController::class, 'profileDownload'])->name('profile.download');

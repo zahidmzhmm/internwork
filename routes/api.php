@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Application\AppointmentController;
+use App\Http\Controllers\Application\ApplicationController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,10 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('crop-image-upload-ajax', [ProfileController::class, 'cropImageUploadAjax']);
-Route::get('durations', [AppointmentController::class, 'durations'])->name('durations');
-Route::post('applications', [AppointmentController::class, 'applications'])->name('applications');
-Route::post('experiences', [AppointmentController::class, 'experiences'])->name('experiences');
-Route::post('studies', [AppointmentController::class, 'studies'])->name('studies');
-Route::post('employs', [AppointmentController::class, 'employs'])->name('employs');
-Route::post('visas', [AppointmentController::class, 'visas'])->name('visas');
-Route::post('travels', [AppointmentController::class, 'travels'])->name('travels');
+Route::get('durations', [ApplicationController::class, 'durations'])->name('durations');
+Route::post('applications', [ApplicationController::class, 'applications'])->name('applications');
+Route::post('experiences', [ApplicationController::class, 'experiences'])->name('experiences');
+Route::post('studies', [ApplicationController::class, 'studies'])->name('studies');
+Route::post('employs', [ApplicationController::class, 'employs'])->name('employs');
+Route::post('visas', [ApplicationController::class, 'visas'])->name('visas');
+Route::post('travels', [ApplicationController::class, 'travels'])->name('travels');

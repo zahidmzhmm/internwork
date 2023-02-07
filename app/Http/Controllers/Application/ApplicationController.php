@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-class AppointmentController extends Controller
+class ApplicationController extends Controller
 {
     public function apply()
     {
