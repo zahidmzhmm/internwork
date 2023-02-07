@@ -46,7 +46,7 @@
                                 </tbody>
                             </table>
                         @else
-                            {!! $glob_profile->status==3?"<p>Your application already submitted</p>":"<p>Your account isn't approve yet</p>" !!}
+                            {!! $glob_profile->status==3?"<p>Your application already submitted</p>":"<p>You Have Not Applied For Intern Work Programs.</p>" !!}
                         @endif
                     </div>
                 </div>
