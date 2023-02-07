@@ -118,7 +118,7 @@ const Step10 = ({
                     formdata2.append('user_id', user_id)
                     formdata2.append('institute', item.institute)
                     formdata2.append('location', item.location)
-                    formdata2.append('level', item.position)
+                    formdata2.append('level', item.level)
                     formdata2.append('start', item.start)
                     formdata2.append('end', item.end)
                     formdata2.append('description', item.description)
