@@ -203,7 +203,7 @@ class ProfileController extends Controller
             $appointment = $appl;
         }
         $application = 0;
-        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->first();
         if ($appl) {
             $application = $appl;
         }

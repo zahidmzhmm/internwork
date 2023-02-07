@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $application = 0;
-        $appl = Application::where('user_id', '=', Auth::id())->first();
+        $appl = Application::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->first();
         if ($appl) {
             $application = $appl;
         }

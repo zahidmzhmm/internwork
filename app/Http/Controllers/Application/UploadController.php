@@ -15,7 +15,7 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $application = 0;
-        $appl = Application::where('user_id', '=', Auth::id())->first();
+        $appl = Application::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->first();
         if ($appl) {
             $application = $appl;
         }
@@ -26,7 +26,7 @@ class UploadController extends Controller
     public function download(Request $request)
     {
         $application = 0;
-        $appl = Application::where('user_id', '=', Auth::id())->first();
+        $appl = Application::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->first();
         if ($appl) {
             $application = $appl;
         }
