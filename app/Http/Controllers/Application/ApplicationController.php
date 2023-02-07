@@ -36,7 +36,7 @@ class ApplicationController extends Controller
         $last_application_id = 1;
         $last_application = Application::orderBy('id', 'desc')->first();
         if ($last_application) {
-            $last_application_id = $last_application->id;
+            $last_application_id = $last_application->id + 1;
         }
         $application = Application::where('user_id', '=', Auth::id())
             ->where('status', '=', 'open')
