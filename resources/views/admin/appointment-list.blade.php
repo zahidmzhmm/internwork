@@ -8,7 +8,7 @@
             <div class="col-md-8 m-auto col-xl-5">
                 @include("errors")
                 <div class="card">
-                    <div class="card-header">Duration Setup</div>
+                    <div class="card-header">Appointment Setup</div>
                     <div class="card-body">
                         <form action="{{ route('admin.appointment.list.store') }}" method="post">
                             <div class="row">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card mt-2">
-                    <div class="card-header">Duration List</div>
+                    <div class="card-header">Appointment List</div>
                     <div class="card-body">
                         @foreach($appointments as $item=>$data)
                             <form action="{{ url('/admin/update-appointment-list/'.$data->id) }}" method="post"
@@ -38,7 +38,8 @@
                                 <div class="row">
                                     @csrf
                                     <div class="col-sm-6">
-                                        <input type="text" name="time" value="{{ $data->time }}" class="form-control"
+                                        <input type="text" name="time" value="{{ $data->time }}"
+                                               class="form-control datetimepicker"
                                                placeholder="Appointment Date Time">
                                     </div>
                                     <div class="col-sm-6">

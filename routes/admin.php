@@ -42,9 +42,9 @@ Route::get('delete-coupon/{id}', [AdminController::class, 'deleteCoupon'])->name
 Route::post('upload/{type}', [AdminController::class, 'uploadReq'])->name('admin.upload.req');
 Route::get('ud-delete/{id}', [AdminController::class, 'udDelete'])->name('admin.ud.delete');
 Route::get('appointment-list', [AdminController::class, 'appointmentList'])->name('admin.appointment.list');
-Route::get('appointment-list-delete/{id}', [AppointmentController::class, 'destroyList'])->name('admin.appointment.list.destroy');
+Route::get('delete-appointment-list/{id}', [AppointmentController::class, 'destroyList'])->name('admin.appointment.list.destroy');
 Route::post('appointment-list', [AppointmentController::class, 'storeList'])->name('admin.appointment.list.store');
-Route::post('update-appointment-list', [AppointmentController::class, 'updateList'])->name('admin.appointment.list.update');
+Route::post('update-appointment-list/{id}', [AppointmentController::class, 'updateList'])->name('admin.appointment.list.update');
 
 // PDF Download
 Route::get('application-download/{id}', [ApplicationController::class, 'applicationDownload'])->name('application.download');
