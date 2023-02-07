@@ -28,7 +28,8 @@ Route::get('change-password', [AdminController::class, 'changePassword'])->name(
 Route::get('profile-status/{id}', [ProfileController::class, 'status'])->name('admin.profile.status');
 Route::get('user-status/{id}', [UserController::class, 'status'])->name('admin.user.status');
 Route::get('application-status/{status}/{id}', [ApplicationController::class, 'status'])->name('admin.application.status');
-Route::get('application-view/{id}', [ApplicationController::class, 'view'])->name('admin.application.view');
+Route::get('upload/{id}', [AdminController::class, 'upload'])->name('admin.upload');
+Route::get('download/{id}', [AdminController::class, 'download'])->name('admin.download');
 Route::post('change-password', [AdminController::class, 'changePasswordReq'])->name('admin.change.password.req');
 Route::get('profile-delete/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 Route::get('application-delete/{id}', [ApplicationController::class, 'destroy'])->name('admin.application.destroy');
@@ -38,6 +39,8 @@ Route::post('update-duration/{id}', [AdminController::class, 'durationUpdate'])-
 Route::post('coupon', [AdminController::class, 'couponReq'])->name('admin.coupon.req');
 Route::post('update-coupon/{id}', [AdminController::class, 'couponUpdate'])->name('admin.coupon.update');
 Route::get('delete-coupon/{id}', [AdminController::class, 'deleteCoupon'])->name('admin.coupon.delete');
+Route::post('upload/{type}', [AdminController::class, 'uploadReq'])->name('admin.upload.req');
+Route::get('ud-delete/{id}', [AdminController::class, 'udDelete'])->name('admin.ud.delete');
 
 // PDF Download
 Route::get('application-download/{id}', [ApplicationController::class, 'applicationDownload'])->name('application.download');

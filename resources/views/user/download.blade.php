@@ -33,7 +33,6 @@
                                         @endif
                                     </td>
                                     <td>
-
                                         @if($data->uploaded==2 && \Illuminate\Support\Facades\File::exists(public_path($data->path)))
                                             <a class="btn btn-info btn-sm" target="_blank" href="{{ url($data->path) }}">Download</a>
                                         @else

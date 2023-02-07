@@ -7,11 +7,13 @@ use App\Models\Application\Application;
 use App\Models\Application\Duration;
 use App\Models\Coupon;
 use App\Models\Profile;
+use App\Models\Uploads;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -170,6 +172,58 @@ class AdminController extends Controller
         $coupon = Coupon::find($id);
         $coupon->delete();
         return redirect()->back()->with('success', "Success");
+    }
 
+    public function upload($id)
+    {
+        $application = Application::find($id);
+        if (!$application) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        $uploads = Uploads::where('user_id', '=', $application->user_id)->where('type', '=', 1)->get();
+        return view('admin.upload', compact('application', 'uploads'));
+    }
+
+    public function download($id)
+    {
+        $application = Application::find($id);
+        if (!$application) {
+            return redirect()->back()->with('error', 'Data not found');
+        }
+        $downloads = Uploads::where('user_id', '=', $application->user_id)->where('type', '=', 2)->get();
+        return view('admin.download', compact('application', 'downloads'));
+    }
+
+    public function uploadReq(Request $request, $type)
+    {
+        $request->validate(['title' => 'required', 'user_id' => 'required']);
+        $upload = new Uploads();
+        $upload->user_id = $request->user_id;
+        $upload->title = $request->title;
+        $upload->type = $type;
+        if ($request->user()->role == 2 && $type == 2 && empty($request->file('file'))) {
+            return redirect()->back()->with('error', 'File required');
+        }
+        if ($request->hasFile('file')) {
+            $upload->path = self::fileUpload($request->file('file'), 'user/uploads');
+            $upload->uploaded = 2;
+        }
+        try {
+            $upload->save();
+            return redirect()->back()->with('success', "Success");
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function udDelete($id)
+    {
+        $upload = Uploads::find($id);
+        if ($upload->path !== null && File::exists(public_path($upload->path))) {
+            File::delete(public_path($upload->path));
+        }
+        if ($upload->delete()) {
+        }
+        return redirect()->back()->with('success', "Success");
     }
 }

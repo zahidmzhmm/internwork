@@ -11,6 +11,7 @@ use App\Models\Application\Study;
 use App\Models\Application\Travel;
 use App\Models\Application\Visa;
 use App\Models\Profile;
+use App\Models\Uploads;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -45,11 +46,6 @@ class ApplicationController extends Controller
             return redirect('/user/payment/' . $application->reference);
         }
         return view('user.apply', compact('last_application_id'));
-    }
-
-    public function view($id)
-    {
-        return $id;
     }
 
     public function durations()

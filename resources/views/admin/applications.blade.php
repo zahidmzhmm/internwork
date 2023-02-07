@@ -36,7 +36,8 @@
             @foreach($applications as $item=>$data)
                 <tr>
                     <td>{{ $item+1 }}</td>
-                    <td><a href="{{ url('/admin/application-view/'.$data->id) }}">{{ $data->fname.' '.$data->lname }}</a></td>
+                    <td><a target="_blank"
+                           href="{{ url('/admin/upload/'.$data->id) }}">{{ $data->fname.' '.$data->lname }}</a></td>
                     <td>{{ $data->program }}</td>
                     <td>{{ $data->destination }}</td>
                     <td>{{ $data->duration }} months</td>
@@ -47,28 +48,36 @@
                         <table class="">
                             <tr>
                                 <td class="text-center">
-                                    <a href="#" class="">Upload</a>
+                                    <a target="_blank" href="{{ url('/admin/download/'.$data->id) }}" class="">Upload</a>
                                     <a href="#" class="">Appointment</a>
                                 </td>
                                 <td>
                                     <select onchange="changestatus(this,{{$data->id}})" class="form-control mb-2"
                                             style="width: 5rem;height: auto">
-                                        <option {{ $data->approve_status=='PENDING'?'selected':'' }} value="PENDING">PENDING
+                                        <option {{ $data->approve_status=='PENDING'?'selected':'' }} value="PENDING">
+                                            PENDING
                                         </option>
                                         <option
                                             {{ $data->approve_status=='ADMINISTRATIVE_REVIEW'?'selected':'' }} value="ADMINISTRATIVE_REVIEW">
                                             Administrative Review
                                         </option>
-                                        <option {{ $data->approve_status=='IN_PROCESS'?'selected':'' }} value="IN_PROCESS"> In
+                                        <option
+                                            {{ $data->approve_status=='IN_PROCESS'?'selected':'' }} value="IN_PROCESS">
+                                            In
                                             Process
                                         </option>
-                                        <option {{ $data->approve_status=='ACTIVE'?'selected':'' }} value="ACTIVE"> Active</option>
+                                        <option {{ $data->approve_status=='ACTIVE'?'selected':'' }} value="ACTIVE">
+                                            Active
+                                        </option>
                                         <option
                                             {{ $data->approve_status=='PLACEMENT_INTERVIEW'?'selected':'' }} value="PLACEMENT_INTERVIEW">
                                             Placement Interview
                                         </option>
-                                        <option {{ $data->approve_status=='HIRED'?'selected':'' }} value="HIRED"> Hired</option>
-                                        <option {{ $data->approve_status=='INACTIVE'?'selected':'' }} value="INACTIVE"> Inactive
+                                        <option {{ $data->approve_status=='HIRED'?'selected':'' }} value="HIRED">
+                                            Hired
+                                        </option>
+                                        <option {{ $data->approve_status=='INACTIVE'?'selected':'' }} value="INACTIVE">
+                                            Inactive
                                         </option>
                                     </select>
                                     <a href="{{ url('/admin/application-download/'.$data->id) }}"
