@@ -48,8 +48,9 @@
                         <table class="">
                             <tr>
                                 <td class="text-center">
-                                    <a target="_blank" href="{{ url('/admin/download/'.$data->id) }}" class="">Upload</a>
-                                    <a href="#" class="">Appointment</a>
+                                    <a target="_blank" href="{{ url('/admin/download/'.$data->id) }}"
+                                       class="">Upload</a>
+                                    <a href="{{ url('/admin/appointment/'.$data->user_id) }}" class="">Appointment</a>
                                 </td>
                                 <td>
                                     <select onchange="changestatus(this,{{$data->id}})" class="form-control mb-2"

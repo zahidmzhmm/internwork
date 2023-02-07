@@ -45,6 +45,8 @@ Route::get('appointment-list', [AdminController::class, 'appointmentList'])->nam
 Route::get('delete-appointment-list/{id}', [AppointmentController::class, 'destroyList'])->name('admin.appointment.list.destroy');
 Route::post('appointment-list', [AppointmentController::class, 'storeList'])->name('admin.appointment.list.store');
 Route::post('update-appointment-list/{id}', [AppointmentController::class, 'updateList'])->name('admin.appointment.list.update');
+Route::get('appointment/{user_id}', [AppointmentController::class, 'appointment'])->name('admin.appointment');
+Route::post('appointment/{user_id}', [AppointmentController::class, 'appointmentReq'])->name('admin.appointment.store');
 
 // PDF Download
 Route::get('application-download/{id}', [ApplicationController::class, 'applicationDownload'])->name('application.download');
