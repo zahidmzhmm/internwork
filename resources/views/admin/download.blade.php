@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>Destination</td>
-                <td>{{ $application->destination }}Test</td>
+                <td>{{ $application->destination }}</td>
             </tr>
             <tr>
                 <td>Program</td>

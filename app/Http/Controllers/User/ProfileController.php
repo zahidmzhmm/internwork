@@ -202,7 +202,12 @@ class ProfileController extends Controller
         if ($appl) {
             $appointment = $appl;
         }
+        $application = 0;
+        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        if ($appl) {
+            $application = $appl;
+        }
         $appointmentList = AppointmentList::all();
-        return view('user.appointment', compact('appointment', 'appointmentList'));
+        return view('user.appointment', compact('appointment', 'appointmentList', 'application'));
     }
 }
