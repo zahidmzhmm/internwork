@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Application\ApplicationController;
+use App\Http\Controllers\User\AppointmentController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Route::post('studies', [ApplicationController::class, 'studies'])->name('studies
 Route::post('employs', [ApplicationController::class, 'employs'])->name('employs');
 Route::post('visas', [ApplicationController::class, 'visas'])->name('visas');
 Route::post('travels', [ApplicationController::class, 'travels'])->name('travels');
+Route::get('appointment-list', [AppointmentController::class, 'appointmentList'])->name('appointment.list');

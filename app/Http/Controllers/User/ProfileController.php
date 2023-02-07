@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment\Appointment;
+use App\Models\Appointment\AppointmentList;
 use App\Models\Profile;
 use App\Models\Uploads;
 use App\Models\User;
@@ -195,11 +197,12 @@ class ProfileController extends Controller
 
     public function appointment(Request $request)
     {
-        $application = 0;
-        $appl = \App\Models\Application\Application::where('user_id', '=', Auth::id())->first();
+        $appointment = 0;
+        $appl = Appointment::where('user_id', '=', Auth::id())->first();
         if ($appl) {
-            $application = $appl;
+            $appointment = $appl;
         }
-        return view('user.appointment', compact('application'));
+        $appointmentList = AppointmentList::all();
+        return view('user.appointment', compact('appointment', 'appointmentList'));
     }
 }

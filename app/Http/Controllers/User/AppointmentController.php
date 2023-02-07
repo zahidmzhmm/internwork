@@ -9,6 +9,7 @@ use App\Models\Appointment\AppointmentList;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -92,5 +93,29 @@ class AppointmentController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
+    }
+
+    public function requestAppointment(Request $request)
+    {
+        $request->validate(['type' => 'required', 'time' => 'required']);
+        $appointment = Appointment::where('user_id', '=', Auth::id())->first();
+        if (!$appointment) {
+            return redirect()->back()->with('error', 'Appointment not found');
+        }
+        $appointment->time = $request->time;
+        $appointment->save();
+        return redirect()->back()->with('success', 'Success');
+    }
+
+    public function appointmentList(Request $request)
+    {
+        $request->validate(['type' => 'required']);
+        $all = AppointmentList::where('type', '=', $request->type)->get();
+        $listOptions = '<option value="">Select Appointment Date</option>';
+        foreach ($all as $appointment_list) {
+            $dt = date('Y-m-d H:i', strtotime($appointment_list->time));
+            $listOptions .= '<option value="' . $dt . '">' . $dt . '</option>';
+        }
+        return json_encode(['status' => 'success', 'listOptions' => $listOptions]);
     }
 }
