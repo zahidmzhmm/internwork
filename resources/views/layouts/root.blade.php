@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/libraries.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/datepicker/datepicker.min.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"/>
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @yield('head')
@@ -109,7 +111,8 @@
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/datepicker/datepicker.min.js') }}"></script>
-
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
     <script>
         $('.datepicker').datepicker({
             format: 'dd-mm-yyyy'
@@ -118,6 +121,9 @@
             format: "mm-yyyy",
             viewMode: "months",
             minViewMode: "months"
+        });
+        $(".datetimepicker").each(function () {
+            $(this).datetimepicker();
         });
     </script>
 @yield('footer')

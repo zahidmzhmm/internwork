@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Application\Application;
 use App\Models\Application\Duration;
+use App\Models\Appointment\AppointmentList;
 use App\Models\Coupon;
 use App\Models\Profile;
 use App\Models\Uploads;
@@ -56,7 +57,8 @@ class AdminController extends Controller
 
     public function appointmentList()
     {
-        return view('admin.appointment-list');
+        $appointments = AppointmentList::all();
+        return view('admin.appointment-list', compact('appointments'));
     }
 
     public function duration()

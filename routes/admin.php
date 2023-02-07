@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Application\ApplicationController;
+use App\Http\Controllers\User\AppointmentController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AdminController::class, 'index'])->name('admin');
 Route::get('registrations', [AdminController::class, 'registrations'])->name('admin.registrations');
 Route::get('applications', [AdminController::class, 'applications'])->name('admin.applications');
-Route::get('appointment-list', [AdminController::class, 'appointmentList'])->name('admin.appointment.list');
 Route::get('duration', [AdminController::class, 'duration'])->name('admin.duration');
 Route::get('coupon', [AdminController::class, 'coupon'])->name('admin.coupon');
 Route::get('change-password', [AdminController::class, 'changePassword'])->name('admin.change.password');
@@ -41,6 +41,10 @@ Route::post('update-coupon/{id}', [AdminController::class, 'couponUpdate'])->nam
 Route::get('delete-coupon/{id}', [AdminController::class, 'deleteCoupon'])->name('admin.coupon.delete');
 Route::post('upload/{type}', [AdminController::class, 'uploadReq'])->name('admin.upload.req');
 Route::get('ud-delete/{id}', [AdminController::class, 'udDelete'])->name('admin.ud.delete');
+Route::get('appointment-list', [AdminController::class, 'appointmentList'])->name('admin.appointment.list');
+Route::get('appointment-list-delete/{id}', [AppointmentController::class, 'destroyList'])->name('admin.appointment.list.destroy');
+Route::post('appointment-list', [AppointmentController::class, 'storeList'])->name('admin.appointment.list.store');
+Route::post('update-appointment-list', [AppointmentController::class, 'updateList'])->name('admin.appointment.list.update');
 
 // PDF Download
 Route::get('application-download/{id}', [ApplicationController::class, 'applicationDownload'])->name('application.download');
