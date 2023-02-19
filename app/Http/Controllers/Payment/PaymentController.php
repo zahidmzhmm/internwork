@@ -86,7 +86,7 @@ class PaymentController extends Controller
         $application->req_ref = $ref;
         $application->save();
         $data = array(
-            "amount" => $application->fees * 640 * 100,
+            "amount" => $application->fees * env('PAYSTACK_EXCHANGE') * 100,
             "reference" => $ref,
             "email" => $user->email,
             "currency" => env('PAYSTACK_CURRENCY'),
