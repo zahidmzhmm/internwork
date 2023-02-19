@@ -17,11 +17,11 @@ class AdminAccess
     public function handle(Request $request, Closure $next)
     {
         if (!isset(auth()->user()->role)) {
-            return redirect('/login')->with('error', 'Please login');
+            return redirect('/admin/login')->with('error', 'Please login');
         }
         if (auth()->user()->role == 2) {
             return $next($request);
         }
-        return redirect('/login')->with('error', 'Permission Deny');
+        return redirect('/admin/login')->with('error', 'Permission Deny');
     }
 }
