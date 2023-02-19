@@ -30,6 +30,11 @@ return new class extends Migration {
             $table->string('program');
             $table->string('pss_year');
             $table->string('picture')->nullable();
+            $table->string('social')->nullable();
+            $table->string('social_val')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('w_number')->nullable();
             $table->integer('status')->default(1); // 1=Pending, 2=Submitted, 3=Approved, 4=Decline
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
