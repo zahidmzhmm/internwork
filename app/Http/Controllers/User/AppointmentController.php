@@ -102,6 +102,7 @@ class AppointmentController extends Controller
         if (!$appointment) {
             return redirect()->back()->with('error', 'Appointment not found');
         }
+        $appointment->type = $request->type;
         $appointment->time = $request->time;
         $appointment->save();
         return redirect()->back()->with('success', 'Success');
