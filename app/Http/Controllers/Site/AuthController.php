@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PlainMailable;
+use App\Models\Parental;
 use App\Models\Profile;
+use App\Models\Sponsor;
 use App\Models\Uploads;
 use App\Models\User;
 use Carbon\Carbon;
@@ -90,7 +92,53 @@ class AuthController extends Controller
             $profile->internship = $request->internship;
             $profile->program = $request->program;
             $profile->pss_year = $request->pss_year;
+            if (isset($request->social_link) && !empty($request->social_link)) {
+                $profile->social = $request->social_link;
+                $profile->social_val = $request->social_val;
+            }
+            $profile->linkedin = $request->linkedin;
+            $profile->nid = $request->nid;
+            $profile->w_number = $request->w_number;
             $profile->save();
+            if (isset($request->father_name) && !empty($request->father_name)) {
+                $parent = new Parental();
+                $parent->user_id = $user->id;
+                $parent->name = $request->father_name;
+                $parent->home_address = $request->father_home_address;
+                $parent->work_address = $request->father_work_address;
+                $parent->email = $request->father_email;
+                $parent->phone = $request->father_phone;
+                $parent->nid = $request->father_nid;
+                $parent->type = "father";
+                $parent->save();
+            }
+            if (isset($request->mother_name) && !empty($request->mother_name)) {
+                $parent = new Parental();
+                $parent->user_id = $user->id;
+                $parent->name = $request->mother_name;
+                $parent->home_address = $request->mother_home_address;
+                $parent->work_address = $request->mother_work_address;
+                $parent->email = $request->mother_email;
+                $parent->phone = $request->mother_phone;
+                $parent->nid = $request->mother_nid;
+                $parent->type = "mother";
+                $parent->save();
+            }
+            if (isset($request->sponsor) && !empty($request->sponsor)) {
+                if ($request->sponsor == 'Yes') {
+                    $sponsor = new Sponsor();
+                    $sponsor->user_id = $user->id;
+                    $sponsor->name = $request->sponsor_name;
+                    $sponsor->contact = $request->sponsor_address;
+                    $sponsor->email = $request->sponsor_email;
+                    $sponsor->phone = $request->sponsor_phone;
+                    $sponsor->relation = $request->sponsor_relation;
+                    $sponsor->nid = $request->sponsor_nid;
+                    $sponsor->dependents = $request->sponsor_year;
+                    $sponsor->occupation = $request->sponsor_occupation;
+                    $sponsor->save();
+                }
+            }
             Uploads::insert([
                 [
                     'user_id' => $user->id,

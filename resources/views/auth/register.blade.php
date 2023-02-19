@@ -246,9 +246,9 @@
                             </div>
                             <div class="col-md-6 my-2">
                                 <input type="text"
-                                       class="form-control @error('linkedIn') is-invalid @enderror"
-                                       name="linkedIn" placeholder="LinkedIn"/>
-                                @error('linkedIn')
+                                       class="form-control @error('linkedin') is-invalid @enderror"
+                                       name="linkedin" placeholder="LinkedIn"/>
+                                @error('linkedin')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
