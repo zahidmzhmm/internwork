@@ -48,12 +48,36 @@ class PaymentController extends Controller
             return $this->mark_paid($application, "waiver");
         }
         if ($request->payment_method == 'paypal') {
-            if ($request->status == 'paid') {
-                return $this->mark_paid($application, "paypal");
-            }
+            return \redirect()->route('paypal');
         }
         if ($request->payment_method == 'paystack') {
             return $this->paystack($application, $request->user());
+        }
+    }
+
+    public function paypal($applicationId)
+    {
+        $application = Application::where('reference', '=', $applicationId)
+            ->first();
+        if (!$application) {
+            return redirect()->route('account')->with('error', 'Data not found!');
+        }
+        return view('user.paypal', compact('application'));
+    }
+
+    public function paypalPay(Request $request)
+    {
+        $request->validate(['application' => 'required']);
+        $applicationId = $request->application;
+        $application = Application::where('reference', '=', $applicationId)
+            ->first();
+        if (!$application) {
+            return redirect()->route('account')->with('error', 'Data not found!');
+        }
+        if ($request->status == 'paid') {
+            return $this->mark_paid($application, "paypal");
+        } else {
+            return redirect()->route('account')->with('error', 'Payment Error');
         }
     }
 
@@ -96,7 +120,7 @@ class PaymentController extends Controller
             $profile->status = 3;
             $profile->save();
             $application->save();
-            return \redirect()->route('account')->with('success', 'Thank you for your paid');
+            return \redirect()->route('account')->with('success', 'Thank you for your Payment!');
         } catch (\Exception $exception) {
             return \redirect()->route('account')->with('error', $exception->getMessage());
         }

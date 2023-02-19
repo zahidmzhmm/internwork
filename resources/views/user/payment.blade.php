@@ -53,10 +53,10 @@
                                        class="payment_method"
                                        id="paystack">&nbsp;&nbsp;<label
                                     for="paystack">Paystack</label> &nbsp;&nbsp;&nbsp;
-                                <div class="mt-3">
-                                    <div id="paypal-button-container"></div>
-                                </div>
-                                &nbsp;&nbsp;&nbsp;
+                                <input type="radio" checked name="payment_method" value="paypal"
+                                       class="payment_method"
+                                       id="paypal">&nbsp;&nbsp;<label
+                                    for="paypal">Paypal</label> &nbsp;&nbsp;&nbsp;
                                 <input type="radio" name="payment_method" value="waiver" class="payment_method"
                                        id="waiver">&nbsp;&nbsp;<label
                                     for="waiver">Fee Waiver Code</label> &nbsp;&nbsp;&nbsp;
@@ -95,43 +95,5 @@
                 field_code.addClass("d-none")
             }
         })
-    </script>
-    <script
-        src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID') }}&enable-funding=venmo&currency=EUR"
-        data-sdk-integration-source="button-factory"></script>
-    <script>
-        function initPayPalButton() {
-            paypal.Buttons({
-                style: {
-                    shape: 'rect',
-                    color: 'gold',
-                    layout: 'vertical',
-                    label: 'paypal',
-                },
-                createOrder: function (data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{"amount": {"currency_code": "EUR", "value": {{ 50 }}}}]
-                    });
-                },
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(function (orderData) {
-                        let forms = $("#order-form");
-                        forms.append('<input type="hidden" name="reference" value="{{ $application->reference }}">')
-                        forms.append('<input type="hidden" name="payment_method" value="paypal">')
-                        forms.append('<input type="hidden" name="status" value="paid">')
-                        forms.append('<input type="hidden" name="_method" value="post">')
-                        forms.append('<input type="hidden" name="_token" value="{{ csrf_token() }}">')
-                        setTimeout(() => {
-                            forms.submit()
-                        }, 2000)
-                    });
-                },
-                onError: function (err) {
-                    window.location.href = '/account'
-                }
-            }).render('#paypal-button-container');
-        }
-
-        initPayPalButton();
     </script>
 @endsection
