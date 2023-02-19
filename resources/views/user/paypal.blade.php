@@ -59,7 +59,7 @@
                     });
                 },
                 onError: function (err) {
-                    window.location.href = '/account'
+                    window.location.reload()
                 }
             }).render('#paypal-button-container');
         }

@@ -164,13 +164,11 @@ const Step10 = ({
                 })
             }
             axiosReq('applications', 'post', formdata).then((data) => {
-                console.log(data);
-                return true;
-                /*if (parseInt(data.status) === 200) {
+                if (parseInt(data.status) === 200) {
                     window.location.href = '/user/payment/' + ref;
                 } else {
                     toast.error(data.message);
-                }*/
+                }
             })
         } else {
             toast.error("All field is required")
