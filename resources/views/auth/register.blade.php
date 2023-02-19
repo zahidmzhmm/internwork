@@ -217,6 +217,298 @@
                                        name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
+                        <h6 class="pt-5 mb-0 text-info">Additional information</h6>
+                        <div class="row mt-1">
+                            <div class="col-md-6 my-2">
+                                <select name="social_link" class="form-control" id="">
+                                    <option value="">Social Media Handle</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Twitter">Twitter</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Snapchat">Snapchat</option>
+                                </select>
+                                @error('social_link')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('social_val') is-invalid @enderror"
+                                       name="social_val" placeholder="Social Value"
+                                       value="{{ old('social_val') }}">
+                                @error('social_val')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('linkedIn') is-invalid @enderror"
+                                       name="linkedIn" placeholder="LinkedIn"/>
+                                @error('linkedIn')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('nid') is-invalid @enderror"
+                                       name="nid" placeholder="NID"/>
+                                @error('nid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('w_number') is-invalid @enderror"
+                                       name="w_number" placeholder="WhatsApp Number"/>
+                                @error('w_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <h6 class="pt-5 mb-0 text-info">Parental Information</h6>
+                        <div class="row mt-1">
+                            {{--Father Infos--}}
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_name') is-invalid @enderror"
+                                       name="father_name" placeholder="Full names of Father"
+                                       value="{{ old('father_name') }}">
+                                @error('father_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_home_address') is-invalid @enderror"
+                                       name="father_home_address" placeholder="Home Address of Father"
+                                       value="{{ old('father_home_address') }}">
+                                @error('father_home_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_work_address') is-invalid @enderror"
+                                       name="father_work_address" placeholder="Work Address of Father"
+                                       value="{{ old('father_work_address') }}">
+                                @error('father_work_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_email') is-invalid @enderror"
+                                       name="father_email" placeholder="Email Address"
+                                       value="{{ old('father_email') }}">
+                                @error('father_email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_phone') is-invalid @enderror"
+                                       name="father_phone" placeholder="Phone Number"
+                                       value="{{ old('father_phone') }}">
+                                @error('father_phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('father_nid') is-invalid @enderror"
+                                       name="father_nid" placeholder="NID"
+                                       value="{{ old('father_nid') }}">
+                                @error('father_nid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            {{--Mother Infos--}}
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_name') is-invalid @enderror"
+                                       name="mother_name" placeholder="Full names of Mother"
+                                       value="{{ old('mother_name') }}">
+                                @error('mother_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_home_address') is-invalid @enderror"
+                                       name="mother_home_address" placeholder="Home Address of Mother"
+                                       value="{{ old('mother_home_address') }}">
+                                @error('mother_home_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_work_address') is-invalid @enderror"
+                                       name="mother_work_address" placeholder="Work Address of Mother"
+                                       value="{{ old('mother_work_address') }}">
+                                @error('mother_work_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_email') is-invalid @enderror"
+                                       name="mother_email" placeholder="Email Address"
+                                       value="{{ old('mother_email') }}">
+                                @error('mother_email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_phone') is-invalid @enderror"
+                                       name="mother_phone" placeholder="Phone Number"
+                                       value="{{ old('mother_phone') }}">
+                                @error('mother_phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('mother_nid') is-invalid @enderror"
+                                       name="mother_nid" placeholder="NID"
+                                       value="{{ old('mother_nid') }}">
+                                @error('mother_nid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 my-2">
+                                <label for="sponsor">Are your parents your Financial sponsor for participation in the
+                                    program?</label>&nbsp;&nbsp;&nbsp;
+                                <input name="sponsor" id="sponsor_y" type="radio">&nbsp;<label
+                                    for="sponsor_y">Yes</label>
+                                <input name="sponsor" id="sponsor_n" type="radio">&nbsp;<label
+                                    for="sponsor_n">No</label>
+                            </div>
+                            {{--Sponsor Infos--}}
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_name') is-invalid @enderror"
+                                       name="sponsor_name" placeholder="Full names of Sponsor"
+                                       value="{{ old('sponsor_name') }}">
+                                @error('sponsor_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_address') is-invalid @enderror"
+                                       name="sponsor_address" placeholder="Contact Address"
+                                       value="{{ old('sponsor_address') }}">
+                                @error('sponsor_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_email') is-invalid @enderror"
+                                       name="sponsor_email" placeholder="Email Address"
+                                       value="{{ old('sponsor_email') }}">
+                                @error('sponsor_email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_phone') is-invalid @enderror"
+                                       name="sponsor_phone" placeholder="Phone Number"
+                                       value="{{ old('sponsor_phone') }}">
+                                @error('sponsor_phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_relation') is-invalid @enderror"
+                                       name="sponsor_relation" placeholder="Relationship to you"
+                                       value="{{ old('sponsor_relation') }}">
+                                @error('sponsor_relation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_nid') is-invalid @enderror"
+                                       name="sponsor_nid" placeholder="NID"
+                                       value="{{ old('sponsor_nid') }}">
+                                @error('sponsor_nid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_year') is-invalid @enderror"
+                                       name="sponsor_year" placeholder="How many dependents does your sponsor have"
+                                       value="{{ old('sponsor_year') }}">
+                                @error('sponsor_year')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <input type="text"
+                                       class="form-control @error('sponsor_occupation') is-invalid @enderror"
+                                       name="sponsor_occupation" placeholder="Sponsor’s occupation"
+                                       value="{{ old('sponsor_occupation') }}">
+                                @error('sponsor_occupation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer mt-2">
                         <div class="row d-flex justify-content-center">
