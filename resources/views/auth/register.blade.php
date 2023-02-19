@@ -220,7 +220,7 @@
                         <h6 class="pt-5 mb-0 text-info">Additional information</h6>
                         <div class="row mt-1">
                             <div class="col-md-6 my-2">
-                                <select name="social_link" class="form-control" id="">
+                                <select name="social_link" class="form-control social_option" id="">
                                     <option value="">Social Media Handle</option>
                                     <option value="Facebook">Facebook</option>
                                     <option value="Twitter">Twitter</option>
@@ -233,7 +233,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-6 my-2">
+                            <div class="col-md-6 my-2 d-none social_val">
                                 <input type="text"
                                        class="form-control @error('social_val') is-invalid @enderror"
                                        name="social_val" placeholder="Social Value"
@@ -414,99 +414,106 @@
                             <div class="col-md-12 my-2">
                                 <label for="sponsor">Are your parents your Financial sponsor for participation in the
                                     program?</label>&nbsp;&nbsp;&nbsp;
-                                <input name="sponsor" id="sponsor_y" type="radio">&nbsp;<label
+                                <input name="sponsor" class="sponsor_yn" id="sponsor_y" type="radio"
+                                       value="Yes">&nbsp;<label
                                     for="sponsor_y">Yes</label>
-                                <input name="sponsor" id="sponsor_n" type="radio">&nbsp;<label
+                                <input name="sponsor" class="sponsor_yn" id="sponsor_n" checked value="No"
+                                       type="radio">&nbsp;<label
                                     for="sponsor_n">No</label>
                             </div>
                             {{--Sponsor Infos--}}
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_name') is-invalid @enderror"
-                                       name="sponsor_name" placeholder="Full names of Sponsor"
-                                       value="{{ old('sponsor_name') }}">
-                                @error('sponsor_name')
-                                <span class="invalid-feedback" role="alert">
+                            <div class="col-md-12 sponsor_infos d-none">
+                                <div class="row">
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_name') is-invalid @enderror"
+                                               name="sponsor_name" placeholder="Full names of Sponsor"
+                                               value="{{ old('sponsor_name') }}">
+                                        @error('sponsor_name')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_address') is-invalid @enderror"
-                                       name="sponsor_address" placeholder="Contact Address"
-                                       value="{{ old('sponsor_address') }}">
-                                @error('sponsor_address')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_address') is-invalid @enderror"
+                                               name="sponsor_address" placeholder="Contact Address"
+                                               value="{{ old('sponsor_address') }}">
+                                        @error('sponsor_address')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_email') is-invalid @enderror"
-                                       name="sponsor_email" placeholder="Email Address"
-                                       value="{{ old('sponsor_email') }}">
-                                @error('sponsor_email')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_email') is-invalid @enderror"
+                                               name="sponsor_email" placeholder="Email Address"
+                                               value="{{ old('sponsor_email') }}">
+                                        @error('sponsor_email')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_phone') is-invalid @enderror"
-                                       name="sponsor_phone" placeholder="Phone Number"
-                                       value="{{ old('sponsor_phone') }}">
-                                @error('sponsor_phone')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_phone') is-invalid @enderror"
+                                               name="sponsor_phone" placeholder="Phone Number"
+                                               value="{{ old('sponsor_phone') }}">
+                                        @error('sponsor_phone')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_relation') is-invalid @enderror"
-                                       name="sponsor_relation" placeholder="Relationship to you"
-                                       value="{{ old('sponsor_relation') }}">
-                                @error('sponsor_relation')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_relation') is-invalid @enderror"
+                                               name="sponsor_relation" placeholder="Relationship to you"
+                                               value="{{ old('sponsor_relation') }}">
+                                        @error('sponsor_relation')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_nid') is-invalid @enderror"
-                                       name="sponsor_nid" placeholder="NID"
-                                       value="{{ old('sponsor_nid') }}">
-                                @error('sponsor_nid')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_nid') is-invalid @enderror"
+                                               name="sponsor_nid" placeholder="NID"
+                                               value="{{ old('sponsor_nid') }}">
+                                        @error('sponsor_nid')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_year') is-invalid @enderror"
-                                       name="sponsor_year" placeholder="How many dependents does your sponsor have"
-                                       value="{{ old('sponsor_year') }}">
-                                @error('sponsor_year')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_year') is-invalid @enderror"
+                                               name="sponsor_year"
+                                               placeholder="How many dependents does your sponsor have"
+                                               value="{{ old('sponsor_year') }}">
+                                        @error('sponsor_year')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
-                                <input type="text"
-                                       class="form-control @error('sponsor_occupation') is-invalid @enderror"
-                                       name="sponsor_occupation" placeholder="Sponsor’s occupation"
-                                       value="{{ old('sponsor_occupation') }}">
-                                @error('sponsor_occupation')
-                                <span class="invalid-feedback" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <input type="text"
+                                               class="form-control @error('sponsor_occupation') is-invalid @enderror"
+                                               name="sponsor_occupation" placeholder="Sponsor’s occupation"
+                                               value="{{ old('sponsor_occupation') }}">
+                                        @error('sponsor_occupation')
+                                        <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -526,4 +533,31 @@
             </div>
         </form>
     </div>
+@endsection
+@section('footer')
+    <script>
+        $(".sponsor_yn").on("change", function () {
+            let val = $(".sponsor_yn:checked").val();
+            let sponsorInfo = $(".sponsor_infos");
+            if (val == "Yes") {
+                sponsorInfo.addClass("d-block")
+                sponsorInfo.removeClass("d-none")
+            } else {
+                sponsorInfo.removeClass("d-block")
+                sponsorInfo.addClass("d-none")
+            }
+        })
+        $(".social_option").on("change", function () {
+            let val = $(this).val();
+            let social_val = $(".social_val");
+            if (val) {
+                social_val.addClass("d-block")
+                social_val.removeClass("d-none")
+                social_val.find("input").attr('placeholder', 'Enter you ' + val + ' link');
+            } else {
+                social_val.removeClass("d-block")
+                social_val.addClass("d-none")
+            }
+        })
+    </script>
 @endsection
