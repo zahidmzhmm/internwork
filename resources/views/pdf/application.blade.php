@@ -108,15 +108,23 @@
     <tr>
         <th class="text-left pt-2">Post-Secondary Study:</th>
         <td class="text-left pt-2">{{ $profile->pss_year }}</td>
-        <th class="text-left pt-2"></th>
-        <td class="text-left pt-2"></td>
+        <th class="text-left pt-2">Social Media:</th>
+        <td class="text-left pt-2">{{ $profile->social }}</td>
+    </tr>
+    <tr>
+        <th class="text-left pt-2">{{ $profile->social }} Link</th>
+        <td class="text-left pt-2">{{ $profile->social_val }}</td>
+        <th class="text-left pt-2">LinkedIn</th>
+        <td class="text-left pt-2">{{ $profile->linkedin }}</td>
+    </tr>
+    <tr>
+        <th class="text-left pt-2">NID</th>
+        <td class="text-left pt-2">{{ $profile->nid }}</td>
+        <th class="text-left pt-2">WhatsApp Number</th>
+        <td class="text-left pt-2">{{ $profile->w_number }}</td>
     </tr>
     </tbody>
 </table>
-<hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
-<p class="my-0 text-small">
-    Application
-</p>
 <table class="main-content pt-2 text-small table table-bordered">
     <tbody>
     <tr>
@@ -151,6 +159,95 @@
     </tr>
     </tbody>
 </table>
+
+@if($father !== "" && $mother!=="")
+    <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
+    <p class="my-0 text-small">
+        Parental Information
+    </p>
+    @if($father)
+        <table class="main-content table table-bordered pt-2 text-small">
+            <tbody>
+            <tr>
+                <th class="text-left pt-2">Full names of Father</th>
+                <td class="text-left pt-2">{{ $father->name }}</td>
+                <th class="text-left pt-2">Home Address of Father</th>
+                <td class="text-left pt-2">{{ $father->home_address }}</td>
+            </tr>
+            <tr>
+                <th class="text-left pt-2">Work Address of Father</th>
+                <td class="text-left pt-2">{{ $father->work_address }}</td>
+                <th class="text-left pt-2">Email Address</th>
+                <td class="text-left pt-2">{{ $father->email }}</td>
+            </tr>
+            <tr>
+                <th class="text-left pt-2">Phone Number</th>
+                <td class="text-left pt-2">{{ $father->phone }}</td>
+                <th class="text-left pt-2">NID</th>
+                <td class="text-left pt-2">{{ $father->nid }}</td>
+            </tr>
+            </tbody>
+        </table>
+    @endif
+    @if($mother)
+        <table class="main-content table table-bordered pt-2 text-small">
+            <tbody>
+            <tr>
+                <th class="text-left pt-2">Full names of Mother</th>
+                <td class="text-left pt-2">{{ $mother->name }}</td>
+                <th class="text-left pt-2">Home Address of Mother</th>
+                <td class="text-left pt-2">{{ $mother->home_address }}</td>
+            </tr>
+            <tr>
+                <th class="text-left pt-2">Work Address of Mother</th>
+                <td class="text-left pt-2">{{ $mother->work_address }}</td>
+                <th class="text-left pt-2">Email Address</th>
+                <td class="text-left pt-2">{{ $mother->email }}</td>
+            </tr>
+            <tr>
+                <th class="text-left pt-2">Phone Number</th>
+                <td class="text-left pt-2">{{ $mother->phone }}</td>
+                <th class="text-left pt-2">NID</th>
+                <td class="text-left pt-2">{{ $mother->nid }}</td>
+            </tr>
+            </tbody>
+        </table>
+    @endif
+@endif
+@if($sponsor)
+    <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
+    <p class="my-0 text-small">
+        Sponsor
+    </p>
+    <table class="main-content table table-bordered pt-2 text-small">
+        <tbody>
+        <tr>
+            <th class="text-left pt-2">Full names of Sponsor</th>
+            <td class="text-left pt-2">{{ $sponsor->name }}</td>
+            <th class="text-left pt-2">Contact Address</th>
+            <td class="text-left pt-2">{{ $sponsor->contact }}</td>
+        </tr>
+        <tr>
+            <th class="text-left pt-2">Email Address</th>
+            <td class="text-left pt-2">{{ $sponsor->email }}</td>
+            <th class="text-left pt-2">Phone Number</th>
+            <td class="text-left pt-2">{{ $sponsor->phone }}</td>
+        </tr>
+        <tr>
+            <th class="text-left pt-2">Relationship to you</th>
+            <td class="text-left pt-2">{{ $sponsor->relation }}</td>
+            <th class="text-left pt-2">NID</th>
+            <td class="text-left pt-2">{{ $sponsor->nid }}</td>
+        </tr>
+        <tr>
+            <th class="text-left pt-2">How many dependents does your sponsor have</th>
+            <td class="text-left pt-2">{{ $sponsor->dependents }}</td>
+            <th class="text-left pt-2">Sponsor’s occupation</th>
+            <td class="text-left pt-2">{{ $sponsor->occupation }}</td>
+        </tr>
+        </tbody>
+    </table>
+@endif
 @if($employ!==null)
     <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
     <p class="my-0 text-small">

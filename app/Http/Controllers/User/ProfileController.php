@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
 use App\Models\Appointment\AppointmentList;
+use App\Models\Parental;
 use App\Models\Profile;
+use App\Models\Sponsor;
 use App\Models\Uploads;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -191,7 +193,15 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Data not found');
         }
         $user = User::find($profile->user_id);
-        $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile'));
+        $father = Parental::where('user_id', '=', $profile->user_id)
+            ->where('type', '=', 'father')
+            ->first();
+        $mother = Parental::where('user_id', '=', $profile->user_id)
+            ->where('type', '=', 'mother')
+            ->first();
+        $sponsor = Sponsor::where('user_id', '=', $profile->user_id)
+            ->first();
+        $pdf = Pdf::loadView('pdf.profile', compact('user', 'profile', 'father', 'mother', 'sponsor'));
         return $pdf->download("Profile - " . $profile->fname . ' ' . $profile->lname . '.pdf');
     }
 

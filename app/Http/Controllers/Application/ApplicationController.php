@@ -10,7 +10,9 @@ use App\Models\Application\Experience;
 use App\Models\Application\Study;
 use App\Models\Application\Travel;
 use App\Models\Application\Visa;
+use App\Models\Parental;
 use App\Models\Profile;
+use App\Models\Sponsor;
 use App\Models\Uploads;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -290,6 +292,14 @@ class ApplicationController extends Controller
         $studies = Study::where('user_id', '=', $application->user_id)
             ->orderBy('id', 'desc')
             ->first();
-        return Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies'));
+        $father = Parental::where('user_id', '=', $application->user_id)
+            ->where('type', '=', 'father')
+            ->first();
+        $mother = Parental::where('user_id', '=', $application->user_id)
+            ->where('type', '=', 'mother')
+            ->first();
+        $sponsor = Sponsor::where('user_id', '=', $application->user_id)
+            ->first();
+        return Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies', 'father', 'mother', 'sponsor'));
     }
 }
