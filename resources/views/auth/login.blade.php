@@ -56,11 +56,13 @@
                                         {{ __('Login') }}
                                     </button>
 
-                                    @if (\Illuminate\Support\Facades\Route::has('password.request'))
-                                        <a style="width: 100%" class="btn text-left small btn-link"
-                                           href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
+                                    @if(Route::is('admin.login')===false)
+                                        @if (\Illuminate\Support\Facades\Route::has('password.request'))
+                                            <a style="width: 100%" class="btn text-left small btn-link"
+                                               href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

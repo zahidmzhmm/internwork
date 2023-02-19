@@ -44,7 +44,9 @@
                             @include("layouts.user-top")
                         @endif
                     @else
-                        @include("layouts.user-top")
+                        @if(Route::is('admin.login')===false)
+                            @include("layouts.user-top")
+                        @endif
                     @endif
                 </div>
             </div><!--  /.container  -->
