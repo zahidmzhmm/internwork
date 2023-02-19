@@ -72,13 +72,17 @@ class ApplicationController extends Controller
             'applicable_deadline' => 'required',
             'payment_method' => 'required'
         ]);
-        $apnt = new Application();
+        $ref_id = $request->reference;
+        $apnt = Application::where('reference', '=', $request->reference)->first();
+        if (!$apnt) {
+            $apnt = new Application();
+        }
         $apnt->user_id = $request->user_id;
         $apnt->category = $request->category;
         $apnt->destination = $request->destination;
         $apnt->program = $request->program;
         $apnt->duration = $request->duration;
-        $apnt->reference = $request->reference;
+        $apnt->reference = $ref_id;
         $apnt->fees = $request->fees;
         $apnt->us_visa = $request->us_visa;
         $apnt->travel_exp = $request->travel_exp;

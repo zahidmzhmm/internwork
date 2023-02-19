@@ -48,7 +48,7 @@ class PaymentController extends Controller
             return $this->mark_paid($application, "waiver");
         }
         if ($request->payment_method == 'paypal') {
-            return \redirect()->route('paypal');
+            return \redirect('/user/paypal/' . $request->application);
         }
         if ($request->payment_method == 'paystack') {
             return $this->paystack($application, $request->user());
@@ -67,9 +67,8 @@ class PaymentController extends Controller
 
     public function paypalPay(Request $request)
     {
-        $request->validate(['application' => 'required']);
-        $applicationId = $request->application;
-        $application = Application::where('reference', '=', $applicationId)
+        $request->validate(['reference' => 'required']);
+        $application = Application::where('reference', '=', $request->reference)
             ->first();
         if (!$application) {
             return redirect()->route('account')->with('error', 'Data not found!');
