@@ -292,6 +292,12 @@ class ApplicationController extends Controller
         $studies = Study::where('user_id', '=', $application->user_id)
             ->orderBy('id', 'desc')
             ->first();
+        $travel = Travel::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
+        $visa = Visa::where('user_id', '=', $application->user_id)
+            ->orderBy('id', 'desc')
+            ->first();
         $father = Parental::where('user_id', '=', $application->user_id)
             ->where('type', '=', 'father')
             ->first();
@@ -300,6 +306,6 @@ class ApplicationController extends Controller
             ->first();
         $sponsor = Sponsor::where('user_id', '=', $application->user_id)
             ->first();
-        return Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies', 'father', 'mother', 'sponsor'));
+        return Pdf::loadView('pdf.application', compact('user', 'profile', 'application', 'employ', 'experiences', 'studies', 'father', 'mother', 'sponsor', 'travel', 'visa'));
     }
 }
