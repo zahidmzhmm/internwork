@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Application\Application;
 use App\Models\Appointment\Appointment;
 use App\Models\Appointment\AppointmentList;
+use App\Models\Profile;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -105,6 +107,11 @@ class AppointmentController extends Controller
         $appointment->type = $request->type;
         $appointment->time = $request->time;
         $appointment->save();
+        $profile = Profile::where('user_id', '=', Auth::id())->first();
+        Mail::send('mail.admin.appointment', ['profile' => $profile, 'apnt' => $appointment], function ($message) use ($profile, $appointment) {
+            $message->to(env('APP_EMAIL'));
+            $message->subject('A NEW Appointment Request');
+        });
         return redirect()->back()->with('success', 'Success');
     }
 

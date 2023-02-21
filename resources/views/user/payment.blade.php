@@ -49,10 +49,12 @@
                                 <label for="">Select your payment method</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="radio" checked name="payment_method" value="paystack"
-                                       class="payment_method"
-                                       id="paystack">&nbsp;&nbsp;<label
-                                    for="paystack">Paystack</label> &nbsp;&nbsp;&nbsp;
+                                <div class="d-none">
+                                    <input type="radio" checked name="payment_method" value="paystack"
+                                           class="payment_method"
+                                           id="paystack">&nbsp;&nbsp;<label
+                                        for="paystack">Paystack</label> &nbsp;&nbsp;&nbsp;
+                                </div>
                                 <input type="radio" checked name="payment_method" value="paypal"
                                        class="payment_method"
                                        id="paypal">&nbsp;&nbsp;<label
