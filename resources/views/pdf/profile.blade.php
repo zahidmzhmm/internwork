@@ -51,7 +51,7 @@
             @endif
         </td>
         <td class="text-right">
-            <img class="ml-auto" style="width: 4.7rem" src="{{ public_path('assets\images\logo\logo-dark.png') }}"
+            <img class="ml-auto" style="width: 4.7rem" src="{{ public_path('assets/images/logo/logo-dark.png') }}"
                  alt="Logo">
         </td>
     </tr>
@@ -115,7 +115,7 @@
         <td class="text-left pt-2">{{ $profile->linkedin }}</td>
     </tr>
     <tr>
-        <th class="text-left pt-2">NID</th>
+        <th class="text-left pt-2">National Identity Number</th>
         <td class="text-left pt-2">{{ $profile->nid }}</td>
         <th class="text-left pt-2">WhatsApp Number</th>
         <td class="text-left pt-2">{{ $profile->w_number }}</td>
@@ -146,7 +146,7 @@
             <tr>
                 <th class="text-left pt-2">Phone Number</th>
                 <td class="text-left pt-2">{{ $father->phone }}</td>
-                <th class="text-left pt-2">NID</th>
+                <th class="text-left pt-2">National Identity Number</th>
                 <td class="text-left pt-2">{{ $father->nid }}</td>
             </tr>
             </tbody>
@@ -170,7 +170,7 @@
             <tr>
                 <th class="text-left pt-2">Phone Number</th>
                 <td class="text-left pt-2">{{ $mother->phone }}</td>
-                <th class="text-left pt-2">NID</th>
+                <th class="text-left pt-2">National Identity Number</th>
                 <td class="text-left pt-2">{{ $mother->nid }}</td>
             </tr>
             </tbody>
@@ -199,7 +199,7 @@
         <tr>
             <th class="text-left pt-2">Relationship to you</th>
             <td class="text-left pt-2">{{ $sponsor->relation }}</td>
-            <th class="text-left pt-2">NID</th>
+            <th class="text-left pt-2">National Identity Number</th>
             <td class="text-left pt-2">{{ $sponsor->nid }}</td>
         </tr>
         <tr>

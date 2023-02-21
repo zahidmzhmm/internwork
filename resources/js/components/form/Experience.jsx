@@ -54,7 +54,7 @@ const Experience = ({setData, allData, key, data}) => {
             </div>
             <div className="row my-2">
                 <div className="col-md-8 d-flex align-items-center">
-                    <label htmlFor="category">Program Start(Arrival) Date</label>
+                    <label htmlFor="category">Job Start Date</label>
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="date" className="form-control" value={data.start}
@@ -70,7 +70,7 @@ const Experience = ({setData, allData, key, data}) => {
             </div>
             <div className="row my-2">
                 <div className="col-md-8 d-flex align-items-center">
-                    <label htmlFor="category">Program End(Departure) Date</label>
+                    <label htmlFor="category">Job End Date</label>
                 </div>
                 <div className="col-md-4 d-flex">
                     <input type="date" className="form-control" value={data.end}

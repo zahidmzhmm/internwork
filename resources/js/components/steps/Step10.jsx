@@ -29,6 +29,7 @@ const Step10 = ({
 
     const [allduration, setAllDuration] = useState([]);
     const [allApplicable, setAllApplicable] = useState([]);
+    const [update, setUpdate] = useState(false)
 
     useEffect(() => {
         if (country == "Australia" && category == "Internship") {
@@ -76,6 +77,7 @@ const Step10 = ({
         }
     }, [step])
     const finalSubmit = (e) => {
+        setUpdate(true)
         let docget = document.getElementById("appointment-root");
         let ref = docget.getAttribute('data-ref-gen') + digit;
         let user_id = docget.getAttribute('data-user-id');
@@ -165,8 +167,13 @@ const Step10 = ({
             }
             axiosReq('applications', 'post', formdata).then((data) => {
                 if (parseInt(data.status) === 200) {
-                    window.location.href = '/user/payment/' + ref;
+                    setTimeout(() => {
+                        setUpdate(false)
+                        window.location.href = '/user/payment/' + ref;
+                        return true;
+                    }, 2000)
                 } else {
+                    setUpdate(false)
                     toast.error(data.message);
                 }
             })
@@ -244,7 +251,9 @@ const Step10 = ({
                     <button type="button" onClick={(e) => setStep(9)} className="btn btn-info">Previous</button>
                 </div>
                 <div className="w-50 text-right">
-                    <button type="button" onClick={(e) => finalSubmit(e)} className="btn btn-info">Next</button>
+                    <button type="button" disabled={update} onClick={(e) => finalSubmit(e)}
+                            className="btn btn-info">Next
+                    </button>
                 </div>
             </div>
         </>

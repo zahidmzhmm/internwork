@@ -257,7 +257,7 @@
                             <div class="col-md-6 my-2">
                                 <input type="text"
                                        class="form-control @error('nid') is-invalid @enderror"
-                                       name="nid" placeholder="NID"/>
+                                       name="nid" placeholder="National Identity Number"/>
                                 @error('nid')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -336,7 +336,7 @@
                             <div class="col-md-6 my-2">
                                 <input type="text"
                                        class="form-control @error('father_nid') is-invalid @enderror"
-                                       name="father_nid" placeholder="NID"
+                                       name="father_nid" placeholder="National Identity Number"
                                        value="{{ old('father_nid') }}">
                                 @error('father_nid')
                                 <span class="invalid-feedback" role="alert">
@@ -403,7 +403,7 @@
                             <div class="col-md-6 my-2">
                                 <input type="text"
                                        class="form-control @error('mother_nid') is-invalid @enderror"
-                                       name="mother_nid" placeholder="NID"
+                                       name="mother_nid" placeholder="National Identity Number"
                                        value="{{ old('mother_nid') }}">
                                 @error('mother_nid')
                                 <span class="invalid-feedback" role="alert">
@@ -414,15 +414,15 @@
                             <div class="col-md-12 my-2">
                                 <label for="sponsor">Are your parents your Financial sponsor for participation in the
                                     program?</label>&nbsp;&nbsp;&nbsp;
-                                <input name="sponsor" class="sponsor_yn" id="sponsor_y" type="radio"
+                                <input name="sponsor" checked class="sponsor_yn" id="sponsor_y" type="radio"
                                        value="Yes">&nbsp;<label
                                     for="sponsor_y">Yes</label>
-                                <input name="sponsor" class="sponsor_yn" id="sponsor_n" checked value="No"
+                                <input name="sponsor" class="sponsor_yn" id="sponsor_n" value="No"
                                        type="radio">&nbsp;<label
                                     for="sponsor_n">No</label>
                             </div>
                             {{--Sponsor Infos--}}
-                            <div class="col-md-12 sponsor_infos d-none">
+                            <div class="col-md-12 sponsor_infos d-block">
                                 <div class="row">
                                     <div class="col-md-6 my-2">
                                         <input type="text"
@@ -482,7 +482,7 @@
                                     <div class="col-md-6 my-2">
                                         <input type="text"
                                                class="form-control @error('sponsor_nid') is-invalid @enderror"
-                                               name="sponsor_nid" placeholder="NID"
+                                               name="sponsor_nid" placeholder="National Identity Number"
                                                value="{{ old('sponsor_nid') }}">
                                         @error('sponsor_nid')
                                         <span class="invalid-feedback" role="alert">
