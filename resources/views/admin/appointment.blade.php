@@ -43,7 +43,7 @@
                                         Pending
                                     </option>
                                     <option
-                                        {{ isset($appointment->approval)?$appointment->approval=="approve"?"selected":"":"" }} value="approve">
+                                        {{ isset($appointment->approval)?$appointment->approval=="approved"?"selected":"":"" }} value="approved">
                                         Approve
                                     </option>
                                     <option
