@@ -23,11 +23,11 @@
                         @if($appointment)
                             @if($appointment->time!=null)
                                 <div style="font-size: 1rem;padding-top: 15px;padding-bottom: 15px;">
-                                    <div><b>Appointment Approval Status:</b> {{ $appointment->approval }}</div>
+                                    <div class="text-capitalize"><b>Appointment Approval Status:</b> {{ $appointment->approval }}</div>
                                     <br>
                                     <div><b>Appointment Date / Time:</b> {{ $appointment->time }}</div>
                                     <br>
-                                    <div><b>Appointment
+                                    <div class="text-capitalize"><b>Appointment
                                             Type:</b> {{ $appointment->type=='onsite'?'In-person (Onsite)':'Virtual (Online)' }}
                                     </div>
                                     <br>

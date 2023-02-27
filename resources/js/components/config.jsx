@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URI = "https://test.internworkprograms.com/api/";
+export const API_URI = "https://internworkprograms.com/api/";
 export const FEES = 50;
 export const axiosReq = async (page, method = "get", formData = "") => {
     let headers = {

@@ -335,35 +335,13 @@
 @if($travel!==null)
     <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
     <p class="my-0 text-small">
-        Travel Experience
-    </p>
-    <table class="main-content pt-2 text-small table table-bordered">
-        <tbody>
-        <tr>
-            <th class="text-left pt-2">Country</th>
-            <td class="text-left pt-2">{{ $travel->institute }}</td>
-            <th class="text-left pt-2">Purpose</th>
-            <td class="text-left pt-2">{{ $travel->purpose }}</td>
-        </tr>
-        <tr>
-            <th class="text-left pt-2">Duration</th>
-            <td class="text-left pt-2">{{ $travel->duration }}</td>
-            <th class="text-left pt-2">Year</th>
-            <td class="text-left pt-2">{{ $travel->year }}</td>
-        </tr>
-        </tbody>
-    </table>
-@endif
-@if($travel!==null)
-    <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
-    <p class="my-0 text-small">
         Previous travel experience
     </p>
     <table class="main-content pt-2 text-small table table-bordered">
         <tbody>
         <tr>
             <th class="text-left pt-2">Country</th>
-            <td class="text-left pt-2">{{ $travel->institute }}</td>
+            <td class="text-left pt-2">{{ $travel->country }}</td>
             <th class="text-left pt-2">Purpose</th>
             <td class="text-left pt-2">{{ $travel->purpose }}</td>
         </tr>

@@ -42,7 +42,7 @@
                 },
                 createOrder: function (data, actions) {
                     return actions.order.create({
-                        purchase_units: [{"amount": {"currency_code": "EUR", "value": {{ 50 }}}}]
+                        purchase_units: [{"amount": {"currency_code": "{{ env('PAYPAL_CURRENCY') }}", "value": {{ 50 }}}}]
                     });
                 },
                 onApprove: function (data, actions) {
@@ -59,7 +59,8 @@
                     });
                 },
                 onError: function (err) {
-                    window.location.reload()
+                    console.log(err)
+                    //window.location.reload()
                 }
             }).render('#paypal-button-container');
         }

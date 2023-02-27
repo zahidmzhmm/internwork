@@ -125,7 +125,7 @@ class AuthController extends Controller
                 $parent->save();
             }
             if (isset($request->sponsor) && !empty($request->sponsor)) {
-                if ($request->sponsor == 'Yes') {
+                if ($request->sponsor == 'No') {
                     $sponsor = new Sponsor();
                     $sponsor->user_id = $user->id;
                     $sponsor->name = $request->sponsor_name;

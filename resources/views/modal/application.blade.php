@@ -41,7 +41,7 @@
                         </tr>
                         <tr>
                             <th>Application Status</th>
-                            <td>{{ $application->approve_status }}</td>
+                            <td class="text-capitalize">{{ $application->approve_status }}</td>
                         </tr>
                     </table>
                 </div>

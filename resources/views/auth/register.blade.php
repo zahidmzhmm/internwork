@@ -422,7 +422,7 @@
                                     for="sponsor_n">No</label>
                             </div>
                             {{--Sponsor Infos--}}
-                            <div class="col-md-12 sponsor_infos d-block">
+                            <div class="col-md-12 sponsor_infos d-none">
                                 <div class="row">
                                     <div class="col-md-6 my-2">
                                         <input type="text"
@@ -539,7 +539,7 @@
         $(".sponsor_yn").on("change", function () {
             let val = $(".sponsor_yn:checked").val();
             let sponsorInfo = $(".sponsor_infos");
-            if (val == "Yes") {
+            if (val == "No") {
                 sponsorInfo.addClass("d-block")
                 sponsorInfo.removeClass("d-none")
             } else {

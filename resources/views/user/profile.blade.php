@@ -35,9 +35,11 @@
                             @include("errors")
                             <div class="my-2 d-flex justify-content-center">
                                 <div id="profile_img"
-                                     class="border-5 image passport-image rounded-circle overflow-hidden">
+                                     class="border-5 image passport-image overflow-hidden">
                                     @if($profile->picture!==null)
-                                        <img src="{{ asset($profile->picture) }}" alt="" class="img-fluid">
+                                        <img src="{{ asset($profile->picture) }}" alt="" class="img-fluid" style="object-fit:contain">
+                                        @else
+                                        <img src="{{ asset('uploads/default.jpg') }}" alt="" class="img-fluid" style="object-fit:contain">
                                     @endif
                                 </div>
                             </div>
