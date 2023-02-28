@@ -251,7 +251,7 @@
 @if($employ!==null)
     <hr style="height: 1px;background:#e2e3e5;border: none" class="my-2">
     <p class="my-0 text-small">
-        Self Employ Lived Before
+        Self Placement
     </p>
     <table class="main-content pt-2 text-small table table-bordered">
         <tbody>

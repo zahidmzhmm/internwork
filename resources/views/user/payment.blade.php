@@ -71,7 +71,7 @@
                         <div class="my-2 d-flex align-items-start">
                             <input type="checkbox" class="mt-1" id="terms" required>&nbsp;&nbsp;
                             <label for="terms">
-                                I have read and accept the Intern Work Abroad Programs <a href="">Terms and
+                                I have read and accept the Intern Work Abroad Programs <a href="https://internworkprograms.com/privacy">Terms and
                                     Conditions</a> and certify that the information I am submitting is accurate and that
                                 all documents I will be uploading to support my application are genuine.
                             </label>

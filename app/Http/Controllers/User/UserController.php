@@ -83,12 +83,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if (!$user) {
+        $profile = Profile::find($id);
+        if (!$profile) {
             return redirect()->back()->with('error', 'Data not found');
         }
         try {
+            $user = User::find($profile->user_id);
             $user->delete();
+            $profile->delete();
             return redirect()->back()->with('success', 'Successfully Deleted');
         }catch (\Exception $exception){
             return redirect()->back()->with('success', 'Successfully Deleted');
