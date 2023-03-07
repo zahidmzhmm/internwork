@@ -200,7 +200,8 @@ class AuthController extends Controller
             if ($user->email_verified_at == null) {
                 $user->token = strtoupper(substr(uniqid(), 0, 6));
                 $user->save();
-                Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', $user));
+                $profile = Profile::where('user_id', '=', $user->id)->first();
+                Mail::send(new PlainMailable("Verify Email", $user->email, 'verification', ["user" => $user, "profile" => $profile]));
                 return redirect()->route('verification.sent')->with('success', 'Email verification code sent');
             }
             if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
