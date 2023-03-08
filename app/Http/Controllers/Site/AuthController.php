@@ -67,7 +67,8 @@ class AuthController extends Controller
             'pss_year' => 'required',
             'username' => 'required|string|min:4|max:10|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:7'
+            'password' => 'required|confirmed|min:7',
+            'h-captcha-response' => 'required'
         ]);
         $user = new User();
         $user->username = $request->username;
@@ -180,7 +181,8 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:7'
+            'password' => 'required|min:7',
+            'h-captcha-response' => 'required'
         ]);
         $user = User::where('email', '=', $request->email)->first();
         if (!$user) {

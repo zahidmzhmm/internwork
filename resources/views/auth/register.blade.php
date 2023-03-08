@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section("head")
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+@endsection
+
 @section('content')
     <!-- ========================
        page title
@@ -12,6 +16,12 @@
                     <div class="card-header">Register</div>
                     <div class="card-body">
                         @csrf
+
+                        @error('h-captcha-response')
+                        <div class="alert alert-danger">
+                            Captcha Required
+                        </div>
+                        @enderror
                         <h6 class="pt-3 mb-0 text-info">Personal Information</h6>
                         <div class="row mt-1">
                             <div class="col-sm-6 my-2">
@@ -515,9 +525,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="h-captcha text-center"
+                                     data-sitekey="bf00817b-aad5-4797-b063-6f100319a9cb"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-footer mt-2">
+                    <div class="card-footer">
                         <div class="row d-flex justify-content-center">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info mr-2">

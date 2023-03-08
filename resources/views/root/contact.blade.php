@@ -1,4 +1,9 @@
 @extends('layouts.root')
+
+@section("head")
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+@endsection
+
 @section('content')
     <!-- ========================
        page title
@@ -40,34 +45,45 @@
                         <form action="{{ route('contact.req') }}" method="post">
                             @csrf
                             @include("errors")
+                            @error('h-captcha-response')
+                            <div class="alert alert-danger mb-2">
+                                Captcha Required
+                            </div>
+                            @enderror
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input name="name" type="text" class="form-control"
+                                    <div class="form-group"><input name="name" type="text" class="form-control" required
                                                                    placeholder="Name">
                                     </div>
                                 </div><!-- /.col-lg-6 -->
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input name="email" type="email" class="form-control"
+                                    <div class="form-group"><input name="email" type="email" class="form-control" required
                                                                    placeholder="Email"></div>
                                 </div><!-- /.col-lg-6 -->
                             </div><!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input name="phone" type="text" class="form-control"
+                                    <div class="form-group"><input name="phone" type="text" class="form-control" required
                                                                    placeholder="Phone">
                                     </div>
                                 </div><!-- /.col-lg-6 -->
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <div class="form-group"><input name="subject" type="text" class="form-control"
+                                    <div class="form-group"><input name="subject" type="text" class="form-control" required
                                                                    placeholder="Subject"></div>
                                 </div><!-- /.col-lg-6 -->
                             </div><!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group mb-30"><textarea name="message" class="form-control"
+                                    <div class="form-group mb-30"><textarea name="message" class="form-control" required
                                                                             placeholder="Message"></textarea></div>
                                 </div><!-- /.col-lg-12 -->
                             </div><!-- /.row -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="h-captcha mb-3"
+                                         data-sitekey="bf00817b-aad5-4797-b063-6f100319a9cb"></div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <button type="submit" class="btn btn__rounded btn__primary btn__hover3">Send

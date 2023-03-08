@@ -46,6 +46,7 @@ class SiteController extends Controller
 
     public function contactReq(Request $request)
     {
+        $request->validate(['h-captcha-response' => 'required']);
         try {
             Mail::send(new PlainMailable($request->subject, env('APP_EMAIL'), 'contact', $request->toArray()));
             return redirect()->back()->with('success', 'Message send success');

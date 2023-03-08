@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section("head")
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+@endsection
+
 @section('content')
     <!-- ========================
        page title
@@ -15,6 +19,11 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             @include('errors')
+                            @error('h-captcha-response')
+                            <div class="alert alert-danger">
+                                Captcha Required
+                            </div>
+                            @enderror
                             <div class="row mb-3">
                                 <label for="email"
                                        class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -49,7 +58,13 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <div class="h-captcha my-2"
+                                         data-sitekey="bf00817b-aad5-4797-b063-6f100319a9cb"></div>
+                                </div>
+                            </div>
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button style="width: 50%;" type="submit" class="btn btn-primary">
